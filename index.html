@@ -29,7 +29,7 @@
             font-family: 'Courier New', monospace;
             margin: 0;
             padding: 0;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: flex-start;
@@ -49,6 +49,7 @@
             font-size: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
+            z-index: 1000;
         }
 
         .theme-toggle:hover {
@@ -59,6 +60,7 @@
         .container {
             font-size: 18px;
             line-height: 1.8;
+            max-width: 800px;
         }
 
         .typewriter {
@@ -120,6 +122,17 @@
             color: var(--post-type-color);
             font-size: 14px;
         }
+
+        @media (max-width: 768px) {
+            body {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            .container {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -140,24 +153,33 @@
             <div class="section-title">Recent Posts:</div>
             <div class="post-item">
                 <span class="post-type">[Paper]</span> 
-                <a href="https://your-paper-link.com" target="_blank">Your Most Recent Paper Title</a>
+                <a href="#" onclick="alert('Update with your latest paper link'); return false;">Your Most Recent Paper Title</a>
             </div>
             <div class="post-item">
                 <span class="post-type">[LinkedIn]</span> 
-                <a href="https://linkedin.com/posts/your-post-link" target="_blank">Your Recent LinkedIn Post</a>
+                <a href="#" onclick="alert('Update with your LinkedIn post link'); return false;">Your Recent LinkedIn Post</a>
             </div>
             <div class="post-item">
                 <span class="post-type">[GitHub]</span> 
-                <a href="https://github.com/jadg1/your-recent-project" target="_blank">Your Recent Project</a>
+                <a href="https://github.com/jadg1" target="_blank">Recent GitHub Projects</a>
             </div>
         </div>
     </div>
 
     <script>
+        // Safe DOM manipulation with error handling
+        function safeGetElement(id) {
+            const element = document.getElementById(id);
+            if (!element) {
+                console.warn(`Element with id '${id}' not found`);
+            }
+            return element;
+        }
+
         const texts = [
             "hi, i'm Javi De Golferichs",
             "here you can look at my recent research papers, posts and projects",
-            "to dig deeper, feel free to look at my personal sites: <a href='https://www.linkedin.com/in/javier-de-golferichs/' target='_blank'>LinkedIn</a>, <a href='https://scholar.google.com/citations?user=your-id' target='_blank'>Google Scholar</a>, and <a href='https://github.com/jadg1' target='_blank'>GitHub</a>"
+            "to dig deeper, feel free to look at my personal sites: <a href='https://www.linkedin.com/in/javier-de-golferichs/' target='_blank'>LinkedIn</a>, <a href='https://scholar.google.com/citations?user=PLACEHOLDER' target='_blank'>Google Scholar</a>, and <a href='https://github.com/jadg1' target='_blank'>GitHub</a>"
         ];
 
         let currentLine = 0;
@@ -165,9 +187,14 @@
 
         function typeText() {
             if (currentLine < texts.length) {
-                const textElement = document.getElementById(`text${currentLine + 1}`);
-                const cursorElement = document.getElementById(`cursor${currentLine + 1}`);
-                const lineElement = document.getElementById(`line${currentLine + 1}`);
+                const textElement = safeGetElement(`text${currentLine + 1}`);
+                const cursorElement = safeGetElement(`cursor${currentLine + 1}`);
+                const lineElement = safeGetElement(`line${currentLine + 1}`);
+                
+                if (!textElement || !cursorElement || !lineElement) {
+                    console.error('Required elements not found, stopping typewriter');
+                    return;
+                }
                 
                 if (currentChar === 0) {
                     lineElement.classList.remove('hidden');
@@ -188,46 +215,53 @@
                     } else {
                         // Show recent posts after all text is typed
                         setTimeout(() => {
-                            const recentPosts = document.getElementById('recent-posts');
-                            recentPosts.classList.remove('hidden');
-                            recentPosts.classList.add('fade-in');
+                            const recentPosts = safeGetElement('recent-posts');
+                            if (recentPosts) {
+                                recentPosts.classList.remove('hidden');
+                                recentPosts.classList.add('fade-in');
+                            }
                         }, 1000);
                     }
                 }
             }
         }
 
-        // Start typing when page loads
-        window.addEventListener('load', () => {
-            setTimeout(typeText, 500);
-        });
+        // Theme state stored in memory (resets on page reload)
+        let currentTheme = 'dark';
 
         // Theme toggle functionality
         function toggleTheme() {
             const body = document.body;
             const button = document.querySelector('.theme-toggle');
             
-            if (body.getAttribute('data-theme') === 'light') {
-                body.removeAttribute('data-theme');
-                button.textContent = '○ light';
-                localStorage.setItem('theme', 'dark');
-            } else {
+            if (!button) {
+                console.warn('Theme toggle button not found');
+                return;
+            }
+            
+            if (currentTheme === 'dark') {
                 body.setAttribute('data-theme', 'light');
                 button.textContent = '● dark';
-                localStorage.setItem('theme', 'light');
+                currentTheme = 'light';
+            } else {
+                body.removeAttribute('data-theme');
+                button.textContent = '○ light';
+                currentTheme = 'dark';
             }
         }
 
-        // Load saved theme
-        window.addEventListener('load', () => {
-            const savedTheme = localStorage.getItem('theme');
-            const button = document.querySelector('.theme-toggle');
-            
-            if (savedTheme === 'light') {
-                document.body.setAttribute('data-theme', 'light');
-                button.textContent = '● dark';
-            }
-        });
+        // Initialize page
+        function initializePage() {
+            // Start typing animation
+            setTimeout(typeText, 500);
+        }
+
+        // Start when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializePage);
+        } else {
+            initializePage();
+        }
     </script>
 </body>
 </html>
