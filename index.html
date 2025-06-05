@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javi De Golferichs</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 50px;
+        }
+
+        .container {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .typewriter {
+            display: inline;
+            border-right: 2px solid white;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { border-color: white; }
+            51%, 100% { border-color: transparent; }
+        }
+
+        a {
+            color: #00ff00;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .line {
+            margin-bottom: 10px;
+        }
+
+        .hidden {
+            opacity: 0;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="line" id="line1">
+            <span id="text1"></span><span class="typewriter" id="cursor1"></span>
+        </div>
+        <div class="line hidden" id="line2">
+            <span id="text2"></span><span class="typewriter" id="cursor2" style="display: none;"></span>
+        </div>
+        <div class="line hidden" id="line3">
+            <span id="text3"></span><span class="typewriter" id="cursor3" style="display: none;"></span>
+        </div>
+    </div>
+
+    <script>
+        const texts = [
+            "hi, i'm Javi De Golferichs",
+            "here you can look at my recent research papers, posts and projects",
+            "to dig deeper, feel free to look at my personal sites: <a href='https://linkedin.com/in/your-profile' target='_blank'>LinkedIn</a>, <a href='https://scholar.google.com/citations?user=your-id' target='_blank'>Google Scholar</a>, <a href='https://github.com/jadg1' target='_blank'>GitHub</a>, and <a href='https://youtube.com/@your-channel' target='_blank'>YouTube</a>"
+        ];
+
+        let currentLine = 0;
+        let currentChar = 0;
+
+        function typeText() {
+            if (currentLine < texts.length) {
+                const textElement = document.getElementById(`text${currentLine + 1}`);
+                const cursorElement = document.getElementById(`cursor${currentLine + 1}`);
+                const lineElement = document.getElementById(`line${currentLine + 1}`);
+                
+                if (currentChar === 0) {
+                    lineElement.classList.remove('hidden');
+                    lineElement.classList.add('fade-in');
+                    cursorElement.style.display = 'inline';
+                }
+                
+                if (currentChar < texts[currentLine].length) {
+                    textElement.innerHTML = texts[currentLine].substring(0, currentChar + 1);
+                    currentChar++;
+                    setTimeout(typeText, 50);
+                } else {
+                    cursorElement.style.display = 'none';
+                    currentLine++;
+                    currentChar = 0;
+                    setTimeout(typeText, 800);
+                }
+            }
+        }
+
+        // Start typing when page loads
+        window.addEventListener('load', () => {
+            setTimeout(typeText, 500);
+        });
+    </script>
+</body>
+</html>
