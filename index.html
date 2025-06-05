@@ -5,27 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javi De Golferichs</title>
     <style>
-        :root {
-            --bg-color: black;
-            --text-color: white;
-            --link-color: #00ff00;
-            --link-hover: #ffffff;
-            --border-color: #333;
-            --post-type-color: #888;
-        }
-
-        [data-theme="light"] {
-            --bg-color: white;
-            --text-color: black;
-            --link-color: #0066cc;
-            --link-hover: #004499;
-            --border-color: #ddd;
-            --post-type-color: #666;
-        }
-
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: black;
+            color: white;
             font-family: 'Courier New', monospace;
             margin: 0;
             padding: 0;
@@ -34,27 +16,6 @@
             align-items: center;
             justify-content: flex-start;
             padding-left: 50px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: 1px solid var(--text-color);
-            color: var(--text-color);
-            padding: 8px 12px;
-            font-family: 'Courier New', monospace;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .theme-toggle:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
         }
 
         .container {
@@ -65,23 +26,23 @@
 
         .typewriter {
             display: inline;
-            border-right: 2px solid var(--text-color);
+            border-right: 2px solid white;
             animation: blink 1s infinite;
         }
 
         @keyframes blink {
-            0%, 50% { border-color: var(--text-color); }
+            0%, 50% { border-color: white; }
             51%, 100% { border-color: transparent; }
         }
 
         a {
-            color: var(--link-color);
+            color: #00ff00;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         a:hover {
-            color: var(--link-hover);
+            color: #ffffff;
             text-decoration: underline;
         }
 
@@ -105,7 +66,7 @@
         .recent-posts {
             margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid #333;
         }
 
         .section-title {
@@ -119,7 +80,7 @@
         }
 
         .post-type {
-            color: var(--post-type-color);
+            color: #888;
             font-size: 14px;
         }
 
@@ -136,7 +97,6 @@
     </style>
 </head>
 <body>
-    <button class="theme-toggle" onclick="toggleTheme()">○ light</button>
     
     <div class="container">
         <div class="line" id="line1">
@@ -157,7 +117,7 @@
             </div>
             <div class="post-item">
                 <span class="post-type">[LinkedIn]</span> 
-                <a href="#" onclick="alert('Update with your LinkedIn post link'); return false;">This year I attended the Imperial Robotics Summer School</a>
+                <a href="#" onclick="alert('Update with your LinkedIn post link'); return false;">Imperial Robotics Summer School attendance</a>
             </div>
             <div class="post-item">
                 <span class="post-type">[GitHub]</span> 
@@ -223,30 +183,6 @@
                         }, 1000);
                     }
                 }
-            }
-        }
-
-        // Theme state stored in memory (resets on page reload)
-        let currentTheme = 'dark';
-
-        // Theme toggle functionality
-        function toggleTheme() {
-            const body = document.body;
-            const button = document.querySelector('.theme-toggle');
-            
-            if (!button) {
-                console.warn('Theme toggle button not found');
-                return;
-            }
-            
-            if (currentTheme === 'dark') {
-                body.setAttribute('data-theme', 'light');
-                button.textContent = '● dark';
-                currentTheme = 'light';
-            } else {
-                body.removeAttribute('data-theme');
-                button.textContent = '○ light';
-                currentTheme = 'dark';
             }
         }
 
