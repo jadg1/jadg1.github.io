@@ -1,1 +1,3 @@
-# jadg1.github.io
+# My personal page
+
+Most of the content I developed with Claude.AI
