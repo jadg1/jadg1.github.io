@@ -1,3 +1,3 @@
 # My personal page
 
-Most of the content I developed with Claude.AI
+Very simple HTML based personal site. Most of it developed with Claude.
