@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Javi De Golferichs</title>
+    <title>Javier de Golferichs</title>
     <style>
         body {
             background-color: black;
@@ -13,6 +13,7 @@
             padding: 0;
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: flex-start;
             justify-content: flex-start;
             padding-left: 50px;
@@ -24,17 +25,30 @@
             font-size: 18px;
             line-height: 1.8;
             max-width: 800px;
+            flex-grow: 1;
         }
 
-        .typewriter {
-            display: inline;
-            border-right: 2px solid white;
-            animation: blink 1s infinite;
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
         }
 
-        @keyframes blink {
-            0%, 50% { border-color: white; }
-            51%, 100% { border-color: transparent; }
+        .social-links {
+            font-size: 16px;
+        }
+
+        .social-links a {
+            margin-left: 15px;
+        }
+
+        .footer {
+            margin-top: auto;
+            padding-top: 20px;
+            font-size: 14px;
+            color: #888;
         }
 
         a {
@@ -54,12 +68,18 @@
             margin-bottom: 10px;
         }
 
+        .recent-posts {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+
         .hidden {
             opacity: 0;
         }
 
         .fade-in {
-            animation: fadeIn 0.5s ease-in forwards;
+            animation: fadeIn 1s ease-in forwards;
         }
 
         @keyframes fadeIn {
@@ -67,18 +87,12 @@
             to { opacity: 1; }
         }
 
-        .recent-posts, .current-positions {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #333;
-        }
-
         .section-title {
             margin-bottom: 15px;
             font-weight: bold;
         }
 
-        .post-item, .position-item {
+        .post-item {
             margin-bottom: 8px;
             padding-left: 20px;
         }
@@ -86,11 +100,6 @@
         .post-type {
             color: #888;
             font-size: 14px;
-        }
-
-        .position-title {
-            color: #ccc;
-            font-weight: normal;
         }
 
         @media (max-width: 768px) {
@@ -108,118 +117,54 @@
     </style>
 </head>
 <body>
-    
     <div class="container">
-        <div class="line" id="line1">
-            <div class="section-title"><span id="text1"></span><span class="typewriter" id="cursor1"></span></div>
+        <div class="header-section hidden" id="line1">
+            <div class="section-title">Javier de Golferichs</div>
+            <div class="social-links">
+                <a href='https://www.linkedin.com/in/javier-de-golferichs/' target='_blank'>LinkedIn</a>
+                <a href='https://scholar.google.com/citations?user=PLACEHOLDER' target='_blank'>Google Scholar</a>
+                <a href='https://github.com/jadg1' target='_blank'>GitHub</a>
+            </div>
         </div>
         <div class="line hidden" id="line2">
-            <span id="text2"></span><span class="typewriter" id="cursor2" style="display: none;"></span>
-        </div>
-        <div class="line hidden" id="line3">
-            <span id="text3"></span><span class="typewriter" id="cursor3" style="display: none;"></span>
+            Here you can look at my recent research work, posts and projects
         </div>
         
         <div class="recent-posts hidden" id="recent-posts">
             <div class="section-title">Recent Activity:</div>
             <div class="post-item">
-                <span class="post-type">[Paper]</span> 
-                <a href="#" onclick="alert('I will update the link as soon as possible'); return false;">Scalable Software Framework to Implement Visuomotor Control Tasks in a Simulated Surgical Robot</a>
+                <span class="post-type">[Thesis]</span> 
+                <a href="#" onclick="alert('I will update the link as soon as possible'); return false;">MS Thesis on European Strategic Commodity Autonomy</a>
                 <div style="color: #888; font-size: 14px; margin-top: 5px; padding-left: 0px;">
-                    Recently submitted to International Robotics and Intelligent Systems Conference
+                    Currently working on my Master's thesis focusing on European strategic commodity autonomy
                 </div>
-            </div>
-            <div class="post-item">
-                <span class="post-type">[GitHub]</span> 
-                <a href="#" onclick="alert('I will update the link as soon as possible'); return false;">Imperial Robotics Summer School - My Learning Experience</a>
-                <div style="color: #888; font-size: 14px; margin-top: 5px; padding-left: 0px;">
-                    Summer postgraduate program covering Kinematics, Dynamics, Control & Robot Learning - end of July
-                </div>
-            </div>
-        </div>
-
-        <div class="current-positions hidden" id="current-positions">
-            <div class="section-title">Current Positions:</div>
-            <div class="position-item">
-                <span class="position-title">MS student at Universidad Autonoma de Madrid</span>
             </div>
         </div>
     </div>
+    
+    <div class="footer hidden" id="footer">
+        Based in Madrid
     </div>
 
     <script>
-        // Safe DOM manipulation with error handling
-        function safeGetElement(id) {
-            const element = document.getElementById(id);
-            if (!element) {
-                console.warn(`Element with id '${id}' not found`);
-            }
-            return element;
-        }
-
-        const texts = [
-            "Hi there!",
-            "I'm Javi De Golferichs - here you can look at my recent research work, posts and projects",
-            "To dig deeper, feel free to have a look at my personal sites: <a href='https://www.linkedin.com/in/javier-de-golferichs/' target='_blank'>LinkedIn</a>, <a href='https://scholar.google.com/citations?user=PLACEHOLDER' target='_blank'>Google Scholar</a>, and <a href='https://github.com/jadg1' target='_blank'>GitHub</a>"
-        ];
-
-        let currentLine = 0;
-        let currentChar = 0;
-
-        function typeText() {
-            if (currentLine < texts.length) {
-                const textElement = safeGetElement(`text${currentLine + 1}`);
-                const cursorElement = safeGetElement(`cursor${currentLine + 1}`);
-                const lineElement = safeGetElement(`line${currentLine + 1}`);
-                
-                if (!textElement || !cursorElement || !lineElement) {
-                    console.error('Required elements not found, stopping typewriter');
-                    return;
-                }
-                
-                if (currentChar === 0) {
-                    lineElement.classList.remove('hidden');
-                    lineElement.classList.add('fade-in');
-                    cursorElement.style.display = 'inline';
-                }
-                
-                if (currentChar < texts[currentLine].length) {
-                    textElement.innerHTML = texts[currentLine].substring(0, currentChar + 1);
-                    currentChar++;
-                    setTimeout(typeText, 50);
-                } else {
-                    cursorElement.style.display = 'none';
-                    currentLine++;
-                    currentChar = 0;
-                    if (currentLine < texts.length) {
-                        setTimeout(typeText, 800);
-                    } else {
-                        // Show recent posts after all text is typed
-                        setTimeout(() => {
-                            const recentPosts = safeGetElement('recent-posts');
-                            if (recentPosts) {
-                                recentPosts.classList.remove('hidden');
-                                recentPosts.classList.add('fade-in');
-                            }
-                            
-                            // Show current positions after recent posts
-                            setTimeout(() => {
-                                const currentPositions = safeGetElement('current-positions');
-                                if (currentPositions) {
-                                    currentPositions.classList.remove('hidden');
-                                    currentPositions.classList.add('fade-in');
-                                }
-                            }, 500);
-                        }, 1000);
+        // Progressive section reveal animation
+        function revealSections() {
+            const sections = ['line1', 'line2', 'recent-posts', 'footer'];
+            
+            sections.forEach((sectionId, index) => {
+                setTimeout(() => {
+                    const element = document.getElementById(sectionId);
+                    if (element) {
+                        element.classList.remove('hidden');
+                        element.classList.add('fade-in');
                     }
-                }
-            }
+                }, index * 800); // 800ms delay between each section
+            });
         }
 
-        // Initialize page
+        // Start animation when page loads
         function initializePage() {
-            // Start typing animation
-            setTimeout(typeText, 500);
+            setTimeout(revealSections, 300); // Small initial delay
         }
 
         // Start when page loads
