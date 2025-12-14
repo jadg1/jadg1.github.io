@@ -1,3 +1,3 @@
 # My personal page
 
-Very simple HTML based personal site. Most of it developed with Claude.
+Welcome to my personal site built with HTML.
