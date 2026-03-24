@@ -388,22 +388,25 @@
         <div class="hero">
             <div class="photo-frame">
                 <!-- Replace with: <img src="your-photo.jpg" alt="Javier De Golferichs"> -->
-                <img src="yo_blanes.jpg" alt="Javier De Golferichs">
+                <span class="initials">JG</span>
             </div>
             <h1>Javier De Golferichs</h1>
+            <div style="font-family: var(--serif); font-size: 14px; color: var(--text-tertiary); margin-bottom: 10px;">Based in Barcelona</div>
             <div class="social-row">
                 <a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank">LinkedIn</a>
                 <a href="https://scholar.google.es/citations?user=EJig7tkAAAAJ&hl=es" target="_blank">Google Scholar</a>
                 <a href="https://github.com/jadg1" target="_blank">GitHub</a>
             </div>
-            <div class="hero-meta">
-                <span class="label">Skills</span>
-                Econometrics · Machine Learning · European Public Policy · Financial Analysis
-                <span class="label">Research Interests</span>
-                Political Polarization · European Enlargement · Banking Risk · European Policy · Machine Learning Research
-            </div>
-            <div style="text-align: left; margin-top: 18px; max-width: 520px; margin-left: auto; margin-right: auto;">
-                <div style="font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-tertiary); font-family: var(--sans); font-weight: 500; margin-bottom: 6px;">Education</div>
+            <div style="text-align: left; margin-top: 20px;">
+                <div style="font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-tertiary); font-family: var(--sans); font-weight: 500; margin-bottom: 4px;">Skills</div>
+                <div style="font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--text-secondary); line-height: 1.6;">
+                    Econometrics · Machine Learning · European Public Policy · Financial Analysis
+                </div>
+                <div style="font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-tertiary); font-family: var(--sans); font-weight: 500; margin-bottom: 4px; margin-top: 12px;">Research Interests</div>
+                <div style="font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--text-secondary); line-height: 1.6;">
+                    Political Polarization · European Enlargement · Banking Risk · European Policy · Machine Learning Research
+                </div>
+                <div style="font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-tertiary); font-family: var(--sans); font-weight: 500; margin-bottom: 4px; margin-top: 12px;">Education</div>
                 <div style="font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--text-secondary); line-height: 1.8;">
                     MSc Finance — UPF Barcelona School of Management<br>
                     MSc Quantitative Economics — Universidad Autónoma de Madrid<br>
@@ -412,9 +415,9 @@
             </div>
         </div>
 
-        <!-- Research Output Samples -->
+        <!-- Research Samples -->
         <div class="section">
-            <div class="section-label">Research Output Samples</div>
+            <div class="section-label">Research Samples</div>
 
             <div class="research-card">
                 <div class="card-top">
@@ -426,12 +429,13 @@
                     </a>
                 </h3>
                 <div class="desc">
-                    Analyzing extra-EU imports of 16 strategic critical raw materials (1995–2023) using gravity models
-                    and a Discrete-Time Dynamic Graph architecture. The gravity analysis reveals that EU CRM imports
-                    are disproportionately distance-sensitive and come from countries with neither shared language
-                    nor aligned diplomatic voting — reflecting heavy reliance on suppliers like China, Turkey and Russia.
-                    The DTDG framework then models country-level disruption scenarios, combining HHI concentration,
-                    dominant supplier dependency, and structural risk indicators for policy-relevant risk classification.
+                    <ul style="margin: 0; padding-left: 18px; line-height: 1.7;">
+                        <li>Analyzes extra-EU imports of 16 strategic critical raw materials (1995–2023)</li>
+                        <li>Gravity models reveal the EU imports from distant, linguistically different, diplomatically misaligned countries — the opposite of what trade theory predicts</li>
+                        <li>Discrete-Time Dynamic Graph architecture models country-level disruption scenarios</li>
+                        <li>Combines HHI concentration, dominant supplier dependency, and structural risk indicators</li>
+                        <li>Policy-relevant risk classification aligned with EU 2030 CRM goals</li>
+                    </ul>
                 </div>
                 <div class="meta">MSc Thesis at Universidad Autónoma de Madrid · Now a Working Paper</div>
                 <div class="meta">Gravity Models · Graph Neural Networks · Extra-EU CRM Imports · 16 Strategic Materials · 1995–2023</div>
@@ -486,15 +490,20 @@
                         <text x="140" y="283" text-anchor="middle" font-family="var(--sans)" font-size="10" fill="var(--coral)">Brazil</text>
                         <path class="flow-line" d="M160 268 Q230 230 293 195" fill="none" stroke="var(--teal)" stroke-width="1.2" opacity=".4" marker-end="url(#arr)"/>
 
-                        <!-- S. Africa (bottom) → EU -->
-                        <circle cx="320" cy="310" r="22" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.6"/>
-                        <text x="320" y="313" text-anchor="middle" font-family="var(--sans)" font-size="9" fill="var(--coral)">S. Africa</text>
-                        <path class="flow-line" d="M320 288 L320 217" fill="none" stroke="var(--teal)" stroke-width="1.2" opacity=".4" marker-end="url(#arr)"/>
+                        <!-- S. Africa (bottom-center-left) → EU -->
+                        <circle cx="260" cy="310" r="22" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.6"/>
+                        <text x="260" y="313" text-anchor="middle" font-family="var(--sans)" font-size="9" fill="var(--coral)">S. Africa</text>
+                        <path class="flow-line" d="M272 292 Q295 240 312 217" fill="none" stroke="var(--teal)" stroke-width="1.2" opacity=".4" marker-end="url(#arr)"/>
 
                         <!-- Canada (left) → EU -->
                         <circle cx="95" cy="225" r="22" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.6"/>
                         <text x="95" y="228" text-anchor="middle" font-family="var(--sans)" font-size="10" fill="var(--coral)">Canada</text>
                         <path class="flow-line" d="M117 220 Q200 200 289 188" fill="none" stroke="var(--teal)" stroke-width="1.2" opacity=".4" marker-end="url(#arr)"/>
+
+                        <!-- Others (bottom-right) → EU -->
+                        <circle cx="420" cy="300" r="24" fill="#f5f4f0" stroke="var(--border)" stroke-width="0.8" stroke-dasharray="3 2"/>
+                        <text x="420" y="303" text-anchor="middle" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)">Others</text>
+                        <path class="flow-line" d="M402 283 Q365 240 332 214" fill="none" stroke="var(--teal)" stroke-width="0.8" opacity=".3" stroke-dasharray="4 3" marker-end="url(#arr)"/>
 
                         <rect x="40" y="340" width="10" height="10" rx="3" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="0.5"/>
                         <text x="56" y="349" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)">Top extra-EU suppliers</text>
@@ -699,14 +708,19 @@
                 <div class="card-top">
                     <span class="badge" style="background: var(--teal-bg); color: var(--teal);">Submitted · IEEE Conference</span>
                 </div>
-                <h3>MicroClinic: An ultra-low-parameter neural network for medical image analysis</h3>
+                <h3>
+                    <a href="#" onclick="alert('Link will be updated once available'); return false;">
+                        MicroClinic: An ultra-low-parameter neural network for medical image analysis
+                    </a>
+                </h3>
                 <div class="desc">
-                    An ultra-compact CNN (0.4k–1.1k parameters) for medical image classification that replaces
-                    parameter redundancy with relational processing via Convolutional Multi-Head Attention.
-                    Benchmarked across 12 clinical datasets, reaching 99.9% on MedicalMNIST and 95.7% on
-                    COVID-19 X-Ray — matching models up to 29,000× larger. The reduced scale limits memorization
-                    capacity, improving data privacy, while enabling deployment on hardware as limited as
-                    mid-1990s PCs with 8–16 MB RAM.
+                    <ul style="margin: 0; padding-left: 18px; line-height: 1.7;">
+                        <li>Ultra-compact CNN with only 0.4k–1.1k parameters — 29,000× smaller than SOTA architectures</li>
+                        <li>Replaces parameter redundancy with relational processing via Convolutional Multi-Head Attention</li>
+                        <li>Benchmarked across 12 clinical datasets: 99.9% on MedicalMNIST, 95.7% on COVID-19 X-Ray</li>
+                        <li>Reduced scale limits memorization capacity, improving data privacy</li>
+                        <li>Deployable on hardware as limited as mid-1990s PCs with 8–16 MB RAM</li>
+                    </ul>
                 </div>
                 <div class="meta">
                     With F. Felix Arredondo, N. Nieto Gutierrez, G. De Los Rios Alatorre, E. Gallareta Flores, L. Muñoz Ubando
