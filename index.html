@@ -402,15 +402,23 @@
                 <span class="label">Research Interests</span>
                 Political Polarization · European Enlargement · Banking Risk · European Policy · Machine Learning Research
             </div>
+            <div style="text-align: left; margin-top: 18px; max-width: 520px; margin-left: auto; margin-right: auto;">
+                <div style="font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-tertiary); font-family: var(--sans); font-weight: 500; margin-bottom: 6px;">Education</div>
+                <div style="font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--text-secondary); line-height: 1.8;">
+                    MSc Quantitative Economics — Universidad Autónoma de Madrid<br>
+                    MSc Finance — UPF Barcelona School of Management<br>
+                    BSc Engineering Physics — Tecnológico de Monterrey
+                </div>
+            </div>
         </div>
 
-        <!-- Research Work -->
+        <!-- Research Output Samples -->
         <div class="section">
-            <div class="section-label">Research Work</div>
+            <div class="section-label">Research Output Samples</div>
 
             <div class="research-card">
                 <div class="card-top">
-                    <span class="badge badge-working">Working Paper</span>
+                    <span class="badge badge-working">Working Paper · MSc Thesis</span>
                 </div>
                 <h3>
                     <a href="#" onclick="alert('Link will be updated once available'); return false;">
@@ -418,18 +426,23 @@
                     </a>
                 </h3>
                 <div class="desc">
-                    Discrete-Time Dynamic Graph architecture for analyzing country-level disruption scenarios
-                    across 16 EU critical raw materials. Combines HHI concentration metrics, dominant supplier
-                    dependency, and structural risk indicators for policy-relevant risk classification.
-                    Previously MSc thesis, now developed into a working paper.
+                    Analyzing extra-EU imports of 16 strategic critical raw materials (1995–2023) using gravity models
+                    and a Discrete-Time Dynamic Graph architecture. The gravity analysis reveals that EU CRM imports
+                    are disproportionately distance-sensitive and come from countries with neither shared language
+                    nor aligned diplomatic voting — reflecting heavy reliance on suppliers like China, Turkey and Russia.
+                    The DTDG framework then models country-level disruption scenarios, combining HHI concentration,
+                    dominant supplier dependency, and structural risk indicators for policy-relevant risk classification.
                 </div>
-                <div class="meta">Graph Neural Networks · HHI Prediction · EU CRM Policy · 2018–2021 data</div>
+                <div class="meta">MSc Thesis at Universidad Autónoma de Madrid · Now a Working Paper</div>
+                <div class="meta">Gravity Models · Graph Neural Networks · Extra-EU CRM Imports · 16 Strategic Materials · 1995–2023</div>
+                <div class="meta" style="margin-top: 4px;">JEL: F52, F53, F55, F60, F68 · Keywords: Critical Raw Materials, Graph Neural Networks, Gravity Models, De-risking</div>
             </div>
 
             <!-- Interactive Research Visualization -->
             <div class="viz-container">
                 <div class="viz-tabs">
-                    <button class="viz-tab active" onclick="showVizPanel('network', this)">Trade Network</button>
+                    <button class="viz-tab active" onclick="showVizPanel('network', this)">Extra-EU Imports</button>
+                    <button class="viz-tab" onclick="showVizPanel('gravity', this)">Gravity</button>
                     <button class="viz-tab" onclick="showVizPanel('method', this)">DTDG Method</button>
                     <button class="viz-tab" onclick="showVizPanel('risk', this)">Risk Scoring</button>
                     <button class="viz-tab" onclick="showVizPanel('results', this)">Results</button>
@@ -444,15 +457,16 @@
                             </marker>
                         </defs>
 
-                        <text x="320" y="22" text-anchor="middle" font-family="var(--serif)" font-size="15" fill="var(--text)" font-weight="500">CRM trade network — supplier disruption scenario</text>
-                        <text x="320" y="40" text-anchor="middle" font-family="var(--sans)" font-size="11" fill="var(--text-tertiary)">Graph deep learning on 16 critical raw materials (2018–2021)</text>
+                        <text x="320" y="22" text-anchor="middle" font-family="var(--serif)" font-size="15" fill="var(--text)" font-weight="500">Extra-EU CRM import network</text>
+                        <text x="320" y="40" text-anchor="middle" font-family="var(--sans)" font-size="11" fill="var(--text-tertiary)">All flows are imports into the EU — 16 strategic CRMs (2018–2021)</text>
 
-                        <path class="flow-line" d="M135 120 Q220 80 290 115" fill="none" stroke="var(--teal)" stroke-width="2.5" opacity=".6"/>
-                        <path class="flow-line" d="M135 130 Q180 180 260 220" fill="none" stroke="var(--teal)" stroke-width="1.5" opacity=".4"/>
-                        <path class="flow-line" d="M135 140 Q160 230 240 285" fill="none" stroke="var(--teal)" stroke-width="1" opacity=".3"/>
-                        <path class="flow-line" d="M495 115 Q420 80 350 115" fill="none" stroke="var(--teal)" stroke-width="2" opacity=".5"/>
-                        <path class="flow-line" d="M495 135 Q455 230 400 285" fill="none" stroke="var(--teal)" stroke-width="1" opacity=".3"/>
-                        <path class="flow-line" d="M320 150 L320 210" fill="none" stroke="var(--teal)" stroke-width="1.2" opacity=".4"/>
+                        <!-- All flows incoming TO the EU (center) -->
+                        <path class="flow-line" d="M148 115 Q230 75 292 118" fill="none" stroke="var(--teal)" stroke-width="2.5" opacity=".6" marker-end="url(#arr)"/>
+                        <path class="flow-line" d="M492 112 Q410 75 350 118" fill="none" stroke="var(--teal)" stroke-width="2" opacity=".5" marker-end="url(#arr)"/>
+                        <path class="flow-line" d="M280 220 Q295 180 315 153" fill="none" stroke="var(--teal)" stroke-width="1.2" opacity=".4" marker-end="url(#arr)"/>
+                        <path class="flow-line" d="M360 220 Q345 180 325 153" fill="none" stroke="var(--teal)" stroke-width="1.2" opacity=".4" marker-end="url(#arr)"/>
+                        <path class="flow-line" d="M258 280 Q285 210 312 153" fill="none" stroke="var(--teal)" stroke-width="1" opacity=".35" marker-end="url(#arr)"/>
+                        <path class="flow-line" d="M383 280 Q355 210 328 153" fill="none" stroke="var(--teal)" stroke-width="1" opacity=".35" marker-end="url(#arr)"/>
 
                         <circle cx="110" cy="125" r="36" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="0.8"/>
                         <text x="110" y="121" text-anchor="middle" font-family="var(--sans)" font-size="12" fill="var(--teal)" font-weight="500">China</text>
@@ -478,14 +492,60 @@
                         <text x="395" y="298" text-anchor="middle" font-family="var(--sans)" font-size="9" fill="var(--coral)">Turkey</text>
 
                         <rect x="40" y="340" width="10" height="10" rx="3" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="0.5"/>
-                        <text x="56" y="349" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)">Major suppliers</text>
-                        <rect x="170" y="340" width="10" height="10" rx="3" fill="var(--purple-bg)" stroke="var(--purple)" stroke-width="0.5"/>
-                        <text x="186" y="349" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)">EU (importer)</text>
-                        <rect x="290" y="340" width="10" height="10" rx="3" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.5"/>
-                        <text x="306" y="349" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)">Secondary suppliers</text>
+                        <text x="56" y="349" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)">Top extra-EU suppliers</text>
+                        <rect x="190" y="340" width="10" height="10" rx="3" fill="var(--purple-bg)" stroke="var(--purple)" stroke-width="0.5"/>
+                        <text x="206" y="349" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)">EU (destination)</text>
+                        <rect x="310" y="340" width="10" height="10" rx="3" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.5"/>
+                        <text x="326" y="349" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)">Other suppliers</text>
                         <line x1="440" y1="349" x2="465" y2="349" class="flow-line" stroke="var(--teal)" stroke-width="1.5" fill="none"/>
-                        <text x="472" y="349" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)">Trade flow</text>
+                        <text x="472" y="349" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)">Import flow</text>
                     </svg>
+                </div>
+
+                <!-- Gravity Analysis Panel -->
+                <div class="viz-panel" id="viz-gravity">
+                    <div style="font-family: var(--serif); font-size: 15px; font-weight: 500; margin-bottom: 4px;">Gravity model — who does the EU actually import from?</div>
+                    <div style="font-size: 11px; color: var(--text-tertiary); margin-bottom: 16px;">
+                        EU-destination models on 16 strategic CRMs (1995–2023)
+                    </div>
+
+                    <div style="font-family: var(--serif); font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 16px;">
+                        Standard trade gravity predicts countries trade most with partners that are close,
+                        culturally similar, and diplomatically aligned. For EU critical raw material imports,
+                        the opposite holds — the EU sources these materials from exactly the kind of
+                        countries we would expect it not to.
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
+                        <div style="background: #f5f4f0; border-radius: 8px; padding: 12px 14px;">
+                            <div style="font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Distance</div>
+                            <div style="font-size: 14px; font-weight: 500; color: var(--critical);">Very negative & significant</div>
+                            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">Expected: small negative. Found: strongly negative for EU imports — suppliers like China, South Africa, and Brazil are far away</div>
+                        </div>
+                        <div style="background: #f5f4f0; border-radius: 8px; padding: 12px 14px;">
+                            <div style="font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Contiguity</div>
+                            <div style="font-size: 14px; font-weight: 500; color: var(--text-tertiary);">Negative, insignificant</div>
+                            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">Expected: positive. Sharing a border doesn’t help — though EU-level contiguity (Russia via Baltics, Finland) may matter more than country-level</div>
+                        </div>
+                        <div style="background: #f5f4f0; border-radius: 8px; padding: 12px 14px;">
+                            <div style="font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Common language</div>
+                            <div style="font-size: 14px; font-weight: 500; color: var(--coral);">Negative</div>
+                            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">Expected: positive. Top CRM suppliers (Turkey, China, Thailand) don’t share EU official languages</div>
+                        </div>
+                        <div style="background: #f5f4f0; border-radius: 8px; padding: 12px 14px;">
+                            <div style="font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Diplomatic disagreement</div>
+                            <div style="font-size: 14px; font-weight: 500; color: var(--coral);">Positive</div>
+                            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">Expected: negative. The EU imports CRMs from countries that vote against it in international bodies — Russia, China, Turkey</div>
+                        </div>
+                    </div>
+
+                    <div style="font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--text-secondary); line-height: 1.65; padding: 12px 0; border-top: 1px solid var(--border);">
+                        The EU’s most strategic material dependencies sit with distant, linguistically
+                        different, and diplomatically misaligned suppliers. This structural mismatch between
+                        geopolitical alignment and resource dependence is what the paper investigates.
+                    </div>
+
+
                 </div>
 
                 <!-- Method Panel -->
@@ -628,9 +688,136 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Footer -->
+            <!-- MicroClinic Paper -->
+            <div class="research-card" style="margin-top: 24px;">
+                <div class="card-top">
+                    <span class="badge" style="background: var(--teal-bg); color: var(--teal);">Submitted · IEEE Conference</span>
+                </div>
+                <h3>MicroClinic: An ultra-low-parameter neural network for medical image analysis</h3>
+                <div class="desc">
+                    An ultra-compact CNN (0.4k–1.1k parameters) for medical image classification that replaces
+                    parameter redundancy with relational processing via Convolutional Multi-Head Attention.
+                    Benchmarked across 12 clinical datasets, reaching 99.9% on MedicalMNIST and 95.7% on
+                    COVID-19 X-Ray — matching models up to 29,000× larger. The reduced scale limits memorization
+                    capacity, improving data privacy, while enabling deployment on hardware as limited as
+                    mid-1990s PCs with 8–16 MB RAM.
+                </div>
+                <div class="meta">
+                    With F. Felix Arredondo, N. Nieto Gutierrez, G. De Los Rios Alatorre, E. Gallareta Flores, L. Muñoz Ubando
+                </div>
+                <div class="meta">Ultra-Compact CNNs · Medical Imaging · Attention Mechanisms · Privacy-Aware AI · Edge Deployment</div>
+            </div>
+
+            <!-- MicroClinic Results -->
+            <div class="viz-container" style="margin-top: 14px;">
+                <div class="viz-tabs">
+                    <button class="viz-tab active" onclick="showVizPanel('mc-arch', this)">Architecture</button>
+                    <button class="viz-tab" onclick="showVizPanel('mc-results', this)">Results (12 datasets)</button>
+                </div>
+
+                <!-- Architecture Panel -->
+                <div class="viz-panel active" id="viz-mc-arch">
+                    <svg width="100%" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <marker id="arr3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                                <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </marker>
+                        </defs>
+
+                        <text x="320" y="22" text-anchor="middle" font-family="var(--serif)" font-size="15" fill="var(--text)" font-weight="500">MicroClinic architecture (0.4k–1.1k params)</text>
+
+                        <!-- Feature Extractor -->
+                        <rect x="30" y="55" width="120" height="44" rx="8" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="0.6"/>
+                        <text x="90" y="73" text-anchor="middle" font-family="var(--sans)" font-size="11" fill="var(--teal)" font-weight="500">Conv blocks</text>
+                        <text x="90" y="88" text-anchor="middle" font-family="var(--sans)" font-size="9" fill="var(--text-tertiary)">3×3 → BN → SiLU</text>
+
+                        <line x1="150" y1="77" x2="185" y2="77" stroke="#ccc" stroke-width="0.8" marker-end="url(#arr3)"/>
+
+                        <!-- CMHA -->
+                        <rect x="185" y="55" width="170" height="44" rx="8" fill="var(--purple-bg)" stroke="var(--purple)" stroke-width="0.6"/>
+                        <text x="270" y="73" text-anchor="middle" font-family="var(--sans)" font-size="11" fill="var(--purple)" font-weight="500">Multi-Head Attention</text>
+                        <text x="270" y="88" text-anchor="middle" font-family="var(--sans)" font-size="9" fill="var(--text-tertiary)">CMHA on 2D maps</text>
+
+                        <line x1="355" y1="77" x2="390" y2="77" stroke="#ccc" stroke-width="0.8" marker-end="url(#arr3)"/>
+
+                        <!-- Classifier -->
+                        <rect x="390" y="55" width="130" height="44" rx="8" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.6"/>
+                        <text x="455" y="73" text-anchor="middle" font-family="var(--sans)" font-size="11" fill="var(--coral)" font-weight="500">Classifier head</text>
+                        <text x="455" y="88" text-anchor="middle" font-family="var(--sans)" font-size="9" fill="var(--text-tertiary)">GAP → Linear</text>
+
+                        <line x1="520" y1="77" x2="555" y2="77" stroke="#ccc" stroke-width="0.8" marker-end="url(#arr3)"/>
+
+                        <rect x="555" y="60" width="60" height="34" rx="8" fill="#f5f4f0" stroke="var(--border)" stroke-width="0.6"/>
+                        <text x="585" y="81" text-anchor="middle" font-family="var(--sans)" font-size="11" fill="var(--text)" font-weight="500">K cls</text>
+
+                        <!-- Key insight boxes -->
+                        <rect x="30" y="130" width="185" height="60" rx="8" fill="#f5f4f0"/>
+                        <text x="122" y="150" text-anchor="middle" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)" font-weight="500">DESIGN PRINCIPLE</text>
+                        <text x="122" y="168" text-anchor="middle" font-family="var(--serif)" font-size="12" fill="var(--text)" font-style="italic">Relational processing over</text>
+                        <text x="122" y="182" text-anchor="middle" font-family="var(--serif)" font-size="12" fill="var(--text)" font-style="italic">parameter redundancy</text>
+
+                        <rect x="230" y="130" width="175" height="60" rx="8" fill="#f5f4f0"/>
+                        <text x="317" y="150" text-anchor="middle" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)" font-weight="500">PARAMETER RANGE</text>
+                        <text x="317" y="172" text-anchor="middle" font-family="var(--sans)" font-size="18" fill="var(--text)" font-weight="500">404 – 1,039</text>
+
+                        <rect x="420" y="130" width="190" height="60" rx="8" fill="#f5f4f0"/>
+                        <text x="515" y="150" text-anchor="middle" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)" font-weight="500">vs. SOTA</text>
+                        <text x="515" y="172" text-anchor="middle" font-family="var(--sans)" font-size="18" fill="var(--text)" font-weight="500">29,000× smaller</text>
+
+                        <!-- Bottom note -->
+                        <text x="320" y="225" text-anchor="middle" font-family="var(--sans)" font-size="11" fill="var(--text-secondary)" font-style="italic">Deployable on hardware with 8–16 MB RAM</text>
+
+                        <rect x="30" y="245" width="10" height="10" rx="3" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="0.5"/>
+                        <text x="46" y="254" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)">Feature extraction</text>
+                        <rect x="170" y="245" width="10" height="10" rx="3" fill="var(--purple-bg)" stroke="var(--purple)" stroke-width="0.5"/>
+                        <text x="186" y="254" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)">Attention (CMHA)</text>
+                        <rect x="310" y="245" width="10" height="10" rx="3" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.5"/>
+                        <text x="326" y="254" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)">Classification</text>
+                    </svg>
+                </div>
+
+                <!-- Results Panel -->
+                <div class="viz-panel" id="viz-mc-results">
+                    <div style="font-family: var(--serif); font-size: 15px; font-weight: 500; margin-bottom: 4px;">Performance across 12 clinical datasets</div>
+                    <div style="font-size: 11px; color: var(--text-tertiary); margin-bottom: 14px;">
+                        All configs ≤ 1,039 parameters · green = meets/exceeds baseline, red = below
+                    </div>
+                    <div style="overflow-x: auto;">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Dataset</th>
+                                <th>Cls</th>
+                                <th>Params</th>
+                                <th>Baseline</th>
+                                <th>Accuracy</th>
+                                <th>F1</th>
+                                <th>ECE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: var(--low-bg);"><td>MedicalMNIST</td><td>6</td><td>424</td><td>97.5%</td><td>99.9%</td><td>0.998</td><td>0.006</td></tr>
+                            <tr style="background: var(--low-bg);"><td>Kidney Cancer</td><td>2</td><td>438</td><td>99.3%</td><td>100%</td><td>1.000</td><td>0.003</td></tr>
+                            <tr style="background: var(--low-bg);"><td>Colon Image Set</td><td>2</td><td>1030</td><td>98.5%</td><td>99.9%</td><td>0.999</td><td>0.003</td></tr>
+                            <tr style="background: var(--low-bg);"><td>Lymphoma</td><td>3</td><td>583</td><td>95.0%</td><td>98.9%</td><td>0.989</td><td>0.009</td></tr>
+                            <tr style="background: var(--low-bg);"><td>Breast Cancer</td><td>2</td><td>410</td><td>98.2%</td><td>98.7%</td><td>0.987</td><td>0.007</td></tr>
+                            <tr style="background: var(--low-bg);"><td>Cervical Cancer</td><td>5</td><td>905</td><td>94.0%</td><td>95.1%</td><td>0.951</td><td>0.009</td></tr>
+                            <tr style="background: var(--low-bg);"><td>Covid19 X-Ray</td><td>4</td><td>878</td><td>98.0%</td><td>95.7%</td><td>0.959</td><td>0.040</td></tr>
+                            <tr style="background: var(--low-bg);"><td>Lung Image Set</td><td>3</td><td>887</td><td>100%</td><td>95.5%</td><td>0.955</td><td>0.070</td></tr>
+                            <tr style="background: var(--low-bg);"><td>Chest Pneumonia</td><td>2</td><td>410</td><td>92.8%</td><td>94.3%</td><td>0.932</td><td>0.017</td></tr>
+                            <tr><td>Brain Cancer</td><td>4</td><td>878</td><td>99.0%</td><td>93.1%</td><td>0.931</td><td>0.009</td></tr>
+                            <tr><td>Oral Cancer</td><td>2</td><td>726</td><td>97.8%</td><td>86.1%</td><td>0.860</td><td>0.026</td></tr>
+                            <tr><td>BloodCell-8</td><td>8</td><td>932</td><td>96.2%</td><td>83.5%</td><td>0.793</td><td>0.072</td></tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 10px; color: var(--text-tertiary); line-height: 1.6;">
+                        ECE = Expected Calibration Error (lower = better calibrated). Baseline = best reported SOTA accuracy using models with 2.9M–96M parameters.
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="footer">
             For contact, please send a <a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank">LinkedIn connection request</a>.
         </div>
