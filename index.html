@@ -405,8 +405,8 @@
             <div style="text-align: left; margin-top: 18px; max-width: 520px; margin-left: auto; margin-right: auto;">
                 <div style="font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-tertiary); font-family: var(--sans); font-weight: 500; margin-bottom: 6px;">Education</div>
                 <div style="font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--text-secondary); line-height: 1.8;">
-                    MSc Quantitative Economics — Universidad Autónoma de Madrid<br>
                     MSc Finance — UPF Barcelona School of Management<br>
+                    MSc Quantitative Economics — Universidad Autónoma de Madrid<br>
                     BSc Engineering Physics — Tecnológico de Monterrey
                 </div>
             </div>
@@ -460,36 +460,41 @@
                         <text x="320" y="22" text-anchor="middle" font-family="var(--serif)" font-size="15" fill="var(--text)" font-weight="500">Extra-EU CRM import network</text>
                         <text x="320" y="40" text-anchor="middle" font-family="var(--sans)" font-size="11" fill="var(--text-tertiary)">All flows are imports into the EU — 16 strategic CRMs (2018–2021)</text>
 
-                        <!-- All flows incoming TO the EU (center) -->
-                        <path class="flow-line" d="M148 115 Q230 75 292 118" fill="none" stroke="var(--teal)" stroke-width="2.5" opacity=".6" marker-end="url(#arr)"/>
-                        <path class="flow-line" d="M492 112 Q410 75 350 118" fill="none" stroke="var(--teal)" stroke-width="2" opacity=".5" marker-end="url(#arr)"/>
-                        <path class="flow-line" d="M280 220 Q295 180 315 153" fill="none" stroke="var(--teal)" stroke-width="1.2" opacity=".4" marker-end="url(#arr)"/>
-                        <path class="flow-line" d="M360 220 Q345 180 325 153" fill="none" stroke="var(--teal)" stroke-width="1.2" opacity=".4" marker-end="url(#arr)"/>
-                        <path class="flow-line" d="M258 280 Q285 210 312 153" fill="none" stroke="var(--teal)" stroke-width="1" opacity=".35" marker-end="url(#arr)"/>
-                        <path class="flow-line" d="M383 280 Q355 210 328 153" fill="none" stroke="var(--teal)" stroke-width="1" opacity=".35" marker-end="url(#arr)"/>
+                        <!-- EU at center -->
+                        <circle cx="320" cy="185" r="32" fill="var(--purple-bg)" stroke="var(--purple)" stroke-width="1"/>
+                        <text x="320" y="189" text-anchor="middle" font-family="var(--sans)" font-size="14" fill="var(--purple)" font-weight="500">EU</text>
 
-                        <circle cx="110" cy="125" r="36" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="0.8"/>
-                        <text x="110" y="121" text-anchor="middle" font-family="var(--sans)" font-size="12" fill="var(--teal)" font-weight="500">China</text>
-                        <text x="110" y="135" text-anchor="middle" font-family="var(--sans)" font-size="9" fill="var(--text-tertiary)">Major supplier</text>
+                        <!-- China (top-left) → EU -->
+                        <circle cx="95" cy="95" r="36" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="0.8"/>
+                        <text x="95" y="91" text-anchor="middle" font-family="var(--sans)" font-size="12" fill="var(--teal)" font-weight="500">China</text>
+                        <text x="95" y="105" text-anchor="middle" font-family="var(--sans)" font-size="9" fill="var(--text-tertiary)">Major supplier</text>
+                        <path class="flow-line" d="M130 112 Q200 130 290 175" fill="none" stroke="var(--teal)" stroke-width="3" opacity=".6" marker-end="url(#arr)"/>
 
-                        <circle cx="520" cy="125" r="30" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="0.8"/>
-                        <text x="520" y="121" text-anchor="middle" font-family="var(--sans)" font-size="12" fill="var(--teal)" font-weight="500">Russia</text>
-                        <text x="520" y="135" text-anchor="middle" font-family="var(--sans)" font-size="9" fill="var(--text-tertiary)">Key source</text>
+                        <!-- Russia (top-right) → EU -->
+                        <circle cx="545" cy="95" r="30" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="0.8"/>
+                        <text x="545" y="91" text-anchor="middle" font-family="var(--sans)" font-size="12" fill="var(--teal)" font-weight="500">Russia</text>
+                        <text x="545" y="105" text-anchor="middle" font-family="var(--sans)" font-size="9" fill="var(--text-tertiary)">Key source</text>
+                        <path class="flow-line" d="M516 108 Q440 130 350 175" fill="none" stroke="var(--teal)" stroke-width="2.2" opacity=".5" marker-end="url(#arr)"/>
 
-                        <circle cx="320" cy="125" r="28" fill="var(--purple-bg)" stroke="var(--purple)" stroke-width="0.8"/>
-                        <text x="320" y="129" text-anchor="middle" font-family="var(--sans)" font-size="13" fill="var(--purple)" font-weight="500">EU</text>
+                        <!-- Turkey (right) → EU -->
+                        <circle cx="540" cy="240" r="22" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.6"/>
+                        <text x="540" y="243" text-anchor="middle" font-family="var(--sans)" font-size="10" fill="var(--coral)">Turkey</text>
+                        <path class="flow-line" d="M518 235 Q440 210 352 190" fill="none" stroke="var(--teal)" stroke-width="1.8" opacity=".45" marker-end="url(#arr)"/>
 
-                        <circle cx="270" cy="235" r="20" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.6"/>
-                        <text x="270" y="238" text-anchor="middle" font-family="var(--sans)" font-size="10" fill="var(--coral)">Brazil</text>
+                        <!-- Brazil (bottom-left) → EU -->
+                        <circle cx="140" cy="280" r="22" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.6"/>
+                        <text x="140" y="283" text-anchor="middle" font-family="var(--sans)" font-size="10" fill="var(--coral)">Brazil</text>
+                        <path class="flow-line" d="M160 268 Q230 230 293 195" fill="none" stroke="var(--teal)" stroke-width="1.2" opacity=".4" marker-end="url(#arr)"/>
 
-                        <circle cx="370" cy="235" r="20" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.6"/>
-                        <text x="370" y="238" text-anchor="middle" font-family="var(--sans)" font-size="10" fill="var(--coral)">Canada</text>
+                        <!-- S. Africa (bottom) → EU -->
+                        <circle cx="320" cy="310" r="22" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.6"/>
+                        <text x="320" y="313" text-anchor="middle" font-family="var(--sans)" font-size="9" fill="var(--coral)">S. Africa</text>
+                        <path class="flow-line" d="M320 288 L320 217" fill="none" stroke="var(--teal)" stroke-width="1.2" opacity=".4" marker-end="url(#arr)"/>
 
-                        <circle cx="245" cy="295" r="18" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.6"/>
-                        <text x="245" y="298" text-anchor="middle" font-family="var(--sans)" font-size="9" fill="var(--coral)">S. Africa</text>
-
-                        <circle cx="395" cy="295" r="18" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.6"/>
-                        <text x="395" y="298" text-anchor="middle" font-family="var(--sans)" font-size="9" fill="var(--coral)">Turkey</text>
+                        <!-- Canada (left) → EU -->
+                        <circle cx="95" cy="225" r="22" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.6"/>
+                        <text x="95" y="228" text-anchor="middle" font-family="var(--sans)" font-size="10" fill="var(--coral)">Canada</text>
+                        <path class="flow-line" d="M117 220 Q200 200 289 188" fill="none" stroke="var(--teal)" stroke-width="1.2" opacity=".4" marker-end="url(#arr)"/>
 
                         <rect x="40" y="340" width="10" height="10" rx="3" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="0.5"/>
                         <text x="56" y="349" font-family="var(--sans)" font-size="10" fill="var(--text-tertiary)">Top extra-EU suppliers</text>
