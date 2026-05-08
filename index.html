@@ -8,30 +8,15 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg: #0a0a0a;
-            --bg-elev: #131313;
-            --bg-card: #161616;
-            --border: #1f1f1f;
-            --border-strong: #2a2a2a;
-            --text: #e8e8e8;
-            --text-secondary: #9a9a9a;
-            --text-tertiary: #5a5a5a;
-            --accent: #d4a574;
-            --critical: #d4543a;
-            --critical-bg: #2a1410;
-            --high: #d48f3a;
-            --high-bg: #2a1d0e;
-            --medium: #c4a44a;
-            --medium-bg: #221d0a;
-            --low: #6aa885;
-            --low-bg: #0e201a;
-            --teal: #6aa8a0;
-            --teal-bg: #0e1f1d;
-            --purple: #9a8fd4;
-            --purple-bg: #161425;
-            --coral: #d48570;
-            --coral-bg: #221610;
+            --bg: #ffffff;
+            --bg-soft: #fafafa;
+            --border: #e8e8e8;
+            --text: #0a0a0a;
+            --text-secondary: #4a4a4a;
+            --text-tertiary: #8a8a8a;
+            --text-quaternary: #b8b8b8;
             --font: 'Calibri Light', 'Calibri', 'Segoe UI Light', 'Helvetica Neue', system-ui, sans-serif;
+            --mono: 'SF Mono', 'IBM Plex Mono', 'Consolas', ui-monospace, monospace;
         }
 
         body {
@@ -39,131 +24,95 @@
             color: var(--text);
             font-family: var(--font);
             font-weight: 300;
-            line-height: 1.65;
+            line-height: 1.6;
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            letter-spacing: 0.01em;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            opacity: 0.025;
-            z-index: 1000;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
         .page {
-            max-width: 1180px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 7vh 40px 10vh;
+            padding: 9vh 48px 12vh;
         }
+
+        a { color: inherit; }
 
         /* ─── Hero ─── */
         .hero {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px;
             align-items: start;
-            padding-bottom: 60px;
-            margin-bottom: 80px;
+            padding-bottom: 80px;
+            margin-bottom: 100px;
             border-bottom: 1px solid var(--border);
             opacity: 0;
-            animation: fadeUp 0.9s ease forwards 0.15s;
+            animation: fadeIn 0.8s ease forwards 0.1s;
         }
 
         .hero-left h1 {
             font-weight: 200;
-            font-size: 48px;
-            line-height: 1.05;
-            letter-spacing: -0.02em;
-            margin-bottom: 18px;
+            font-size: 56px;
+            line-height: 1.0;
+            letter-spacing: -0.025em;
+            margin-bottom: 28px;
         }
 
         .hero-tagline {
-            font-size: 16px;
+            font-size: 17px;
             color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 12px;
-            max-width: 460px;
+            line-height: 1.55;
+            margin-bottom: 14px;
+            max-width: 480px;
         }
 
         .hero-sub {
-            font-size: 14px;
+            font-size: 15px;
             color: var(--text-tertiary);
-            font-style: italic;
-            margin-bottom: 22px;
+            margin-bottom: 36px;
+            max-width: 480px;
         }
 
-        .location {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        .meta-line {
             font-size: 12px;
             color: var(--text-tertiary);
             text-transform: uppercase;
-            letter-spacing: 0.18em;
-            margin-bottom: 26px;
-        }
-
-        .location::before {
-            content: '';
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--accent);
+            letter-spacing: 0.16em;
+            margin-bottom: 28px;
         }
 
         .social-row {
             display: flex;
-            gap: 24px;
+            gap: 28px;
         }
 
         .social-row a {
             font-size: 13px;
-            color: var(--text-secondary);
+            color: var(--text);
             text-decoration: none;
-            letter-spacing: 0.04em;
-            position: relative;
-            padding-bottom: 3px;
-            transition: color 0.2s;
+            border-bottom: 1px solid var(--text);
+            padding-bottom: 1px;
+            transition: opacity 0.2s;
         }
 
-        .social-row a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 1px;
-            background: var(--text-tertiary);
-            transition: background 0.2s;
-        }
-
-        .social-row a:hover { color: var(--accent); }
-        .social-row a:hover::after { background: var(--accent); }
+        .social-row a:hover { opacity: 0.5; }
 
         .hero-right {
             display: grid;
-            grid-template-columns: 130px 1fr;
-            gap: 28px;
+            grid-template-columns: 120px 1fr;
+            gap: 32px;
             align-items: start;
+            padding-top: 8px;
         }
 
         .photo-frame {
-            width: 130px;
-            height: 130px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             overflow: hidden;
-            border: 1px solid var(--border-strong);
-            background: var(--bg-elev);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            filter: grayscale(0.15);
+            background: var(--bg-soft);
+            filter: grayscale(1);
         }
 
         .photo-frame img {
@@ -172,7 +121,7 @@
             object-fit: cover;
         }
 
-        .info-block { margin-bottom: 18px; }
+        .info-block { margin-bottom: 24px; }
         .info-block:last-child { margin-bottom: 0; }
 
         .info-label {
@@ -180,206 +129,169 @@
             letter-spacing: 0.22em;
             text-transform: uppercase;
             color: var(--text-tertiary);
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-weight: 400;
         }
 
         .info-content {
-            font-size: 13.5px;
-            color: var(--text-secondary);
+            font-size: 14px;
+            color: var(--text);
             line-height: 1.7;
         }
 
         .info-content .sep {
-            color: var(--text-tertiary);
-            margin: 0 6px;
+            color: var(--text-quaternary);
+            margin: 0 8px;
         }
 
         /* ─── Section header ─── */
         .section-header {
-            display: flex;
-            align-items: baseline;
-            gap: 16px;
-            margin-bottom: 48px;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            margin-bottom: 72px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
         }
 
         .section-num {
-            font-weight: 200;
-            font-size: 13px;
-            color: var(--accent);
+            font-family: var(--mono);
+            font-weight: 400;
+            font-size: 11px;
+            color: var(--text-tertiary);
             letter-spacing: 0.1em;
+            padding-top: 14px;
         }
 
         .section-title {
             font-weight: 200;
-            font-size: 28px;
-            letter-spacing: -0.01em;
-        }
-
-        .section-line {
-            flex: 1;
-            height: 1px;
-            background: var(--border);
+            font-size: 32px;
+            letter-spacing: -0.015em;
+            line-height: 1.1;
         }
 
         /* ─── Research entry ─── */
         .research-entry {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-            gap: 56px;
-            margin-bottom: 100px;
+            grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+            gap: 80px;
+            margin-bottom: 140px;
             opacity: 0;
-            animation: fadeUp 0.9s ease forwards;
+            animation: fadeIn 0.8s ease forwards;
         }
 
-        .research-entry:nth-of-type(1) { animation-delay: 0.35s; }
-        .research-entry:nth-of-type(2) { animation-delay: 0.5s; }
+        .research-entry:last-of-type { margin-bottom: 100px; }
+        .research-entry:nth-of-type(1) { animation-delay: 0.25s; }
+        .research-entry:nth-of-type(2) { animation-delay: 0.4s; }
 
         .entry-text {
             position: sticky;
-            top: 40px;
+            top: 48px;
             align-self: start;
+        }
+
+        .entry-index {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--text-tertiary);
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+            display: block;
         }
 
         .entry-tag {
             display: inline-block;
-            font-size: 10px;
-            letter-spacing: 0.22em;
+            font-size: 11px;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
-            color: var(--accent);
-            padding: 5px 11px;
-            border: 1px solid rgba(212, 165, 116, 0.3);
-            border-radius: 2px;
-            margin-bottom: 18px;
+            color: var(--text-tertiary);
+            margin-bottom: 20px;
         }
 
         .entry-title {
             font-weight: 200;
-            font-size: 26px;
-            line-height: 1.2;
-            letter-spacing: -0.01em;
-            margin-bottom: 22px;
+            font-size: 30px;
+            line-height: 1.15;
+            letter-spacing: -0.015em;
+            margin-bottom: 28px;
+            color: var(--text);
         }
 
         .entry-title a {
             color: inherit;
             text-decoration: none;
-            background-image: linear-gradient(var(--text-tertiary), var(--text-tertiary));
-            background-size: 100% 1px;
+            background-image: linear-gradient(var(--text), var(--text));
+            background-size: 0 1px;
             background-repeat: no-repeat;
             background-position: 0 100%;
+            transition: background-size 0.3s;
             padding-bottom: 2px;
-            transition: background-image 0.25s;
         }
 
-        .entry-title a:hover {
-            background-image: linear-gradient(var(--accent), var(--accent));
-        }
+        .entry-title a:hover { background-size: 100% 1px; }
 
         .entry-list {
             list-style: none;
-            margin-bottom: 22px;
+            margin-bottom: 28px;
         }
 
         .entry-list li {
-            font-size: 14px;
+            font-size: 14.5px;
             color: var(--text-secondary);
             line-height: 1.65;
-            padding-left: 18px;
+            padding-left: 22px;
             position: relative;
-            margin-bottom: 9px;
+            margin-bottom: 11px;
         }
 
         .entry-list li::before {
             content: '';
             position: absolute;
             left: 0;
-            top: 11px;
-            width: 8px;
+            top: 12px;
+            width: 10px;
             height: 1px;
-            background: var(--text-tertiary);
+            background: var(--text-quaternary);
         }
 
         .entry-meta {
-            font-size: 12px;
+            font-size: 13px;
             color: var(--text-tertiary);
             line-height: 1.7;
             margin-bottom: 4px;
         }
 
         .entry-meta strong {
-            color: var(--text-secondary);
+            color: var(--text);
             font-weight: 400;
         }
 
-        .entry-keywords {
-            font-size: 11px;
-            color: var(--text-tertiary);
-            letter-spacing: 0.04em;
-            margin-top: 10px;
-            padding-top: 12px;
-            border-top: 1px solid var(--border);
-            line-height: 1.7;
-        }
-
-        .read-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 22px;
-            font-size: 12px;
-            color: var(--accent);
-            text-decoration: none;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border: 1px solid rgba(212, 165, 116, 0.4);
-            padding: 10px 18px;
-            border-radius: 2px;
-            transition: all 0.25s;
-        }
-
-        .read-link:hover {
-            background: rgba(212, 165, 116, 0.08);
-            border-color: var(--accent);
-        }
-
-        .read-link::after {
-            content: '→';
-            transition: transform 0.25s;
-        }
-
-        .read-link:hover::after {
-            transform: translateX(3px);
-        }
-
-        /* ─── Visualization Container ─── */
+        /* ─── Visualization ─── */
         .viz-container {
             border: 1px solid var(--border);
-            border-radius: 4px;
-            overflow: hidden;
-            background: var(--bg-card);
+            background: var(--bg);
         }
 
         .viz-tabs {
             display: flex;
             border-bottom: 1px solid var(--border);
-            background: var(--bg-elev);
+            background: var(--bg);
             overflow-x: auto;
         }
 
         .viz-tab {
             flex: 1;
             min-width: max-content;
-            padding: 13px 12px;
+            padding: 16px 14px;
             font-size: 10.5px;
-            font-family: var(--font);
-            font-weight: 300;
+            font-family: var(--mono);
+            font-weight: 400;
             color: var(--text-tertiary);
             border: none;
             background: transparent;
             cursor: pointer;
-            transition: all 0.2s;
-            letter-spacing: 0.12em;
+            transition: color 0.2s, background 0.2s;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
             text-align: center;
             border-bottom: 1px solid transparent;
@@ -388,294 +300,215 @@
             white-space: nowrap;
         }
 
-        .viz-tab:hover { color: var(--text-secondary); }
+        .viz-tab:hover { color: var(--text); }
         .viz-tab.active {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
+            color: var(--text);
+            border-bottom-color: var(--text);
         }
 
-        .viz-panel { display: none; padding: 26px; }
+        .viz-panel { display: none; padding: 40px; }
         .viz-panel.active { display: block; }
 
         .viz-title {
             font-weight: 300;
-            font-size: 16px;
-            margin-bottom: 4px;
+            font-size: 18px;
+            margin-bottom: 6px;
             color: var(--text);
+            letter-spacing: -0.005em;
         }
 
         .viz-sub {
-            font-size: 11px;
+            font-size: 12px;
             color: var(--text-tertiary);
-            margin-bottom: 18px;
-            letter-spacing: 0.03em;
+            margin-bottom: 32px;
+            letter-spacing: 0.02em;
         }
 
         @keyframes flowR { to { stroke-dashoffset: -16; } }
 
         .flow-line {
             stroke-dasharray: 4 4;
-            animation: flowR 1.6s linear infinite;
+            animation: flowR 1.8s linear infinite;
         }
 
         @media (prefers-reduced-motion: reduce) {
             .flow-line { animation: none; }
         }
 
-        /* Gravity grid */
-        .gravity-grid {
+        /* Big idea panel */
+        .big-idea {
+            font-size: 16px;
+            color: var(--text);
+            line-height: 1.55;
+            font-weight: 300;
+            margin-bottom: 28px;
+            max-width: 540px;
+        }
+
+        .big-idea em {
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        /* Numbered points */
+        .numbered-list {
+            list-style: none;
+            counter-reset: pol;
+        }
+
+        .numbered-list li {
+            counter-increment: pol;
+            padding: 18px 0;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 32px 1fr;
+            gap: 16px;
+            align-items: start;
+        }
+
+        .numbered-list li:last-child {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .numbered-list li::before {
+            content: counter(pol, decimal-leading-zero);
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--text-tertiary);
+            letter-spacing: 0.06em;
+            padding-top: 3px;
+        }
+
+        .numbered-list .point-title {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .numbered-list .point-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Pull quote */
+        .pull-quote {
+            border-left: 1px solid var(--text);
+            padding: 6px 0 6px 24px;
+            margin-top: 32px;
+            font-size: 15px;
+            color: var(--text);
+            line-height: 1.55;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .pull-quote strong {
+            color: var(--text);
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        /* Innovation grid */
+        .innov-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 16px;
+            border-top: 1px solid var(--border);
+            border-left: 1px solid var(--border);
         }
 
-        .gravity-card {
-            background: var(--bg-elev);
-            border: 1px solid var(--border);
-            border-radius: 3px;
-            padding: 12px 14px;
+        .innov-cell {
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 24px 24px;
         }
 
-        .gravity-card-label {
+        .innov-label {
+            font-family: var(--mono);
             font-size: 10px;
             color: var(--text-tertiary);
             text-transform: uppercase;
             letter-spacing: 0.14em;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
-        .gravity-card-value {
-            font-size: 13.5px;
+        .innov-title {
+            font-size: 14.5px;
             font-weight: 400;
-            margin-bottom: 5px;
+            color: var(--text);
+            margin-bottom: 8px;
+            line-height: 1.35;
         }
 
-        .gravity-card-desc {
-            font-size: 11px;
+        .innov-desc {
+            font-size: 12.5px;
             color: var(--text-secondary);
             line-height: 1.55;
         }
 
-        .gravity-quote {
-            font-style: italic;
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.65;
-            padding-top: 14px;
-            margin-top: 4px;
-            border-top: 1px solid var(--border);
-        }
-
-        /* Risk Bars */
-        .risk-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 9px;
-        }
-
-        .risk-label {
-            font-size: 12.5px;
-            min-width: 78px;
-            color: var(--text-secondary);
-        }
-
-        .risk-track {
-            flex: 1;
-            height: 14px;
-            background: var(--bg-elev);
-            border-radius: 1px;
-            overflow: hidden;
-        }
-
-        .risk-fill {
-            height: 100%;
-            transition: width 0.6s ease;
-        }
-
-        .risk-badge {
-            font-size: 10px;
-            font-weight: 400;
-            padding: 2px 9px;
-            border-radius: 1px;
-            min-width: 64px;
-            text-align: center;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .risk-note {
-            margin-top: 14px;
-            padding-top: 12px;
-            border-top: 1px solid var(--border);
-            font-size: 11px;
-            color: var(--text-tertiary);
-            line-height: 1.6;
-        }
-
-        /* Results Table */
-        .results-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-        }
-
-        .results-table thead { border-bottom: 1px solid var(--border-strong); }
-
-        .results-table th {
-            font-weight: 400;
-            font-size: 10px;
-            color: var(--text-tertiary);
-            text-align: left;
-            padding: 10px 6px;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-        }
-
-        .results-table td {
-            padding: 8px 6px;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-secondary);
-            font-variant-numeric: tabular-nums;
-        }
-
-        .results-table tbody tr:hover { background: var(--bg-elev); color: var(--text); }
-        .results-table tbody tr:last-child td { border-bottom: none; }
-
-        .risk-dot {
-            display: inline-block;
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            margin-right: 6px;
-            vertical-align: middle;
-        }
-
-        /* Banking-thesis specific */
-        .reg-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12.5px;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .reg-table thead th {
-            font-weight: 400;
-            font-size: 10px;
-            color: var(--text-tertiary);
-            text-align: right;
-            padding: 10px 8px;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            border-bottom: 1px solid var(--border-strong);
-        }
-
-        .reg-table thead th:first-child { text-align: left; }
-
-        .reg-table td {
-            padding: 7px 8px;
-            text-align: right;
-            color: var(--text-secondary);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .reg-table td:first-child {
-            text-align: left;
-            color: var(--text);
-        }
-
-        .reg-table .se {
-            color: var(--text-tertiary);
-            font-size: 11px;
-        }
-
-        .reg-table .footer-row td {
-            border-bottom: none;
-            border-top: 1px solid var(--border-strong);
-            color: var(--text-tertiary);
-            font-size: 11px;
-        }
-
-        .sig {
-            color: var(--accent);
-        }
-
-        .key-finding {
-            background: var(--bg-elev);
-            border-left: 2px solid var(--accent);
-            padding: 14px 18px;
-            margin-top: 18px;
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.65;
-        }
-
-        .key-finding strong {
-            color: var(--text);
-            font-weight: 400;
-        }
-
-        /* Footer */
+        /* ─── Footer ─── */
         .footer {
             text-align: center;
-            padding-top: 40px;
+            padding-top: 56px;
             border-top: 1px solid var(--border);
             font-size: 13px;
             color: var(--text-tertiary);
             opacity: 0;
-            animation: fadeUp 0.9s ease forwards 0.95s;
+            animation: fadeIn 0.8s ease forwards 0.7s;
         }
 
         .footer a {
-            color: var(--text-secondary);
+            color: var(--text);
             text-decoration: none;
-            border-bottom: 1px solid var(--border-strong);
+            border-bottom: 1px solid var(--text);
             padding-bottom: 1px;
-            transition: all 0.2s;
+            transition: opacity 0.2s;
         }
-        .footer a:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-        }
+        .footer a:hover { opacity: 0.5; }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(16px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Responsive */
-        @media (max-width: 960px) {
-            .page { padding: 5vh 24px 8vh; }
+        /* ─── Responsive ─── */
+        @media (max-width: 980px) {
+            .page { padding: 6vh 32px 9vh; }
             .hero {
                 grid-template-columns: 1fr;
-                gap: 36px;
+                gap: 48px;
+                padding-bottom: 60px;
+                margin-bottom: 70px;
             }
-            .hero-left h1 { font-size: 38px; }
+            .hero-left h1 { font-size: 44px; }
+            .section-header {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .section-num { padding-top: 0; }
             .research-entry {
                 grid-template-columns: 1fr;
-                gap: 32px;
-                margin-bottom: 70px;
+                gap: 40px;
+                margin-bottom: 90px;
             }
             .entry-text { position: static; }
         }
 
         @media (max-width: 640px) {
-            .page { padding: 4vh 18px 7vh; }
-            .hero-left h1 { font-size: 32px; }
+            .page { padding: 5vh 22px 7vh; }
+            .hero-left h1 { font-size: 36px; }
             .hero-right {
-                grid-template-columns: 100px 1fr;
-                gap: 20px;
+                grid-template-columns: 90px 1fr;
+                gap: 22px;
             }
-            .photo-frame { width: 100px; height: 100px; }
-            .section-title { font-size: 22px; }
-            .entry-title { font-size: 22px; }
-            .viz-tab { font-size: 9.5px; padding: 10px 8px; letter-spacing: 0.08em; }
-            .viz-panel { padding: 18px; }
-            .results-table, .reg-table { font-size: 11px; }
-            .results-table th, .results-table td { padding: 6px 4px; }
-            .reg-table th, .reg-table td { padding: 6px 4px; }
-            .gravity-grid { grid-template-columns: 1fr; }
+            .photo-frame { width: 90px; height: 90px; }
+            .section-title { font-size: 26px; }
+            .entry-title { font-size: 24px; }
+            .viz-tab { font-size: 9.5px; padding: 12px 8px; letter-spacing: 0.1em; }
+            .viz-panel { padding: 24px; }
+            .innov-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -690,7 +523,7 @@
                     MS student in Finance and researcher in trade policy, geopolitics, and machine learning — applied and theoretical.
                 </div>
                 <div class="hero-sub">Looking to do research in computational political science.</div>
-                <div class="location">Based in Barcelona</div>
+                <div class="meta-line">Based in Barcelona</div>
                 <div class="social-row">
                     <a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank">LinkedIn</a>
                     <a href="https://scholar.google.es/citations?user=EJig7tkAAAAJ&hl=es" target="_blank">Scholar</a>
@@ -706,13 +539,13 @@
                     <div class="info-block">
                         <div class="info-label">Skills</div>
                         <div class="info-content">
-                            Econometrics<span class="sep">·</span>Machine Learning<span class="sep">·</span>European Public Policy<span class="sep">·</span>Financial Analysis
+                            Econometrics<span class="sep">/</span>Machine Learning<span class="sep">/</span>European Public Policy<span class="sep">/</span>Financial Analysis
                         </div>
                     </div>
                     <div class="info-block">
                         <div class="info-label">Research Interests</div>
                         <div class="info-content">
-                            Political Polarization<span class="sep">·</span>European Enlargement<span class="sep">·</span>Banking Risk<span class="sep">·</span>European Policy<span class="sep">·</span>Machine Learning
+                            Political Polarization<span class="sep">/</span>European Enlargement<span class="sep">/</span>Banking Risk<span class="sep">/</span>European Policy<span class="sep">/</span>Machine Learning
                         </div>
                     </div>
                     <div class="info-block">
@@ -729,278 +562,155 @@
 
         <!-- ─── SECTION HEADER ─── -->
         <div class="section-header">
-            <span class="section-num">Research</span>
+            <span class="section-num">— Research</span>
             <span class="section-title">Theses</span>
-            <span class="section-line"></span>
         </div>
 
         <!-- ═══════════════════════════════════════════════════════════ -->
-        <!-- ENTRY 1: Cross-Border Common Ownership (MSc Finance, UPF)   -->
+        <!-- ENTRY 1: Cross-Border Common Ownership                       -->
         <!-- ═══════════════════════════════════════════════════════════ -->
         <article class="research-entry">
             <div class="entry-text">
+                <span class="entry-index">01 / Banking</span>
                 <span class="entry-tag">MSc Finance Thesis · UPF/BSM</span>
                 <h2 class="entry-title">
                     Does Cross-Border Common Ownership Diversify Bank Risk?
                 </h2>
                 <ul class="entry-list">
-                    <li>Decomposes common ownership into cross-border (XB) and domestic (DOM) components for the EU25 — top European banks by assets, 654 bank-years (2003–2023)</li>
-                    <li>Tests whether cross-border common ownership transmits systemic risk — a channel the macroprudential framework barely touches</li>
-                    <li>Two ownership measures: <em>C</em> (investor overlap) and <em>λ</em> (O'Brien–Salop incentive weight), both decomposable XB / DOM</li>
-                    <li>Cross-border common ownership predicts higher systemic risk; domestic does not</li>
-                    <li>EBA-perimeter robustness: integration under EU supervision is not safer than integration with non-EU investors</li>
+                    <li>Tests whether shared institutional shareholders transmit systemic risk between European banks — a contagion channel the macroprudential framework barely touches</li>
+                    <li>Distinguishes <em>cross-border</em> from <em>domestic</em> common ownership in the EU banking sector — a separation absent from prior work</li>
+                    <li>Speaks directly to the live Banking Union debate on integration vs. contagion (Buch, Bruegel)</li>
                 </ul>
                 <div class="entry-meta">Supervised by <strong>Albert Banal-Estañol</strong></div>
-                <div class="entry-meta">Refinitiv/LSEG ownership · Datastream returns · Worldscope fundamentals</div>
-                <div class="entry-keywords">
-                    Common Ownership · Systemic Risk · Banking Union · MES · Cross-Border Integration · EU Banks
-                </div>
+                <div class="entry-meta">In progress · 2026</div>
             </div>
 
             <div class="entry-viz">
                 <div class="viz-container">
                     <div class="viz-tabs">
-                        <button class="viz-tab active" onclick="showVizPanel('bank-question', this)">Question</button>
-                        <button class="viz-tab" onclick="showVizPanel('bank-data', this)">Data</button>
-                        <button class="viz-tab" onclick="showVizPanel('bank-spec', this)">Specification</button>
-                        <button class="viz-tab" onclick="showVizPanel('bank-results', this)">Main Result</button>
-                        <button class="viz-tab" onclick="showVizPanel('bank-eba', this)">EBA Robustness</button>
+                        <button class="viz-tab active" onclick="showVizPanel('bank-idea', this)">The Idea</button>
+                        <button class="viz-tab" onclick="showVizPanel('bank-novelty', this)">Innovation</button>
+                        <button class="viz-tab" onclick="showVizPanel('bank-policy', this)">Policy</button>
                     </div>
 
-                    <!-- ── Question ── -->
-                    <div class="viz-panel active" id="viz-bank-question">
-                        <div class="viz-title">The empirical gap</div>
-                        <div class="viz-sub">EU25 banks · 2003–2023 · cross-border vs domestic common ownership</div>
+                    <!-- ── The Idea ── -->
+                    <div class="viz-panel active" id="viz-bank-idea">
+                        <div class="viz-title">The contagion channel nobody is monitoring</div>
+                        <div class="viz-sub">EU banks · cross-border vs domestic common ownership</div>
 
-                        <svg width="100%" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                        <div class="big-idea">
+                            Banking Union supervision tracks lending and interbank exposures.
+                            But two banks in different countries can also be linked by a third party —
+                            a large institutional investor that owns meaningful stakes in both.
+                            <em>If that investor reallocates, both banks move together.</em>
+                        </div>
+
+                        <svg width="100%" viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="margin-top: 8px;">
                             <defs>
                                 <marker id="arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-                                    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
                                 </marker>
                             </defs>
 
                             <!-- Bank A -->
-                            <circle cx="120" cy="100" r="42" fill="var(--purple-bg)" stroke="var(--purple)" stroke-width="0.8"/>
-                            <text x="120" y="98" text-anchor="middle" font-family="var(--font)" font-size="13" fill="var(--purple)" font-weight="400">Bank A</text>
-                            <text x="120" y="114" text-anchor="middle" font-family="var(--font)" font-size="10" fill="var(--text-tertiary)">EU country X</text>
+                            <circle cx="120" cy="90" r="42" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                            <text x="120" y="88" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="13" fill="#0a0a0a">Bank A</text>
+                            <text x="120" y="104" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#8a8a8a">EU country X</text>
 
                             <!-- Bank B -->
-                            <circle cx="480" cy="100" r="42" fill="var(--purple-bg)" stroke="var(--purple)" stroke-width="0.8"/>
-                            <text x="480" y="98" text-anchor="middle" font-family="var(--font)" font-size="13" fill="var(--purple)" font-weight="400">Bank B</text>
-                            <text x="480" y="114" text-anchor="middle" font-family="var(--font)" font-size="10" fill="var(--text-tertiary)">EU country Y</text>
+                            <circle cx="480" cy="90" r="42" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                            <text x="480" y="88" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="13" fill="#0a0a0a">Bank B</text>
+                            <text x="480" y="104" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#8a8a8a">EU country Y</text>
 
                             <!-- Shared investor -->
-                            <ellipse cx="300" cy="220" rx="100" ry="32" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.8"/>
-                            <text x="300" y="217" text-anchor="middle" font-family="var(--font)" font-size="12" fill="var(--coral)" font-weight="400">Shared institutional investor</text>
-                            <text x="300" y="233" text-anchor="middle" font-family="var(--font)" font-size="10" fill="var(--text-tertiary)">e.g. BlackRock, Vanguard, State Street</text>
+                            <ellipse cx="300" cy="200" rx="120" ry="32" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                            <text x="300" y="197" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="#0a0a0a">Shared institutional investor</text>
+                            <text x="300" y="213" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#8a8a8a">cross-border equity stake in both</text>
 
                             <!-- Edges -->
-                            <path class="flow-line" d="M148 130 Q220 180 240 200" fill="none" stroke="var(--coral)" stroke-width="1.6" opacity="0.7" marker-end="url(#arrB)"/>
-                            <path class="flow-line" d="M452 130 Q380 180 360 200" fill="none" stroke="var(--coral)" stroke-width="1.6" opacity="0.7" marker-end="url(#arrB)"/>
+                            <path class="flow-line" d="M148 120 Q220 165 230 180" fill="none" stroke="#0a0a0a" stroke-width="1" opacity="0.55" marker-end="url(#arrB)"/>
+                            <path class="flow-line" d="M452 120 Q380 165 370 180" fill="none" stroke="#0a0a0a" stroke-width="1" opacity="0.55" marker-end="url(#arrB)"/>
 
-                            <!-- Risk transmission arrow A↔B -->
-                            <path d="M165 95 Q300 60 435 95" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="3 3" opacity="0.9"/>
-                            <text x="300" y="55" text-anchor="middle" font-family="var(--font)" font-size="11" fill="var(--accent)" font-style="italic">Risk transmission?</text>
+                            <!-- Risk transmission arc -->
+                            <path d="M165 85 Q300 50 435 85" fill="none" stroke="#0a0a0a" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
+                            <text x="300" y="45" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="#0a0a0a" font-style="italic">Risk co-movement</text>
 
                             <!-- Bottom note -->
-                            <text x="300" y="285" text-anchor="middle" font-family="var(--font)" font-size="11" fill="var(--text-secondary)" font-style="italic">
-                                Does C<tspan baseline-shift="super" font-size="8">xb</tspan> predict tail-risk co-movement (MES)?
+                            <text x="300" y="262" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="#4a4a4a" font-style="italic">
+                                Does this channel show up in tail-risk co-movement?
                             </text>
                         </svg>
-
-                        <div class="key-finding">
-                            <strong>The gap.</strong> No prior study tests whether <em>cross-border</em> common ownership transmits systemic risk in EU banks — despite the Banking Union debate around contagion and integration.
-                        </div>
                     </div>
 
-                    <!-- ── Data ── -->
-                    <div class="viz-panel" id="viz-bank-data">
-                        <div class="viz-title">Sample composition</div>
-                        <div class="viz-sub">EU25 · 654 bank-years · 4 sources · 2003–2023</div>
+                    <!-- ── Innovation ── -->
+                    <div class="viz-panel" id="viz-bank-novelty">
+                        <div class="viz-title">What's new</div>
+                        <div class="viz-sub">An empirical separation prior work does not make</div>
 
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
-                            <div class="gravity-card">
-                                <div class="gravity-card-label">Ownership</div>
-                                <div class="gravity-card-value" style="color: var(--purple);">Refinitiv / LSEG</div>
-                                <div class="gravity-card-desc">Quarterly. Investor ID, type, country of domicile, % shares held, filing date.</div>
-                            </div>
-                            <div class="gravity-card">
-                                <div class="gravity-card-label">Equity Returns</div>
-                                <div class="gravity-card-value" style="color: var(--teal);">Datastream LSEG</div>
-                                <div class="gravity-card-desc">Daily. Total return index, market cap, unadjusted price, dead-stock flag.</div>
-                            </div>
-                            <div class="gravity-card">
-                                <div class="gravity-card-label">Bank Fundamentals</div>
-                                <div class="gravity-card-value" style="color: var(--coral);">Worldscope</div>
-                                <div class="gravity-card-desc">Annual. Assets, capital ratios, deposits, liabilities, interest &amp; non-interest income.</div>
-                            </div>
-                            <div class="gravity-card">
-                                <div class="gravity-card-label">Universe</div>
-                                <div class="gravity-card-value" style="color: var(--accent);">Refinitiv (static)</div>
-                                <div class="gravity-card-desc">TRBC code 5510, HQ country, ISIN, RIC. EU25 by total assets.</div>
-                            </div>
+                        <div class="big-idea">
+                            Existing studies treat institutional ownership as one number.
+                            We split it into the part that crosses borders and the part that stays at home —
+                            and ask whether the geography of ownership matters for systemic risk.
                         </div>
 
-                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px;">
-                            <div style="text-align: center; padding: 14px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: 3px;">
-                                <div style="font-size: 22px; font-weight: 200; color: var(--accent);">25</div>
-                                <div style="font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.14em; margin-top: 4px;">EU banks</div>
+                        <div class="innov-grid">
+                            <div class="innov-cell">
+                                <div class="innov-label">— Decomposition</div>
+                                <div class="innov-title">Cross-border vs domestic ownership</div>
+                                <div class="innov-desc">Splits common ownership by investor geography rather than treating it as a single aggregate.</div>
                             </div>
-                            <div style="text-align: center; padding: 14px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: 3px;">
-                                <div style="font-size: 22px; font-weight: 200; color: var(--accent);">654</div>
-                                <div style="font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.14em; margin-top: 4px;">Bank-years</div>
+                            <div class="innov-cell">
+                                <div class="innov-label">— Scope</div>
+                                <div class="innov-title">European banking sector</div>
+                                <div class="innov-desc">Brings the common-ownership literature into the Banking Union debate, where the geographic dimension is central.</div>
                             </div>
-                            <div style="text-align: center; padding: 14px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: 3px;">
-                                <div style="font-size: 22px; font-weight: 200; color: var(--accent);">21</div>
-                                <div style="font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.14em; margin-top: 4px;">Years</div>
+                            <div class="innov-cell">
+                                <div class="innov-label">— Robustness</div>
+                                <div class="innov-title">Supervisory perimeter test</div>
+                                <div class="innov-desc">Tests whether the EBA boundary marks a meaningful economic frontier for the contagion channel.</div>
+                            </div>
+                            <div class="innov-cell">
+                                <div class="innov-label">— Frame</div>
+                                <div class="innov-title">Ownership-aware integration</div>
+                                <div class="innov-desc">Re-frames financial integration around shareholders, not just lending and interbank exposures.</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- ── Specification ── -->
-                    <div class="viz-panel" id="viz-bank-spec">
-                        <div class="viz-title">Identification strategy</div>
-                        <div class="viz-sub">Bank &amp; year fixed effects · SE clustered by bank</div>
+                    <!-- ── Policy ── -->
+                    <div class="viz-panel" id="viz-bank-policy">
+                        <div class="viz-title">Why it matters for policy</div>
+                        <div class="viz-sub">Implications for macroprudential supervision in the EU</div>
 
-                        <div style="background: var(--bg-elev); border: 1px solid var(--border); border-radius: 3px; padding: 18px; margin-bottom: 14px;">
-                            <div style="font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 10px;">Baseline — De George et al. (2019)</div>
-                            <div style="font-family: 'Cambria Math', Cambria, Georgia, serif; font-size: 16px; color: var(--text); text-align: center; line-height: 1.8;">
-                                SYS_RISK<sub>i,t</sub> = β · IO<sub>i,t−1</sub> + γ′ X<sub>i,t−1</sub> + α<sub>i</sub> + δ<sub>t</sub> + ε<sub>i,t</sub>
-                            </div>
+                        <div class="big-idea">
+                            The Buch position — <em>deepen integration but manage contagion</em> — is broadly supported.
+                            But contagion need not arrive only through the channels currently monitored.
+                            Shared shareholders are a parallel route the macroprudential framework barely covers.
                         </div>
 
-                        <div style="text-align: center; color: var(--text-tertiary); font-size: 12px; margin: 10px 0; font-style: italic;">extended to ↓</div>
+                        <ol class="numbered-list">
+                            <li>
+                                <div>
+                                    <div class="point-title">Ownership transparency belongs in the macroprudential toolkit</div>
+                                    <div class="point-desc">Supervisors already track lending and capital. The investor side of the balance sheet deserves the same visibility.</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <div class="point-title">Stress tests should include common-investor scenarios</div>
+                                    <div class="point-desc">Standard scenarios capture asset shocks. They should also capture coordinated reallocation by shared shareholders.</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <div class="point-title">Banking Union integration should be ownership-aware</div>
+                                    <div class="point-desc">The supervisory perimeter alone may not capture where contagion travels. Integration policy needs to look through to the investor base.</div>
+                                </div>
+                            </li>
+                        </ol>
 
-                        <div style="background: var(--bg-elev); border: 1px solid var(--accent); border-radius: 3px; padding: 18px; margin-bottom: 16px;">
-                            <div style="font-size: 10px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 10px;">Extension — XB / DOM partition</div>
-                            <div style="font-family: 'Cambria Math', Cambria, Georgia, serif; font-size: 16px; color: var(--text); text-align: center; line-height: 1.8;">
-                                SYS_RISK<sub>i,t</sub> = β<sub>1</sub> C<sup>xb</sup><sub>i,t−1</sub> + β<sub>2</sub> C<sup>dom</sup><sub>i,t−1</sub> + γ′ X<sub>i,t−1</sub> + α<sub>i</sub> + δ<sub>t</sub> + ε<sub>i,t</sub>
-                            </div>
-                        </div>
-
-                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
-                            <div style="background: var(--bg-elev); padding: 10px 12px; border-radius: 3px; border-left: 2px solid var(--purple);">
-                                <div style="font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 3px;">RQ1 · Channel</div>
-                                <div style="font-size: 11.5px; color: var(--text-secondary); line-height: 1.5;">Does <em>C</em> predict tail-risk co-movement?</div>
-                            </div>
-                            <div style="background: var(--bg-elev); padding: 10px 12px; border-radius: 3px; border-left: 2px solid var(--accent);">
-                                <div style="font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 3px;">RQ2 · Geography</div>
-                                <div style="font-size: 11.5px; color: var(--text-secondary); line-height: 1.5;">Is <em>C<sup>xb</sup></em> stronger than <em>C<sup>dom</sup></em>?</div>
-                            </div>
-                            <div style="background: var(--bg-elev); padding: 10px 12px; border-radius: 3px; border-left: 2px solid var(--coral);">
-                                <div style="font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 3px;">RQ3 · Concentration</div>
-                                <div style="font-size: 11.5px; color: var(--text-secondary); line-height: 1.5;">Survives controlling for HHI &amp; Big Three?</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ── Main Result ── -->
-                    <div class="viz-panel" id="viz-bank-results">
-                        <div class="viz-title">MES on common ownership (institutional, lagged)</div>
-                        <div class="viz-sub">After methodological fix — raw HHI replaces log-HHI</div>
-
-                        <table class="reg-table">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Bank FE</th>
-                                    <th>Bank + Year FE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>C<sup>xb</sup><sub>t−1</sub></td>
-                                    <td><span class="sig">−0.1678***</span></td>
-                                    <td><span class="sig">−0.1321**</span></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td class="se">(0.000)</td>
-                                    <td class="se">(0.044)</td>
-                                </tr>
-                                <tr>
-                                    <td>C<sup>dom</sup><sub>t−1</sub></td>
-                                    <td>−0.1927</td>
-                                    <td>−0.1759</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td class="se">(0.311)</td>
-                                    <td class="se">(0.218)</td>
-                                </tr>
-                                <tr>
-                                    <td>HHI control (raw)</td>
-                                    <td>Yes</td>
-                                    <td>Yes</td>
-                                </tr>
-                                <tr class="footer-row">
-                                    <td>N / R²</td>
-                                    <td>499 / 0.666</td>
-                                    <td>499 / 0.838</td>
-                                </tr>
-                                <tr>
-                                    <td style="color: var(--text-tertiary); font-size: 11px;">Wald β<sub>xb</sub> = β<sub>dom</sub></td>
-                                    <td class="se">p = 0.90</td>
-                                    <td class="se">p = 0.80</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="risk-note">
-                            SE clustered by bank. *** p &lt; 0.01, ** p &lt; 0.05.
-                        </div>
-
-                        <div class="key-finding">
-                            <strong>Headline.</strong> C<sup>xb</sup> predicts higher systemic risk; C<sup>dom</sup> does not. Identification by individual significance — Wald does not formally reject equality of β<sub>xb</sub> and β<sub>dom</sub>.
-                        </div>
-                    </div>
-
-                    <!-- ── EBA ── -->
-                    <div class="viz-panel" id="viz-bank-eba">
-                        <div class="viz-title">EBA two-way decomposition</div>
-                        <div class="viz-sub">Re-classify investors by EBA perimeter · Bank + Year FE, standardised</div>
-
-                        <table class="reg-table" style="margin-bottom: 14px;">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Coefficient</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>C<sup>EBA</sup><sub>t−1</sub></td>
-                                    <td>−0.0007</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td class="se">(p = 0.138)</td>
-                                </tr>
-                                <tr>
-                                    <td>C<sup>non-EBA</sup><sub>t−1</sub></td>
-                                    <td>−0.0016</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td class="se">(p = 0.128)</td>
-                                </tr>
-                                <tr class="footer-row">
-                                    <td>Wald C<sup>EBA</sup> = C<sup>non-EBA</sup></td>
-                                    <td class="se">p = 0.45</td>
-                                </tr>
-                                <tr>
-                                    <td>N</td>
-                                    <td>505</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div style="font-size: 11px; color: var(--text-tertiary); line-height: 1.6; margin-bottom: 14px;">
-                            EU-27 + EEA inside · UK in until 2019, out from 2020 (Brexit) · CH always out.
-                        </div>
-
-                        <div class="key-finding">
-                            <strong>Reading.</strong> Splitting cross-border by supervisory perimeter does not concentrate the effect on either side. The EBA boundary is not the relevant economic boundary for the common-ownership channel. <em>Banking Union integration should be ownership-aware, not ownership-blind.</em>
+                        <div class="pull-quote">
+                            <strong>The takeaway.</strong> Integration is desirable; contagion is the side-effect. Watching only the lending side leaves a blind spot on the equity side.
                         </div>
                     </div>
                 </div>
@@ -1008,10 +718,11 @@
         </article>
 
         <!-- ═══════════════════════════════════════════════════════════ -->
-        <!-- ENTRY 2: CRM (MSc Quantitative Economics, UAM)              -->
+        <!-- ENTRY 2: CRM                                                 -->
         <!-- ═══════════════════════════════════════════════════════════ -->
         <article class="research-entry">
             <div class="entry-text">
+                <span class="entry-index">02 / Trade</span>
                 <span class="entry-tag">MSc QE Thesis · UAM · Working Paper</span>
                 <h2 class="entry-title">
                     <a href="https://drive.google.com/file/d/1MAS2hY5tDa6vQus_SoyMaEl8Wk44jw1x/view?usp=sharing" target="_blank">
@@ -1019,273 +730,151 @@
                     </a>
                 </h2>
                 <ul class="entry-list">
-                    <li>Analyzes extra-EU imports of 16 strategic critical raw materials (1995–2023)</li>
-                    <li>Gravity models reveal the EU imports from distant, linguistically different, diplomatically misaligned countries — the opposite of what trade theory predicts</li>
-                    <li>Discrete-Time Dynamic Graph architecture models country-level disruption scenarios</li>
-                    <li>Combines HHI concentration, dominant supplier dependency, and structural risk indicators</li>
-                    <li>Policy-relevant risk classification aligned with EU 2030 CRM goals</li>
+                    <li>Combines structural trade economics with graph machine learning to study the EU's exposure to critical raw materials</li>
+                    <li>Asks where the EU sources strategic materials, and what happens if a major supplier becomes unavailable</li>
+                    <li>Produces a risk taxonomy aligned with the EU 2030 Critical Raw Materials Act</li>
                 </ul>
                 <div class="entry-meta">Supervised by <strong>Santiago Pérez Balsalobre</strong> and <strong>Javier Bas</strong></div>
-                <div class="entry-meta">Gravity Models · Graph Neural Networks · Extra-EU CRM Imports · 1995–2023</div>
-                <div class="entry-keywords">
-                    JEL: F52, F53, F55, F60, F68 · Critical Raw Materials · Graph Neural Networks · Gravity Models · De-risking
-                </div>
-                <a href="https://drive.google.com/file/d/1MAS2hY5tDa6vQus_SoyMaEl8Wk44jw1x/view?usp=sharing" target="_blank" class="read-link">Read paper</a>
+                <div class="entry-meta">Working paper · 2026</div>
             </div>
 
             <div class="entry-viz">
                 <div class="viz-container">
                     <div class="viz-tabs">
-                        <button class="viz-tab active" onclick="showVizPanel('crm-network', this)">Imports</button>
-                        <button class="viz-tab" onclick="showVizPanel('crm-gravity', this)">Gravity</button>
-                        <button class="viz-tab" onclick="showVizPanel('crm-method', this)">Method</button>
-                        <button class="viz-tab" onclick="showVizPanel('crm-risk', this)">Risk</button>
-                        <button class="viz-tab" onclick="showVizPanel('crm-results', this)">Results</button>
+                        <button class="viz-tab active" onclick="showVizPanel('crm-idea', this)">The Idea</button>
+                        <button class="viz-tab" onclick="showVizPanel('crm-novelty', this)">Innovation</button>
+                        <button class="viz-tab" onclick="showVizPanel('crm-policy', this)">Policy</button>
                     </div>
 
-                    <!-- Network -->
-                    <div class="viz-panel active" id="viz-crm-network">
-                        <div class="viz-title">Extra-EU CRM import network</div>
-                        <div class="viz-sub">All flows are imports into the EU — 16 strategic CRMs (1995–2021)</div>
+                    <!-- ── The Idea ── -->
+                    <div class="viz-panel active" id="viz-crm-idea">
+                        <div class="viz-title">A structural mismatch in EU sourcing</div>
+                        <div class="viz-sub">Where strategic dependencies actually sit</div>
 
-                        <svg width="100%" viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg">
+                        <div class="big-idea">
+                            Trade theory predicts that countries source most from partners that are nearby,
+                            culturally close, and politically aligned. For the materials the EU's green
+                            and digital transitions depend on, <em>the pattern is roughly the opposite</em>.
+                        </div>
+
+                        <svg width="100%" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" style="margin-top: 8px;">
                             <defs>
                                 <marker id="arrC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-                                    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
                                 </marker>
                             </defs>
 
                             <!-- EU center -->
-                            <circle cx="300" cy="180" r="34" fill="var(--purple-bg)" stroke="var(--purple)" stroke-width="1"/>
-                            <text x="300" y="184" text-anchor="middle" font-family="var(--font)" font-size="14" fill="var(--purple)" font-weight="400">EU</text>
+                            <circle cx="300" cy="170" r="36" fill="#0a0a0a"/>
+                            <text x="300" y="174" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="14" fill="#ffffff">EU</text>
 
                             <!-- China -->
-                            <circle cx="85" cy="90" r="36" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="0.8"/>
-                            <text x="85" y="86" text-anchor="middle" font-family="var(--font)" font-size="12" fill="var(--teal)" font-weight="400">China</text>
-                            <text x="85" y="100" text-anchor="middle" font-family="var(--font)" font-size="9" fill="var(--text-tertiary)">Major supplier</text>
-                            <path class="flow-line" d="M118 110 Q190 130 270 168" fill="none" stroke="var(--teal)" stroke-width="3" opacity=".6" marker-end="url(#arrC)"/>
+                            <circle cx="90" cy="80" r="34" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                            <text x="90" y="84" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="#0a0a0a">China</text>
+                            <path class="flow-line" d="M120 100 Q200 130 270 158" fill="none" stroke="#0a0a0a" stroke-width="1.4" opacity="0.7" marker-end="url(#arrC)"/>
 
                             <!-- Russia -->
-                            <circle cx="510" cy="90" r="30" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="0.8"/>
-                            <text x="510" y="86" text-anchor="middle" font-family="var(--font)" font-size="12" fill="var(--teal)" font-weight="400">Russia</text>
-                            <text x="510" y="100" text-anchor="middle" font-family="var(--font)" font-size="9" fill="var(--text-tertiary)">Key source</text>
-                            <path class="flow-line" d="M482 102 Q410 130 330 168" fill="none" stroke="var(--teal)" stroke-width="2.2" opacity=".55" marker-end="url(#arrC)"/>
+                            <circle cx="510" cy="80" r="30" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                            <text x="510" y="84" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="#0a0a0a">Russia</text>
+                            <path class="flow-line" d="M484 96 Q410 130 332 158" fill="none" stroke="#0a0a0a" stroke-width="1.1" opacity="0.65" marker-end="url(#arrC)"/>
 
                             <!-- Turkey -->
-                            <circle cx="510" cy="235" r="22" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.6"/>
-                            <text x="510" y="238" text-anchor="middle" font-family="var(--font)" font-size="10" fill="var(--coral)">Turkey</text>
-                            <path class="flow-line" d="M488 230 Q410 205 332 188" fill="none" stroke="var(--teal)" stroke-width="1.8" opacity=".5" marker-end="url(#arrC)"/>
+                            <circle cx="510" cy="225" r="22" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                            <text x="510" y="229" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#0a0a0a">Turkey</text>
+                            <path class="flow-line" d="M488 218 Q410 197 334 182" fill="none" stroke="#0a0a0a" stroke-width="1" opacity="0.6" marker-end="url(#arrC)"/>
 
                             <!-- Brazil -->
-                            <circle cx="125" cy="275" r="22" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.6"/>
-                            <text x="125" y="278" text-anchor="middle" font-family="var(--font)" font-size="10" fill="var(--coral)">Brazil</text>
-                            <path class="flow-line" d="M145 263 Q210 225 273 192" fill="none" stroke="var(--teal)" stroke-width="1.2" opacity=".45" marker-end="url(#arrC)"/>
+                            <circle cx="125" cy="265" r="22" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                            <text x="125" y="269" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#0a0a0a">Brazil</text>
+                            <path class="flow-line" d="M145 252 Q210 215 273 188" fill="none" stroke="#0a0a0a" stroke-width="0.9" opacity="0.55" marker-end="url(#arrC)"/>
 
                             <!-- S. Africa -->
-                            <circle cx="240" cy="305" r="22" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.6"/>
-                            <text x="240" y="308" text-anchor="middle" font-family="var(--font)" font-size="9" fill="var(--coral)">S. Africa</text>
-                            <path class="flow-line" d="M252 287 Q275 235 292 212" fill="none" stroke="var(--teal)" stroke-width="1.2" opacity=".45" marker-end="url(#arrC)"/>
+                            <circle cx="240" cy="290" r="22" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                            <text x="240" y="294" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9" fill="#0a0a0a">S. Africa</text>
+                            <path class="flow-line" d="M252 273 Q275 225 292 200" fill="none" stroke="#0a0a0a" stroke-width="0.9" opacity="0.55" marker-end="url(#arrC)"/>
 
                             <!-- Canada -->
-                            <circle cx="85" cy="220" r="22" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.6"/>
-                            <text x="85" y="223" text-anchor="middle" font-family="var(--font)" font-size="10" fill="var(--coral)">Canada</text>
-                            <path class="flow-line" d="M107 215 Q190 195 269 183" fill="none" stroke="var(--teal)" stroke-width="1.2" opacity=".45" marker-end="url(#arrC)"/>
+                            <circle cx="85" cy="200" r="22" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                            <text x="85" y="204" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#0a0a0a">Canada</text>
+                            <path class="flow-line" d="M107 195 Q190 180 269 173" fill="none" stroke="#0a0a0a" stroke-width="0.9" opacity="0.55" marker-end="url(#arrC)"/>
 
-                            <!-- Others -->
-                            <circle cx="395" cy="295" r="24" fill="var(--bg-elev)" stroke="var(--border-strong)" stroke-width="0.8" stroke-dasharray="3 2"/>
-                            <text x="395" y="298" text-anchor="middle" font-family="var(--font)" font-size="10" fill="var(--text-tertiary)">Others</text>
-                            <path class="flow-line" d="M377 278 Q345 235 312 209" fill="none" stroke="var(--teal)" stroke-width="0.8" opacity=".4" stroke-dasharray="4 3" marker-end="url(#arrC)"/>
-
-                            <!-- Legend -->
-                            <rect x="30" y="335" width="9" height="9" rx="2" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="0.5"/>
-                            <text x="44" y="343" font-family="var(--font)" font-size="10" fill="var(--text-tertiary)">Top suppliers</text>
-                            <rect x="155" y="335" width="9" height="9" rx="2" fill="var(--purple-bg)" stroke="var(--purple)" stroke-width="0.5"/>
-                            <text x="169" y="343" font-family="var(--font)" font-size="10" fill="var(--text-tertiary)">EU (destination)</text>
-                            <rect x="280" y="335" width="9" height="9" rx="2" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.5"/>
-                            <text x="294" y="343" font-family="var(--font)" font-size="10" fill="var(--text-tertiary)">Other suppliers</text>
-                            <line x1="410" y1="340" x2="435" y2="340" class="flow-line" stroke="var(--teal)" stroke-width="1.5" fill="none"/>
-                            <text x="442" y="343" font-family="var(--font)" font-size="10" fill="var(--text-tertiary)">Import flow</text>
+                            <!-- Caption -->
+                            <text x="300" y="312" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="#4a4a4a" font-style="italic">
+                                Distant, linguistically different, often politically misaligned partners
+                            </text>
                         </svg>
                     </div>
 
-                    <!-- Gravity -->
-                    <div class="viz-panel" id="viz-crm-gravity">
-                        <div class="viz-title">Gravity model — who does the EU actually import from?</div>
-                        <div class="viz-sub">EU-destination models on 16 strategic CRMs (1995–2023)</div>
+                    <!-- ── Innovation ── -->
+                    <div class="viz-panel" id="viz-crm-novelty">
+                        <div class="viz-title">What's new</div>
+                        <div class="viz-sub">Two literatures, one question</div>
 
-                        <div style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 16px;">
-                            Standard trade gravity predicts countries trade most with partners that are close, culturally similar, and diplomatically aligned. For EU critical raw material imports, the opposite holds.
+                        <div class="big-idea">
+                            Trade economics tells us <em>why</em> patterns hold. Graph learning tells us
+                            <em>what happens when they break</em>. The thesis combines the two so policy
+                            questions about EU material security can be answered with both.
                         </div>
 
-                        <div class="gravity-grid">
-                            <div class="gravity-card">
-                                <div class="gravity-card-label">Distance</div>
-                                <div class="gravity-card-value" style="color: var(--critical);">Very negative &amp; sig.</div>
-                                <div class="gravity-card-desc">Suppliers like China, South Africa, Brazil are far away — strongly negative for CRM imports.</div>
+                        <div class="innov-grid">
+                            <div class="innov-cell">
+                                <div class="innov-label">— Methods bridge</div>
+                                <div class="innov-title">Structural trade + graph learning</div>
+                                <div class="innov-desc">Brings dynamic graph neural networks into a domain dominated by gravity models, without abandoning the structural intuition.</div>
                             </div>
-                            <div class="gravity-card">
-                                <div class="gravity-card-label">Contiguity</div>
-                                <div class="gravity-card-value" style="color: var(--text-tertiary);">Negative, insig.</div>
-                                <div class="gravity-card-desc">Sharing a border doesn't help — though EU-level contiguity may matter more than country-level.</div>
+                            <div class="innov-cell">
+                                <div class="innov-label">— Object</div>
+                                <div class="innov-title">Trade as an evolving network</div>
+                                <div class="innov-desc">Treats the global CRM trade system as a dynamic graph rather than a stack of bilateral flows, making relational structure first-class.</div>
                             </div>
-                            <div class="gravity-card">
-                                <div class="gravity-card-label">Common language</div>
-                                <div class="gravity-card-value" style="color: var(--coral);">Negative</div>
-                                <div class="gravity-card-desc">Top CRM suppliers (Turkey, China, Thailand) don't share EU official languages.</div>
+                            <div class="innov-cell">
+                                <div class="innov-label">— Counterfactuals</div>
+                                <div class="innov-title">Supplier-disruption scenarios</div>
+                                <div class="innov-desc">Asks what concentration looks like if a major supplier becomes unavailable — the question policy actually has to answer.</div>
                             </div>
-                            <div class="gravity-card">
-                                <div class="gravity-card-label">Diplomatic disagreement</div>
-                                <div class="gravity-card-value" style="color: var(--coral);">Positive</div>
-                                <div class="gravity-card-desc">EU imports CRMs from countries that vote against it — Russia, China, Turkey.</div>
+                            <div class="innov-cell">
+                                <div class="innov-label">— Output</div>
+                                <div class="innov-title">Policy-aligned risk taxonomy</div>
+                                <div class="innov-desc">Translates model outputs into a classification compatible with the EU's own concentration thresholds.</div>
                             </div>
-                        </div>
-
-                        <div class="gravity-quote">
-                            The EU's most strategic material dependencies sit with distant, linguistically different, and diplomatically misaligned suppliers. This structural mismatch between geopolitical alignment and resource dependence is what the paper investigates.
                         </div>
                     </div>
 
-                    <!-- Method -->
-                    <div class="viz-panel" id="viz-crm-method">
-                        <div class="viz-title">Discrete-time dynamic graph architecture</div>
-                        <div class="viz-sub">Temporal graph learning · 16 CRMs · 1995–2021</div>
+                    <!-- ── Policy ── -->
+                    <div class="viz-panel" id="viz-crm-policy">
+                        <div class="viz-title">Why it matters for policy</div>
+                        <div class="viz-sub">A quantitative complement to the EU 2030 Critical Raw Materials agenda</div>
 
-                        <svg width="100%" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <marker id="arrM" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-                                    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </marker>
-                            </defs>
-
-                            <!-- Trade data -->
-                            <rect x="20" y="40" width="125" height="50" rx="4" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="0.7"/>
-                            <text x="82" y="60" text-anchor="middle" font-family="var(--font)" font-size="12" fill="var(--teal)" font-weight="400">Trade data</text>
-                            <text x="82" y="76" text-anchor="middle" font-family="var(--font)" font-size="10" fill="var(--text-tertiary)">1995–2021</text>
-
-                            <line x1="145" y1="65" x2="180" y2="65" stroke="var(--border-strong)" stroke-width="0.8" marker-end="url(#arrM)"/>
-
-                            <!-- Graph construction -->
-                            <rect x="180" y="40" width="145" height="50" rx="4" fill="var(--purple-bg)" stroke="var(--purple)" stroke-width="0.7"/>
-                            <text x="252" y="60" text-anchor="middle" font-family="var(--font)" font-size="12" fill="var(--purple)" font-weight="400">Graph construction</text>
-                            <text x="252" y="76" text-anchor="middle" font-family="var(--font)" font-size="10" fill="var(--text-tertiary)">Nodes = countries</text>
-
-                            <line x1="325" y1="65" x2="360" y2="65" stroke="var(--border-strong)" stroke-width="0.8" marker-end="url(#arrM)"/>
-
-                            <!-- DTDG -->
-                            <rect x="360" y="40" width="210" height="50" rx="4" fill="var(--purple-bg)" stroke="var(--purple)" stroke-width="0.7"/>
-                            <text x="465" y="60" text-anchor="middle" font-family="var(--font)" font-size="12" fill="var(--purple)" font-weight="400">DTDG model</text>
-                            <text x="465" y="76" text-anchor="middle" font-family="var(--font)" font-size="10" fill="var(--text-tertiary)">Temporal graph learning</text>
-
-                            <line x1="465" y1="90" x2="465" y2="130" stroke="var(--border-strong)" stroke-width="0.8" marker-end="url(#arrM)"/>
-
-                            <!-- HHI -->
-                            <rect x="155" y="130" width="180" height="50" rx="4" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="0.7"/>
-                            <text x="245" y="150" text-anchor="middle" font-family="var(--font)" font-size="12" fill="var(--teal)" font-weight="400">HHI prediction</text>
-                            <text x="245" y="166" text-anchor="middle" font-family="var(--font)" font-size="10" fill="var(--text-tertiary)">Market concentration</text>
-
-                            <!-- Risk classification -->
-                            <rect x="370" y="130" width="195" height="50" rx="4" fill="var(--coral-bg)" stroke="var(--coral)" stroke-width="0.7"/>
-                            <text x="467" y="150" text-anchor="middle" font-family="var(--font)" font-size="12" fill="var(--coral)" font-weight="400">Risk classification</text>
-                            <text x="467" y="166" text-anchor="middle" font-family="var(--font)" font-size="10" fill="var(--text-tertiary)">Critical / High / Med / Low</text>
-
-                            <line x1="245" y1="180" x2="245" y2="220" stroke="var(--border-strong)" stroke-width="0.8" marker-end="url(#arrM)"/>
-                            <line x1="467" y1="180" x2="467" y2="220" stroke="var(--border-strong)" stroke-width="0.8" marker-end="url(#arrM)"/>
-
-                            <!-- Scenarios -->
-                            <rect x="105" y="220" width="425" height="50" rx="4" fill="var(--bg-elev)" stroke="var(--border-strong)" stroke-width="0.7"/>
-                            <text x="317" y="240" text-anchor="middle" font-family="var(--font)" font-size="12" fill="var(--text)" font-weight="400">Supplier disruption scenarios</text>
-                            <text x="317" y="256" text-anchor="middle" font-family="var(--font)" font-size="10" fill="var(--text-tertiary)">Country removal impact on 16 CRMs</text>
-
-                            <line x1="317" y1="270" x2="317" y2="295" stroke="var(--border-strong)" stroke-width="0.8" marker-end="url(#arrM)"/>
-                            <text x="317" y="310" text-anchor="middle" font-family="var(--font)" font-size="11" fill="var(--accent)" font-style="italic">Policy recommendations · EU 2030 CRM goals</text>
-                        </svg>
-                    </div>
-
-                    <!-- Risk -->
-                    <div class="viz-panel" id="viz-crm-risk">
-                        <div class="viz-title">CRM vulnerability levels</div>
-                        <div class="viz-sub">S<sub>HHI</sub> + S<sub>dominant</sub> + S<sub>indicators</sub> — thresholds aligned with EU policy</div>
-
-                        <div class="risk-row">
-                            <span class="risk-label">Boron</span>
-                            <div class="risk-track"><div class="risk-fill" style="width:95%;background:var(--critical);opacity:.6;"></div></div>
-                            <span class="risk-badge" style="background:var(--critical-bg);color:var(--critical);">Critical</span>
-                        </div>
-                        <div class="risk-row">
-                            <span class="risk-label">Magnesium</span>
-                            <div class="risk-track"><div class="risk-fill" style="width:88%;background:var(--critical);opacity:.6;"></div></div>
-                            <span class="risk-badge" style="background:var(--critical-bg);color:var(--critical);">Critical</span>
-                        </div>
-                        <div class="risk-row">
-                            <span class="risk-label">Cobalt</span>
-                            <div class="risk-track"><div class="risk-fill" style="width:82%;background:var(--critical);opacity:.6;"></div></div>
-                            <span class="risk-badge" style="background:var(--critical-bg);color:var(--critical);">Critical</span>
-                        </div>
-                        <div class="risk-row">
-                            <span class="risk-label">Silicon</span>
-                            <div class="risk-track"><div class="risk-fill" style="width:75%;background:var(--critical);opacity:.6;"></div></div>
-                            <span class="risk-badge" style="background:var(--critical-bg);color:var(--critical);">Critical</span>
-                        </div>
-                        <div class="risk-row">
-                            <span class="risk-label">Lithium</span>
-                            <div class="risk-track"><div class="risk-fill" style="width:40%;background:var(--medium);opacity:.6;"></div></div>
-                            <span class="risk-badge" style="background:var(--medium-bg);color:var(--medium);">Medium</span>
-                        </div>
-                        <div class="risk-row">
-                            <span class="risk-label">REE</span>
-                            <div class="risk-track"><div class="risk-fill" style="width:35%;background:var(--medium);opacity:.6;"></div></div>
-                            <span class="risk-badge" style="background:var(--medium-bg);color:var(--medium);">Medium</span>
-                        </div>
-                        <div class="risk-row">
-                            <span class="risk-label">Copper</span>
-                            <div class="risk-track"><div class="risk-fill" style="width:18%;background:var(--low);opacity:.6;"></div></div>
-                            <span class="risk-badge" style="background:var(--low-bg);color:var(--low);">Low</span>
+                        <div class="big-idea">
+                            The EU has set diversification, processing, and recycling targets for the materials its
+                            green and digital transitions depend on. The thesis offers a way to <em>prioritize</em>
+                            those targets — telling policymakers where the structural exposure is largest before
+                            the next disruption forces the answer.
                         </div>
 
-                        <div class="risk-note">
-                            HHI ≥ 0.4 and single-supplier ≥ 65% correspond to EU policy limits for market concentration.
-                        </div>
-                    </div>
+                        <ol class="numbered-list">
+                            <li>
+                                <div>
+                                    <div class="point-title">Identify which materials carry the most structural risk</div>
+                                    <div class="point-desc">Move the conversation from "all 16 are critical" to a defensible ranking of where attention is most needed first.</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <div class="point-title">Stress-test dependencies before they break</div>
+                                    <div class="point-desc">Quantify what supplier-by-supplier disruption would do to market concentration, in advance of the political moment that makes it urgent.</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <div class="point-title">Frame de-risking as a structural problem</div>
+                                    <div class="point-desc">EU exposure is not random — it sits with distant, politically misaligned partners. De-risking has to confront the geography, not just the volumes.</div>
+                                </div>
+                            </li>
+                        </ol>
 
-                    <!-- Results -->
-                    <div class="viz-panel" id="viz-crm-results">
-                        <div class="viz-title">DTDG country vulnerability analysis</div>
-                        <div class="viz-sub">16-material portfolio · sorted by test loss (best → worst)</div>
-
-                        <div style="overflow-x: auto;">
-                        <table class="results-table">
-                            <thead>
-                                <tr>
-                                    <th>Material</th>
-                                    <th>Test Loss</th>
-                                    <th>HHI MAE</th>
-                                    <th>Acc.</th>
-                                    <th>Max HHI</th>
-                                    <th>Risk</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>REE</td><td>0.1655</td><td>0.0075</td><td>1.000</td><td>0.180</td><td><span class="risk-dot" style="background:var(--low);"></span>Low</td></tr>
-                                <tr><td>Lithium</td><td>0.1658</td><td>0.0183</td><td>1.000</td><td>0.170</td><td><span class="risk-dot" style="background:var(--low);"></span>Low</td></tr>
-                                <tr><td>Manganese</td><td>0.1674</td><td>0.0459</td><td>1.000</td><td>0.250</td><td><span class="risk-dot" style="background:var(--medium);"></span>Med</td></tr>
-                                <tr><td>Bismuth</td><td>0.1679</td><td>0.0567</td><td>1.000</td><td>0.108</td><td><span class="risk-dot" style="background:var(--low);"></span>Low</td></tr>
-                                <tr><td>Copper</td><td>0.1686</td><td>0.0635</td><td>1.000</td><td>0.146</td><td><span class="risk-dot" style="background:var(--low);"></span>Low</td></tr>
-                                <tr><td>Boron</td><td>0.1694</td><td>0.0747</td><td>1.000</td><td>0.984</td><td><span class="risk-dot" style="background:var(--critical);"></span>Crit</td></tr>
-                                <tr><td>Tungsten</td><td>0.1701</td><td>0.0514</td><td>1.000</td><td>0.177</td><td><span class="risk-dot" style="background:var(--low);"></span>Low</td></tr>
-                                <tr><td>Germanium</td><td>0.1733</td><td>0.0929</td><td>1.000</td><td>0.162</td><td><span class="risk-dot" style="background:var(--low);"></span>Low</td></tr>
-                                <tr><td>Magnesium</td><td>0.1775</td><td>0.1043</td><td>1.000</td><td>0.809</td><td><span class="risk-dot" style="background:var(--critical);"></span>Crit</td></tr>
-                                <tr><td>Cobalt</td><td>0.1888</td><td>0.1546</td><td>1.000</td><td>0.990</td><td><span class="risk-dot" style="background:var(--critical);"></span>Crit</td></tr>
-                                <tr><td>Gallium</td><td>0.2680</td><td>0.0479</td><td>0.667</td><td>0.456</td><td><span class="risk-dot" style="background:var(--high);"></span>High</td></tr>
-                                <tr><td>Titanium</td><td>0.3663</td><td>0.0283</td><td>0.333</td><td>0.269</td><td><span class="risk-dot" style="background:var(--medium);"></span>Med</td></tr>
-                                <tr><td>Nickel</td><td>0.3929</td><td>0.1380</td><td>0.000</td><td>0.192</td><td><span class="risk-dot" style="background:var(--low);"></span>Low</td></tr>
-                                <tr><td>Silicon</td><td>0.4154</td><td>0.2382</td><td>0.333</td><td>0.629</td><td><span class="risk-dot" style="background:var(--critical);"></span>Crit</td></tr>
-                                <tr><td>Graphite</td><td>0.4791</td><td>0.2223</td><td>0.000</td><td>0.254</td><td><span class="risk-dot" style="background:var(--medium);"></span>Med</td></tr>
-                                <tr><td>PGM</td><td>0.5248</td><td>0.2775</td><td>0.000</td><td>0.394</td><td><span class="risk-dot" style="background:var(--high);"></span>High</td></tr>
-                            </tbody>
-                        </table>
-                        </div>
-                        <div class="risk-note">
-                            Lower test loss &amp; HHI MAE = better. Risk accuracy = proportion of correct classifications (0–1). Materials sorted by test loss.
+                        <div class="pull-quote">
+                            <strong>The takeaway.</strong> Resource security is not a list of materials. It's a network with structural weak points — and those weak points can be located before they fail.
                         </div>
                     </div>
                 </div>
@@ -1301,7 +890,6 @@
 
     <script>
         function showVizPanel(id, btn) {
-            // Find the parent viz-container so panels of one entry don't collide with panels of the other
             const container = btn.closest('.viz-container');
             container.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
             container.querySelectorAll('.viz-tab').forEach(t => t.classList.remove('active'));
