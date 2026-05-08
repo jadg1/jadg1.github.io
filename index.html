@@ -15,6 +15,7 @@
             --text-secondary: #4a4a4a;
             --text-tertiary: #8a8a8a;
             --text-quaternary: #b8b8b8;
+            --accent: #2c5fa8;
             --font: 'Calibri Light', 'Calibri', 'Segoe UI Light', 'Helvetica Neue', system-ui, sans-serif;
             --mono: 'SF Mono', 'IBM Plex Mono', 'Consolas', ui-monospace, monospace;
         }
@@ -112,7 +113,6 @@
             border-radius: 50%;
             overflow: hidden;
             background: var(--bg-soft);
-            filter: grayscale(1);
         }
 
         .photo-frame img {
@@ -471,6 +471,22 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── Blue subtitle/label override ─── */
+        .meta-line,
+        .info-label,
+        .section-num,
+        .entry-index,
+        .entry-tag,
+        .viz-sub,
+        .innov-label,
+        .gravity-card-label,
+        .data-label,
+        .rq-label,
+        .spec-label,
+        .stat-label {
+            color: var(--accent);
         }
 
         /* ─── Responsive ─── */
