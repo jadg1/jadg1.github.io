@@ -45,8 +45,8 @@
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: start;
-            padding-bottom: 80px;
-            margin-bottom: 100px;
+            padding-bottom: 60px;
+            margin-bottom: 60px;
             border-bottom: 1px solid var(--border);
             opacity: 0;
             animation: fadeIn 0.8s ease forwards 0.1s;
@@ -77,15 +77,16 @@
 
         .meta-line {
             font-size: 12px;
-            color: var(--text-tertiary);
+            color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 0.16em;
-            margin-bottom: 28px;
+            margin-bottom: 36px;
         }
 
         .social-row {
             display: flex;
-            gap: 28px;
+            flex-wrap: wrap;
+            gap: 22px;
         }
 
         .social-row a {
@@ -95,6 +96,7 @@
             border-bottom: 1px solid var(--text);
             padding-bottom: 1px;
             transition: opacity 0.2s;
+            align-self: flex-start;
         }
 
         .social-row a:hover { opacity: 0.5; }
@@ -128,8 +130,8 @@
             font-size: 10px;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: var(--text-tertiary);
-            margin-bottom: 8px;
+            color: var(--accent);
+            margin-bottom: 10px;
             font-weight: 400;
         }
 
@@ -144,58 +146,123 @@
             margin: 0 8px;
         }
 
-        /* ─── Section header ─── */
-        .section-header {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 40px;
-            margin-bottom: 72px;
-            padding-bottom: 24px;
-            border-bottom: 1px solid var(--border);
+        /* ─── Selected work selector ─── */
+        .work-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
         }
 
-        .section-num {
+        .work-item {
+            display: grid;
+            grid-template-columns: 40px 1fr auto;
+            gap: 14px;
+            align-items: baseline;
+            padding: 12px 14px;
+            border: 1px solid transparent;
+            background: transparent;
+            text-align: left;
+            cursor: pointer;
+            font-family: var(--font);
+            color: inherit;
+            transition: background 0.2s, border-color 0.2s;
+            position: relative;
+            margin-left: -14px;
+            margin-right: -14px;
+            width: calc(100% + 28px);
+        }
+
+        .work-item:hover {
+            background: var(--bg-soft);
+        }
+
+        .work-item.active {
+            background: var(--bg-soft);
+            border-color: var(--border);
+        }
+
+        .work-item-num {
             font-family: var(--mono);
+            font-size: 10px;
+            color: var(--accent);
+            letter-spacing: 0.1em;
             font-weight: 400;
+            padding-top: 3px;
+        }
+
+        .work-item-content {
+            min-width: 0;
+        }
+
+        .work-item-title {
+            font-size: 14px;
+            color: var(--text);
+            font-weight: 400;
+            line-height: 1.35;
+            margin-bottom: 3px;
+        }
+
+        .work-item-sub {
             font-size: 11px;
             color: var(--text-tertiary);
-            letter-spacing: 0.1em;
-            padding-top: 14px;
+            letter-spacing: 0.04em;
+            line-height: 1.4;
         }
 
-        .section-title {
-            font-weight: 200;
-            font-size: 32px;
-            letter-spacing: -0.015em;
-            line-height: 1.1;
+        .work-item-arrow {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--text-quaternary);
+            padding-top: 2px;
+            transition: color 0.2s, transform 0.2s;
         }
 
-        /* ─── Research entry ─── */
+        .work-item:hover .work-item-arrow,
+        .work-item.active .work-item-arrow {
+            color: var(--accent);
+        }
+
+        .work-item.active .work-item-arrow {
+            transform: rotate(90deg);
+        }
+
+        /* ─── Content panel (swaps inline) ─── */
+        .work-content {
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards 0.3s;
+        }
+
+        .work-panel {
+            display: none;
+        }
+
+        .work-panel.active {
+            display: block;
+            animation: panelFadeIn 0.35s ease;
+        }
+
+        @keyframes panelFadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── Research entry layout ─── */
         .research-entry {
             display: grid;
             grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-            gap: 80px;
-            margin-bottom: 140px;
-            opacity: 0;
-            animation: fadeIn 0.8s ease forwards;
+            gap: 64px;
         }
 
-        .research-entry:last-of-type { margin-bottom: 100px; }
-        .research-entry:nth-of-type(1) { animation-delay: 0.25s; }
-        .research-entry:nth-of-type(2) { animation-delay: 0.4s; }
-
         .entry-text {
-            position: sticky;
-            top: 48px;
             align-self: start;
         }
 
         .entry-index {
             font-family: var(--mono);
             font-size: 11px;
-            color: var(--text-tertiary);
+            color: var(--accent);
             letter-spacing: 0.1em;
-            margin-bottom: 24px;
+            margin-bottom: 18px;
             display: block;
         }
 
@@ -204,8 +271,8 @@
             font-size: 11px;
             letter-spacing: 0.16em;
             text-transform: uppercase;
-            color: var(--text-tertiary);
-            margin-bottom: 20px;
+            color: var(--accent);
+            margin-bottom: 18px;
         }
 
         .entry-title {
@@ -213,7 +280,7 @@
             font-size: 30px;
             line-height: 1.15;
             letter-spacing: -0.015em;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
             color: var(--text);
         }
 
@@ -232,23 +299,23 @@
 
         .entry-list {
             list-style: none;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
 
         .entry-list li {
-            font-size: 14.5px;
+            font-size: 14px;
             color: var(--text-secondary);
-            line-height: 1.65;
+            line-height: 1.6;
             padding-left: 22px;
             position: relative;
-            margin-bottom: 11px;
+            margin-bottom: 10px;
         }
 
         .entry-list li::before {
             content: '';
             position: absolute;
             left: 0;
-            top: 12px;
+            top: 11px;
             width: 10px;
             height: 1px;
             background: var(--text-quaternary);
@@ -306,12 +373,12 @@
             border-bottom-color: var(--text);
         }
 
-        .viz-panel { display: none; padding: 40px; }
+        .viz-panel { display: none; padding: 36px; }
         .viz-panel.active { display: block; }
 
         .viz-title {
             font-weight: 300;
-            font-size: 18px;
+            font-size: 17px;
             margin-bottom: 6px;
             color: var(--text);
             letter-spacing: -0.005em;
@@ -319,8 +386,8 @@
 
         .viz-sub {
             font-size: 12px;
-            color: var(--text-tertiary);
-            margin-bottom: 32px;
+            color: var(--accent);
+            margin-bottom: 28px;
             letter-spacing: 0.02em;
         }
 
@@ -335,13 +402,12 @@
             .flow-line { animation: none; }
         }
 
-        /* Big idea panel */
         .big-idea {
-            font-size: 16px;
+            font-size: 15px;
             color: var(--text);
             line-height: 1.55;
             font-weight: 300;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
             max-width: 540px;
         }
 
@@ -350,7 +416,6 @@
             color: var(--text-secondary);
         }
 
-        /* Numbered points */
         .numbered-list {
             list-style: none;
             counter-reset: pol;
@@ -358,7 +423,7 @@
 
         .numbered-list li {
             counter-increment: pol;
-            padding: 18px 0;
+            padding: 16px 0;
             border-top: 1px solid var(--border);
             display: grid;
             grid-template-columns: 32px 1fr;
@@ -374,13 +439,13 @@
             content: counter(pol, decimal-leading-zero);
             font-family: var(--mono);
             font-size: 11px;
-            color: var(--text-tertiary);
+            color: var(--accent);
             letter-spacing: 0.06em;
             padding-top: 3px;
         }
 
         .numbered-list .point-title {
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 400;
             color: var(--text);
             margin-bottom: 4px;
@@ -388,17 +453,16 @@
         }
 
         .numbered-list .point-desc {
-            font-size: 13px;
+            font-size: 12.5px;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.55;
         }
 
-        /* Pull quote */
         .pull-quote {
             border-left: 1px solid var(--text);
-            padding: 6px 0 6px 24px;
-            margin-top: 32px;
-            font-size: 15px;
+            padding: 4px 0 4px 22px;
+            margin-top: 28px;
+            font-size: 14px;
             color: var(--text);
             line-height: 1.55;
             font-weight: 300;
@@ -411,7 +475,6 @@
             font-style: normal;
         }
 
-        /* Innovation grid */
         .innov-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -422,20 +485,20 @@
         .innov-cell {
             border-right: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
-            padding: 24px 24px;
+            padding: 22px 22px;
         }
 
         .innov-label {
             font-family: var(--mono);
             font-size: 10px;
-            color: var(--text-tertiary);
+            color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 0.14em;
             margin-bottom: 10px;
         }
 
         .innov-title {
-            font-size: 14.5px;
+            font-size: 14px;
             font-weight: 400;
             color: var(--text);
             margin-bottom: 8px;
@@ -443,15 +506,25 @@
         }
 
         .innov-desc {
-            font-size: 12.5px;
+            font-size: 12px;
             color: var(--text-secondary);
             line-height: 1.55;
+        }
+
+        /* ─── Empty state ─── */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-tertiary);
+            font-size: 14px;
+            font-style: italic;
         }
 
         /* ─── Footer ─── */
         .footer {
             text-align: center;
             padding-top: 56px;
+            margin-top: 80px;
             border-top: 1px solid var(--border);
             font-size: 13px;
             color: var(--text-tertiary);
@@ -473,43 +546,20 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ─── Blue subtitle/label override ─── */
-        .meta-line,
-        .info-label,
-        .section-num,
-        .entry-index,
-        .entry-tag,
-        .viz-sub,
-        .innov-label,
-        .gravity-card-label,
-        .data-label,
-        .rq-label,
-        .spec-label,
-        .stat-label {
-            color: var(--accent);
-        }
-
         /* ─── Responsive ─── */
         @media (max-width: 980px) {
             .page { padding: 6vh 32px 9vh; }
             .hero {
                 grid-template-columns: 1fr;
                 gap: 48px;
-                padding-bottom: 60px;
-                margin-bottom: 70px;
+                padding-bottom: 50px;
+                margin-bottom: 50px;
             }
             .hero-left h1 { font-size: 44px; }
-            .section-header {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-            .section-num { padding-top: 0; }
             .research-entry {
                 grid-template-columns: 1fr;
-                gap: 40px;
-                margin-bottom: 90px;
+                gap: 36px;
             }
-            .entry-text { position: static; }
         }
 
         @media (max-width: 640px) {
@@ -520,11 +570,11 @@
                 gap: 22px;
             }
             .photo-frame { width: 90px; height: 90px; }
-            .section-title { font-size: 26px; }
             .entry-title { font-size: 24px; }
             .viz-tab { font-size: 9.5px; padding: 12px 8px; letter-spacing: 0.1em; }
-            .viz-panel { padding: 24px; }
+            .viz-panel { padding: 22px; }
             .innov-grid { grid-template-columns: 1fr; }
+            .work-item { grid-template-columns: 32px 1fr auto; gap: 10px; padding: 10px 12px; }
         }
     </style>
 </head>
@@ -540,10 +590,18 @@
                 </div>
                 <div class="hero-sub">Looking to do research in computational political science.</div>
                 <div class="meta-line">Based in Barcelona</div>
-                <div class="social-row">
-                    <a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank">LinkedIn</a>
-                    <a href="https://scholar.google.es/citations?user=EJig7tkAAAAJ&hl=es" target="_blank">Scholar</a>
-                    <a href="https://github.com/jadg1" target="_blank">GitHub</a>
+
+                <div class="info-block">
+                    <div class="info-label">Skills</div>
+                    <div class="info-content">
+                        Python<span class="sep">/</span>R<span class="sep">/</span>Stata<span class="sep">/</span>Econometrics<span class="sep">/</span>Machine Learning<span class="sep">/</span>SQL<span class="sep">/</span>LaTeX
+                    </div>
+                </div>
+                <div class="info-block">
+                    <div class="info-label">Research Interests</div>
+                    <div class="info-content">
+                        Banking Risk<span class="sep">/</span>European Policy<span class="sep">/</span>Computational Politics<span class="sep">/</span>ML Methods
+                    </div>
                 </div>
             </div>
 
@@ -553,349 +611,347 @@
                 </div>
                 <div>
                     <div class="info-block">
-                        <div class="info-label">Skills</div>
-                        <div class="info-content">
-                            Econometrics<span class="sep">/</span>Machine Learning<span class="sep">/</span>European Public Policy<span class="sep">/</span>Financial Analysis
+                        <div class="info-label">Socials</div>
+                        <div class="social-row">
+                            <a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank">LinkedIn</a>
+                            <a href="https://scholar.google.es/citations?user=EJig7tkAAAAJ&hl=es" target="_blank">Google Scholar</a>
+                            <a href="https://github.com/jadg1" target="_blank">GitHub</a>
                         </div>
                     </div>
+
                     <div class="info-block">
-                        <div class="info-label">Research Interests</div>
-                        <div class="info-content">
-                            Political Polarization<span class="sep">/</span>European Enlargement<span class="sep">/</span>Banking Risk<span class="sep">/</span>European Policy<span class="sep">/</span>Machine Learning
-                        </div>
-                    </div>
-                    <div class="info-block">
-                        <div class="info-label">Education</div>
-                        <div class="info-content">
-                            MSc Finance — UPF Barcelona School of Management<br>
-                            MSc Quantitative Economics — Universidad Autónoma de Madrid<br>
-                            BSc Engineering Physics — Tecnológico de Monterrey
+                        <div class="info-label">Selected Work</div>
+                        <div class="work-list">
+                            <button class="work-item" onclick="showWork('banking', this)">
+                                <span class="work-item-num">01</span>
+                                <span class="work-item-content">
+                                    <span class="work-item-title">Cross-Border Common Ownership &amp; Bank Risk</span>
+                                    <span class="work-item-sub">MSc Finance · UPF/BSM</span>
+                                </span>
+                                <span class="work-item-arrow">→</span>
+                            </button>
+                            <button class="work-item" onclick="showWork('crm', this)">
+                                <span class="work-item-num">02</span>
+                                <span class="work-item-content">
+                                    <span class="work-item-title">Derisking EU CRM Dependencies with Graph Learning</span>
+                                    <span class="work-item-sub">MSc QE · UAM · Working Paper</span>
+                                </span>
+                                <span class="work-item-arrow">→</span>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
 
-        <!-- ─── SECTION HEADER ─── -->
-        <div class="section-header">
-            <span class="section-num">— Research</span>
-            <span class="section-title">Theses</span>
+        <!-- ─── CONTENT PANEL (swaps based on selection) ─── -->
+        <div class="work-content">
+
+            <!-- Empty default -->
+            <div class="work-panel active" id="work-empty">
+                <div class="empty-state">Select a piece of work above to read more.</div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <!-- BANKING                                                       -->
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <div class="work-panel" id="work-banking">
+                <article class="research-entry">
+                    <div class="entry-text">
+                        <span class="entry-index">01 / Banking</span>
+                        <span class="entry-tag">MSc Finance Thesis · UPF/BSM</span>
+                        <h2 class="entry-title">
+                            Does Cross-Border Common Ownership Diversify Bank Risk?
+                        </h2>
+                        <ul class="entry-list">
+                            <li>Tests whether shared institutional shareholders transmit systemic risk between European banks — a contagion channel the macroprudential framework barely touches</li>
+                            <li>Distinguishes <em>cross-border</em> from <em>domestic</em> common ownership in the EU banking sector — a separation absent from prior work</li>
+                            <li>Speaks directly to the live Banking Union debate on integration vs. contagion</li>
+                        </ul>
+                        <div class="entry-meta">Supervised by <strong>Albert Banal-Estañol</strong></div>
+                        <div class="entry-meta">In progress · 2026</div>
+                    </div>
+
+                    <div class="entry-viz">
+                        <div class="viz-container">
+                            <div class="viz-tabs">
+                                <button class="viz-tab active" onclick="showVizPanel('bank-idea', this)">The Idea</button>
+                                <button class="viz-tab" onclick="showVizPanel('bank-novelty', this)">Innovation</button>
+                                <button class="viz-tab" onclick="showVizPanel('bank-policy', this)">Policy</button>
+                            </div>
+
+                            <div class="viz-panel active" id="viz-bank-idea">
+                                <div class="viz-title">The contagion channel nobody is monitoring</div>
+                                <div class="viz-sub">EU banks · cross-border vs domestic common ownership</div>
+
+                                <div class="big-idea">
+                                    Banking Union supervision tracks lending and interbank exposures.
+                                    But two banks in different countries can also be linked by a third party —
+                                    a large institutional investor that owns meaningful stakes in both.
+                                    <em>If that investor reallocates, both banks move together.</em>
+                                </div>
+
+                                <svg width="100%" viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="margin-top: 8px;">
+                                    <defs>
+                                        <marker id="arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                                            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </marker>
+                                    </defs>
+
+                                    <circle cx="120" cy="90" r="42" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                                    <text x="120" y="88" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="13" fill="#0a0a0a">Bank A</text>
+                                    <text x="120" y="104" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#8a8a8a">EU country X</text>
+
+                                    <circle cx="480" cy="90" r="42" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                                    <text x="480" y="88" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="13" fill="#0a0a0a">Bank B</text>
+                                    <text x="480" y="104" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#8a8a8a">EU country Y</text>
+
+                                    <ellipse cx="300" cy="200" rx="120" ry="32" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                                    <text x="300" y="197" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="#0a0a0a">Shared institutional investor</text>
+                                    <text x="300" y="213" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#8a8a8a">cross-border equity stake in both</text>
+
+                                    <path class="flow-line" d="M148 120 Q220 165 230 180" fill="none" stroke="#0a0a0a" stroke-width="1" opacity="0.55" marker-end="url(#arrB)"/>
+                                    <path class="flow-line" d="M452 120 Q380 165 370 180" fill="none" stroke="#0a0a0a" stroke-width="1" opacity="0.55" marker-end="url(#arrB)"/>
+
+                                    <path d="M165 85 Q300 50 435 85" fill="none" stroke="#0a0a0a" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
+                                    <text x="300" y="45" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="#0a0a0a" font-style="italic">Risk co-movement</text>
+
+                                    <text x="300" y="262" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="#4a4a4a" font-style="italic">
+                                        Does this channel show up in tail-risk co-movement?
+                                    </text>
+                                </svg>
+                            </div>
+
+                            <div class="viz-panel" id="viz-bank-novelty">
+                                <div class="viz-title">What's new</div>
+                                <div class="viz-sub">An empirical separation prior work does not make</div>
+
+                                <div class="big-idea">
+                                    Existing studies treat institutional ownership as one number.
+                                    We split it into the part that crosses borders and the part that stays at home —
+                                    and ask whether the geography of ownership matters for systemic risk.
+                                </div>
+
+                                <div class="innov-grid">
+                                    <div class="innov-cell">
+                                        <div class="innov-label">— Decomposition</div>
+                                        <div class="innov-title">Cross-border vs domestic ownership</div>
+                                        <div class="innov-desc">Splits common ownership by investor geography rather than treating it as a single aggregate.</div>
+                                    </div>
+                                    <div class="innov-cell">
+                                        <div class="innov-label">— Scope</div>
+                                        <div class="innov-title">European banking sector</div>
+                                        <div class="innov-desc">Brings the common-ownership literature into the Banking Union debate, where the geographic dimension is central.</div>
+                                    </div>
+                                    <div class="innov-cell">
+                                        <div class="innov-label">— Robustness</div>
+                                        <div class="innov-title">Supervisory perimeter test</div>
+                                        <div class="innov-desc">Tests whether the EBA boundary marks a meaningful economic frontier for the contagion channel.</div>
+                                    </div>
+                                    <div class="innov-cell">
+                                        <div class="innov-label">— Frame</div>
+                                        <div class="innov-title">Ownership-aware integration</div>
+                                        <div class="innov-desc">Re-frames financial integration around shareholders, not just lending and interbank exposures.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="viz-panel" id="viz-bank-policy">
+                                <div class="viz-title">Why it matters for policy</div>
+                                <div class="viz-sub">Implications for macroprudential supervision in the EU</div>
+
+                                <div class="big-idea">
+                                    The Buch position — <em>deepen integration but manage contagion</em> — is broadly supported.
+                                    But contagion need not arrive only through the channels currently monitored.
+                                    Shared shareholders are a parallel route the macroprudential framework barely covers.
+                                </div>
+
+                                <ol class="numbered-list">
+                                    <li>
+                                        <div>
+                                            <div class="point-title">Ownership transparency belongs in the macroprudential toolkit</div>
+                                            <div class="point-desc">Supervisors already track lending and capital. The investor side of the balance sheet deserves the same visibility.</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <div class="point-title">Stress tests should include common-investor scenarios</div>
+                                            <div class="point-desc">Standard scenarios capture asset shocks. They should also capture coordinated reallocation by shared shareholders.</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <div class="point-title">Banking Union integration should be ownership-aware</div>
+                                            <div class="point-desc">The supervisory perimeter alone may not capture where contagion travels. Integration policy needs to look through to the investor base.</div>
+                                        </div>
+                                    </li>
+                                </ol>
+
+                                <div class="pull-quote">
+                                    <strong>The takeaway.</strong> Integration is desirable; contagion is the side-effect. Watching only the lending side leaves a blind spot on the equity side.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <!-- CRM                                                           -->
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <div class="work-panel" id="work-crm">
+                <article class="research-entry">
+                    <div class="entry-text">
+                        <span class="entry-index">02 / Trade</span>
+                        <span class="entry-tag">MSc QE Thesis · UAM · Working Paper</span>
+                        <h2 class="entry-title">
+                            <a href="https://drive.google.com/file/d/1MAS2hY5tDa6vQus_SoyMaEl8Wk44jw1x/view?usp=sharing" target="_blank">
+                                Derisking European Critical Raw Material Dependencies with Graph Learning
+                            </a>
+                        </h2>
+                        <ul class="entry-list">
+                            <li>Combines structural trade economics with graph machine learning to study the EU's exposure to critical raw materials</li>
+                            <li>Asks where the EU sources strategic materials, and what happens if a major supplier becomes unavailable</li>
+                            <li>Produces a risk taxonomy aligned with the EU 2030 Critical Raw Materials Act</li>
+                        </ul>
+                        <div class="entry-meta">Supervised by <strong>Santiago Pérez Balsalobre</strong> and <strong>Javier Bas</strong></div>
+                        <div class="entry-meta">Working paper · 2026</div>
+                    </div>
+
+                    <div class="entry-viz">
+                        <div class="viz-container">
+                            <div class="viz-tabs">
+                                <button class="viz-tab active" onclick="showVizPanel('crm-idea', this)">The Idea</button>
+                                <button class="viz-tab" onclick="showVizPanel('crm-novelty', this)">Innovation</button>
+                                <button class="viz-tab" onclick="showVizPanel('crm-policy', this)">Policy</button>
+                            </div>
+
+                            <div class="viz-panel active" id="viz-crm-idea">
+                                <div class="viz-title">A structural mismatch in EU sourcing</div>
+                                <div class="viz-sub">Where strategic dependencies actually sit</div>
+
+                                <div class="big-idea">
+                                    Trade theory predicts that countries source most from partners that are nearby,
+                                    culturally close, and politically aligned. For the materials the EU's green
+                                    and digital transitions depend on, <em>the pattern is roughly the opposite</em>.
+                                </div>
+
+                                <svg width="100%" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" style="margin-top: 8px;">
+                                    <defs>
+                                        <marker id="arrC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                                            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </marker>
+                                    </defs>
+
+                                    <circle cx="300" cy="170" r="36" fill="#0a0a0a"/>
+                                    <text x="300" y="174" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="14" fill="#ffffff">EU</text>
+
+                                    <circle cx="90" cy="80" r="34" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                                    <text x="90" y="84" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="#0a0a0a">China</text>
+                                    <path class="flow-line" d="M120 100 Q200 130 270 158" fill="none" stroke="#0a0a0a" stroke-width="1.4" opacity="0.7" marker-end="url(#arrC)"/>
+
+                                    <circle cx="510" cy="80" r="30" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                                    <text x="510" y="84" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="#0a0a0a">Russia</text>
+                                    <path class="flow-line" d="M484 96 Q410 130 332 158" fill="none" stroke="#0a0a0a" stroke-width="1.1" opacity="0.65" marker-end="url(#arrC)"/>
+
+                                    <circle cx="510" cy="225" r="22" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                                    <text x="510" y="229" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#0a0a0a">Turkey</text>
+                                    <path class="flow-line" d="M488 218 Q410 197 334 182" fill="none" stroke="#0a0a0a" stroke-width="1" opacity="0.6" marker-end="url(#arrC)"/>
+
+                                    <circle cx="125" cy="265" r="22" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                                    <text x="125" y="269" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#0a0a0a">Brazil</text>
+                                    <path class="flow-line" d="M145 252 Q210 215 273 188" fill="none" stroke="#0a0a0a" stroke-width="0.9" opacity="0.55" marker-end="url(#arrC)"/>
+
+                                    <circle cx="240" cy="290" r="22" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                                    <text x="240" y="294" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9" fill="#0a0a0a">S. Africa</text>
+                                    <path class="flow-line" d="M252 273 Q275 225 292 200" fill="none" stroke="#0a0a0a" stroke-width="0.9" opacity="0.55" marker-end="url(#arrC)"/>
+
+                                    <circle cx="85" cy="200" r="22" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+                                    <text x="85" y="204" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#0a0a0a">Canada</text>
+                                    <path class="flow-line" d="M107 195 Q190 180 269 173" fill="none" stroke="#0a0a0a" stroke-width="0.9" opacity="0.55" marker-end="url(#arrC)"/>
+
+                                    <text x="300" y="312" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="#4a4a4a" font-style="italic">
+                                        Distant, linguistically different, often politically misaligned partners
+                                    </text>
+                                </svg>
+                            </div>
+
+                            <div class="viz-panel" id="viz-crm-novelty">
+                                <div class="viz-title">What's new</div>
+                                <div class="viz-sub">Two literatures, one question</div>
+
+                                <div class="big-idea">
+                                    Trade economics tells us <em>why</em> patterns hold. Graph learning tells us
+                                    <em>what happens when they break</em>. The thesis combines the two so policy
+                                    questions about EU material security can be answered with both.
+                                </div>
+
+                                <div class="innov-grid">
+                                    <div class="innov-cell">
+                                        <div class="innov-label">— Methods bridge</div>
+                                        <div class="innov-title">Structural trade + graph learning</div>
+                                        <div class="innov-desc">Brings dynamic graph neural networks into a domain dominated by gravity models, without abandoning the structural intuition.</div>
+                                    </div>
+                                    <div class="innov-cell">
+                                        <div class="innov-label">— Object</div>
+                                        <div class="innov-title">Trade as an evolving network</div>
+                                        <div class="innov-desc">Treats the global CRM trade system as a dynamic graph rather than a stack of bilateral flows, making relational structure first-class.</div>
+                                    </div>
+                                    <div class="innov-cell">
+                                        <div class="innov-label">— Counterfactuals</div>
+                                        <div class="innov-title">Supplier-disruption scenarios</div>
+                                        <div class="innov-desc">Asks what concentration looks like if a major supplier becomes unavailable — the question policy actually has to answer.</div>
+                                    </div>
+                                    <div class="innov-cell">
+                                        <div class="innov-label">— Output</div>
+                                        <div class="innov-title">Policy-aligned risk taxonomy</div>
+                                        <div class="innov-desc">Translates model outputs into a classification compatible with the EU's own concentration thresholds.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="viz-panel" id="viz-crm-policy">
+                                <div class="viz-title">Why it matters for policy</div>
+                                <div class="viz-sub">A quantitative complement to the EU 2030 Critical Raw Materials agenda</div>
+
+                                <div class="big-idea">
+                                    The EU has set diversification, processing, and recycling targets for the materials its
+                                    green and digital transitions depend on. The thesis offers a way to <em>prioritize</em>
+                                    those targets — telling policymakers where the structural exposure is largest before
+                                    the next disruption forces the answer.
+                                </div>
+
+                                <ol class="numbered-list">
+                                    <li>
+                                        <div>
+                                            <div class="point-title">Identify which materials carry the most structural risk</div>
+                                            <div class="point-desc">Move the conversation from "all 16 are critical" to a defensible ranking of where attention is most needed first.</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <div class="point-title">Stress-test dependencies before they break</div>
+                                            <div class="point-desc">Quantify what supplier-by-supplier disruption would do to market concentration, in advance of the political moment that makes it urgent.</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <div class="point-title">Frame de-risking as a structural problem</div>
+                                            <div class="point-desc">EU exposure is not random — it sits with distant, politically misaligned partners. De-risking has to confront the geography, not just the volumes.</div>
+                                        </div>
+                                    </li>
+                                </ol>
+
+                                <div class="pull-quote">
+                                    <strong>The takeaway.</strong> Resource security is not a list of materials. It's a network with structural weak points — and those weak points can be located before they fail.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
         </div>
-
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <!-- ENTRY 1: Cross-Border Common Ownership                       -->
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <article class="research-entry">
-            <div class="entry-text">
-                <span class="entry-index">01 / Banking</span>
-                <span class="entry-tag">MSc Finance Thesis · UPF/BSM</span>
-                <h2 class="entry-title">
-                    Does Cross-Border Common Ownership Diversify Bank Risk?
-                </h2>
-                <ul class="entry-list">
-                    <li>Tests whether shared institutional shareholders transmit systemic risk between European banks — a contagion channel the macroprudential framework barely touches</li>
-                    <li>Distinguishes <em>cross-border</em> from <em>domestic</em> common ownership in the EU banking sector — a separation absent from prior work</li>
-                    <li>Speaks directly to the live Banking Union debate on integration vs. contagion (Buch, Bruegel)</li>
-                </ul>
-                <div class="entry-meta">Supervised by <strong>Albert Banal-Estañol</strong></div>
-                <div class="entry-meta">In progress · 2026</div>
-            </div>
-
-            <div class="entry-viz">
-                <div class="viz-container">
-                    <div class="viz-tabs">
-                        <button class="viz-tab active" onclick="showVizPanel('bank-idea', this)">The Idea</button>
-                        <button class="viz-tab" onclick="showVizPanel('bank-novelty', this)">Innovation</button>
-                        <button class="viz-tab" onclick="showVizPanel('bank-policy', this)">Policy</button>
-                    </div>
-
-                    <!-- ── The Idea ── -->
-                    <div class="viz-panel active" id="viz-bank-idea">
-                        <div class="viz-title">The contagion channel nobody is monitoring</div>
-                        <div class="viz-sub">EU banks · cross-border vs domestic common ownership</div>
-
-                        <div class="big-idea">
-                            Banking Union supervision tracks lending and interbank exposures.
-                            But two banks in different countries can also be linked by a third party —
-                            a large institutional investor that owns meaningful stakes in both.
-                            <em>If that investor reallocates, both banks move together.</em>
-                        </div>
-
-                        <svg width="100%" viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="margin-top: 8px;">
-                            <defs>
-                                <marker id="arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-                                    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-                                </marker>
-                            </defs>
-
-                            <!-- Bank A -->
-                            <circle cx="120" cy="90" r="42" fill="none" stroke="#0a0a0a" stroke-width="1"/>
-                            <text x="120" y="88" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="13" fill="#0a0a0a">Bank A</text>
-                            <text x="120" y="104" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#8a8a8a">EU country X</text>
-
-                            <!-- Bank B -->
-                            <circle cx="480" cy="90" r="42" fill="none" stroke="#0a0a0a" stroke-width="1"/>
-                            <text x="480" y="88" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="13" fill="#0a0a0a">Bank B</text>
-                            <text x="480" y="104" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#8a8a8a">EU country Y</text>
-
-                            <!-- Shared investor -->
-                            <ellipse cx="300" cy="200" rx="120" ry="32" fill="none" stroke="#0a0a0a" stroke-width="1"/>
-                            <text x="300" y="197" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="#0a0a0a">Shared institutional investor</text>
-                            <text x="300" y="213" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#8a8a8a">cross-border equity stake in both</text>
-
-                            <!-- Edges -->
-                            <path class="flow-line" d="M148 120 Q220 165 230 180" fill="none" stroke="#0a0a0a" stroke-width="1" opacity="0.55" marker-end="url(#arrB)"/>
-                            <path class="flow-line" d="M452 120 Q380 165 370 180" fill="none" stroke="#0a0a0a" stroke-width="1" opacity="0.55" marker-end="url(#arrB)"/>
-
-                            <!-- Risk transmission arc -->
-                            <path d="M165 85 Q300 50 435 85" fill="none" stroke="#0a0a0a" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
-                            <text x="300" y="45" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="#0a0a0a" font-style="italic">Risk co-movement</text>
-
-                            <!-- Bottom note -->
-                            <text x="300" y="262" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="#4a4a4a" font-style="italic">
-                                Does this channel show up in tail-risk co-movement?
-                            </text>
-                        </svg>
-                    </div>
-
-                    <!-- ── Innovation ── -->
-                    <div class="viz-panel" id="viz-bank-novelty">
-                        <div class="viz-title">What's new</div>
-                        <div class="viz-sub">An empirical separation prior work does not make</div>
-
-                        <div class="big-idea">
-                            Existing studies treat institutional ownership as one number.
-                            We split it into the part that crosses borders and the part that stays at home —
-                            and ask whether the geography of ownership matters for systemic risk.
-                        </div>
-
-                        <div class="innov-grid">
-                            <div class="innov-cell">
-                                <div class="innov-label">— Decomposition</div>
-                                <div class="innov-title">Cross-border vs domestic ownership</div>
-                                <div class="innov-desc">Splits common ownership by investor geography rather than treating it as a single aggregate.</div>
-                            </div>
-                            <div class="innov-cell">
-                                <div class="innov-label">— Scope</div>
-                                <div class="innov-title">European banking sector</div>
-                                <div class="innov-desc">Brings the common-ownership literature into the Banking Union debate, where the geographic dimension is central.</div>
-                            </div>
-                            <div class="innov-cell">
-                                <div class="innov-label">— Robustness</div>
-                                <div class="innov-title">Supervisory perimeter test</div>
-                                <div class="innov-desc">Tests whether the EBA boundary marks a meaningful economic frontier for the contagion channel.</div>
-                            </div>
-                            <div class="innov-cell">
-                                <div class="innov-label">— Frame</div>
-                                <div class="innov-title">Ownership-aware integration</div>
-                                <div class="innov-desc">Re-frames financial integration around shareholders, not just lending and interbank exposures.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ── Policy ── -->
-                    <div class="viz-panel" id="viz-bank-policy">
-                        <div class="viz-title">Why it matters for policy</div>
-                        <div class="viz-sub">Implications for macroprudential supervision in the EU</div>
-
-                        <div class="big-idea">
-                            The Buch position — <em>deepen integration but manage contagion</em> — is broadly supported.
-                            But contagion need not arrive only through the channels currently monitored.
-                            Shared shareholders are a parallel route the macroprudential framework barely covers.
-                        </div>
-
-                        <ol class="numbered-list">
-                            <li>
-                                <div>
-                                    <div class="point-title">Ownership transparency belongs in the macroprudential toolkit</div>
-                                    <div class="point-desc">Supervisors already track lending and capital. The investor side of the balance sheet deserves the same visibility.</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <div class="point-title">Stress tests should include common-investor scenarios</div>
-                                    <div class="point-desc">Standard scenarios capture asset shocks. They should also capture coordinated reallocation by shared shareholders.</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <div class="point-title">Banking Union integration should be ownership-aware</div>
-                                    <div class="point-desc">The supervisory perimeter alone may not capture where contagion travels. Integration policy needs to look through to the investor base.</div>
-                                </div>
-                            </li>
-                        </ol>
-
-                        <div class="pull-quote">
-                            <strong>The takeaway.</strong> Integration is desirable; contagion is the side-effect. Watching only the lending side leaves a blind spot on the equity side.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </article>
-
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <!-- ENTRY 2: CRM                                                 -->
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <article class="research-entry">
-            <div class="entry-text">
-                <span class="entry-index">02 / Trade</span>
-                <span class="entry-tag">MSc QE Thesis · UAM · Working Paper</span>
-                <h2 class="entry-title">
-                    <a href="https://drive.google.com/file/d/1MAS2hY5tDa6vQus_SoyMaEl8Wk44jw1x/view?usp=sharing" target="_blank">
-                        Derisking European Critical Raw Material Dependencies with Graph Learning
-                    </a>
-                </h2>
-                <ul class="entry-list">
-                    <li>Combines structural trade economics with graph machine learning to study the EU's exposure to critical raw materials</li>
-                    <li>Asks where the EU sources strategic materials, and what happens if a major supplier becomes unavailable</li>
-                    <li>Produces a risk taxonomy aligned with the EU 2030 Critical Raw Materials Act</li>
-                </ul>
-                <div class="entry-meta">Supervised by <strong>Santiago Pérez Balsalobre</strong> and <strong>Javier Bas</strong></div>
-                <div class="entry-meta">Working paper · 2026</div>
-            </div>
-
-            <div class="entry-viz">
-                <div class="viz-container">
-                    <div class="viz-tabs">
-                        <button class="viz-tab active" onclick="showVizPanel('crm-idea', this)">The Idea</button>
-                        <button class="viz-tab" onclick="showVizPanel('crm-novelty', this)">Innovation</button>
-                        <button class="viz-tab" onclick="showVizPanel('crm-policy', this)">Policy</button>
-                    </div>
-
-                    <!-- ── The Idea ── -->
-                    <div class="viz-panel active" id="viz-crm-idea">
-                        <div class="viz-title">A structural mismatch in EU sourcing</div>
-                        <div class="viz-sub">Where strategic dependencies actually sit</div>
-
-                        <div class="big-idea">
-                            Trade theory predicts that countries source most from partners that are nearby,
-                            culturally close, and politically aligned. For the materials the EU's green
-                            and digital transitions depend on, <em>the pattern is roughly the opposite</em>.
-                        </div>
-
-                        <svg width="100%" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" style="margin-top: 8px;">
-                            <defs>
-                                <marker id="arrC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-                                    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-                                </marker>
-                            </defs>
-
-                            <!-- EU center -->
-                            <circle cx="300" cy="170" r="36" fill="#0a0a0a"/>
-                            <text x="300" y="174" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="14" fill="#ffffff">EU</text>
-
-                            <!-- China -->
-                            <circle cx="90" cy="80" r="34" fill="none" stroke="#0a0a0a" stroke-width="1"/>
-                            <text x="90" y="84" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="#0a0a0a">China</text>
-                            <path class="flow-line" d="M120 100 Q200 130 270 158" fill="none" stroke="#0a0a0a" stroke-width="1.4" opacity="0.7" marker-end="url(#arrC)"/>
-
-                            <!-- Russia -->
-                            <circle cx="510" cy="80" r="30" fill="none" stroke="#0a0a0a" stroke-width="1"/>
-                            <text x="510" y="84" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="#0a0a0a">Russia</text>
-                            <path class="flow-line" d="M484 96 Q410 130 332 158" fill="none" stroke="#0a0a0a" stroke-width="1.1" opacity="0.65" marker-end="url(#arrC)"/>
-
-                            <!-- Turkey -->
-                            <circle cx="510" cy="225" r="22" fill="none" stroke="#0a0a0a" stroke-width="1"/>
-                            <text x="510" y="229" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#0a0a0a">Turkey</text>
-                            <path class="flow-line" d="M488 218 Q410 197 334 182" fill="none" stroke="#0a0a0a" stroke-width="1" opacity="0.6" marker-end="url(#arrC)"/>
-
-                            <!-- Brazil -->
-                            <circle cx="125" cy="265" r="22" fill="none" stroke="#0a0a0a" stroke-width="1"/>
-                            <text x="125" y="269" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#0a0a0a">Brazil</text>
-                            <path class="flow-line" d="M145 252 Q210 215 273 188" fill="none" stroke="#0a0a0a" stroke-width="0.9" opacity="0.55" marker-end="url(#arrC)"/>
-
-                            <!-- S. Africa -->
-                            <circle cx="240" cy="290" r="22" fill="none" stroke="#0a0a0a" stroke-width="1"/>
-                            <text x="240" y="294" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9" fill="#0a0a0a">S. Africa</text>
-                            <path class="flow-line" d="M252 273 Q275 225 292 200" fill="none" stroke="#0a0a0a" stroke-width="0.9" opacity="0.55" marker-end="url(#arrC)"/>
-
-                            <!-- Canada -->
-                            <circle cx="85" cy="200" r="22" fill="none" stroke="#0a0a0a" stroke-width="1"/>
-                            <text x="85" y="204" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="#0a0a0a">Canada</text>
-                            <path class="flow-line" d="M107 195 Q190 180 269 173" fill="none" stroke="#0a0a0a" stroke-width="0.9" opacity="0.55" marker-end="url(#arrC)"/>
-
-                            <!-- Caption -->
-                            <text x="300" y="312" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="#4a4a4a" font-style="italic">
-                                Distant, linguistically different, often politically misaligned partners
-                            </text>
-                        </svg>
-                    </div>
-
-                    <!-- ── Innovation ── -->
-                    <div class="viz-panel" id="viz-crm-novelty">
-                        <div class="viz-title">What's new</div>
-                        <div class="viz-sub">Two literatures, one question</div>
-
-                        <div class="big-idea">
-                            Trade economics tells us <em>why</em> patterns hold. Graph learning tells us
-                            <em>what happens when they break</em>. The thesis combines the two so policy
-                            questions about EU material security can be answered with both.
-                        </div>
-
-                        <div class="innov-grid">
-                            <div class="innov-cell">
-                                <div class="innov-label">— Methods bridge</div>
-                                <div class="innov-title">Structural trade + graph learning</div>
-                                <div class="innov-desc">Brings dynamic graph neural networks into a domain dominated by gravity models, without abandoning the structural intuition.</div>
-                            </div>
-                            <div class="innov-cell">
-                                <div class="innov-label">— Object</div>
-                                <div class="innov-title">Trade as an evolving network</div>
-                                <div class="innov-desc">Treats the global CRM trade system as a dynamic graph rather than a stack of bilateral flows, making relational structure first-class.</div>
-                            </div>
-                            <div class="innov-cell">
-                                <div class="innov-label">— Counterfactuals</div>
-                                <div class="innov-title">Supplier-disruption scenarios</div>
-                                <div class="innov-desc">Asks what concentration looks like if a major supplier becomes unavailable — the question policy actually has to answer.</div>
-                            </div>
-                            <div class="innov-cell">
-                                <div class="innov-label">— Output</div>
-                                <div class="innov-title">Policy-aligned risk taxonomy</div>
-                                <div class="innov-desc">Translates model outputs into a classification compatible with the EU's own concentration thresholds.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ── Policy ── -->
-                    <div class="viz-panel" id="viz-crm-policy">
-                        <div class="viz-title">Why it matters for policy</div>
-                        <div class="viz-sub">A quantitative complement to the EU 2030 Critical Raw Materials agenda</div>
-
-                        <div class="big-idea">
-                            The EU has set diversification, processing, and recycling targets for the materials its
-                            green and digital transitions depend on. The thesis offers a way to <em>prioritize</em>
-                            those targets — telling policymakers where the structural exposure is largest before
-                            the next disruption forces the answer.
-                        </div>
-
-                        <ol class="numbered-list">
-                            <li>
-                                <div>
-                                    <div class="point-title">Identify which materials carry the most structural risk</div>
-                                    <div class="point-desc">Move the conversation from "all 16 are critical" to a defensible ranking of where attention is most needed first.</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <div class="point-title">Stress-test dependencies before they break</div>
-                                    <div class="point-desc">Quantify what supplier-by-supplier disruption would do to market concentration, in advance of the political moment that makes it urgent.</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <div class="point-title">Frame de-risking as a structural problem</div>
-                                    <div class="point-desc">EU exposure is not random — it sits with distant, politically misaligned partners. De-risking has to confront the geography, not just the volumes.</div>
-                                </div>
-                            </li>
-                        </ol>
-
-                        <div class="pull-quote">
-                            <strong>The takeaway.</strong> Resource security is not a list of materials. It's a network with structural weak points — and those weak points can be located before they fail.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </article>
 
         <!-- ─── FOOTER ─── -->
         <div class="footer">
@@ -905,6 +961,13 @@
     </div>
 
     <script>
+        function showWork(id, btn) {
+            document.querySelectorAll('.work-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.work-item').forEach(i => i.classList.remove('active'));
+            document.getElementById('work-' + id).classList.add('active');
+            btn.classList.add('active');
+        }
+
         function showVizPanel(id, btn) {
             const container = btn.closest('.viz-container');
             container.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
@@ -915,3 +978,4 @@
     </script>
 </body>
 </html>
+
