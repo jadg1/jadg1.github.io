@@ -677,17 +677,22 @@
         }
 
         .viz-panel {
-            max-height: 0;
-            overflow: hidden;
+            display: none;
             opacity: 0;
-            padding: 0 36px;
-            transition: max-height 0.4s ease, opacity 0.25s ease, padding 0.3s ease;
+            padding: 0 22px;
+            transition: opacity 0.25s ease;
         }
 
         .viz-panel.active {
-            max-height: 2000px;
+            display: block;
             opacity: 1;
-            padding: 32px 36px;
+            padding: 8px 22px 18px;
+            animation: panelFade 0.3s ease forwards;
+        }
+
+        @keyframes panelFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .viz-title {
