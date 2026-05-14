@@ -28,10 +28,10 @@
             --bg-soft: #fafafa;
             --border: #e8e8e8;
             --text: #0a0a0a;
-            --text-secondary: #4a4a4a;
-            --text-tertiary: #8a8a8a;
-            --text-quaternary: #b8b8b8;
-            --accent: #2c5fa8;
+            --text-secondary: #0a0a0a;
+            --text-tertiary: #0a0a0a;
+            --text-quaternary: #0a0a0a;
+            --accent: #0a0a0a;
             --font: 'Calibri Light', 'Calibri', 'Segoe UI Light', 'Helvetica Neue', system-ui, sans-serif;
             --mono: 'SF Mono', 'IBM Plex Mono', 'Consolas', ui-monospace, monospace;
         }
@@ -41,10 +41,10 @@
             --bg-soft: #141414;
             --border: #232323;
             --text: #f0f0f0;
-            --text-secondary: #b8b8b8;
-            --text-tertiary: #707070;
-            --text-quaternary: #444;
-            --accent: #6fa3e8;
+            --text-secondary: #f0f0f0;
+            --text-tertiary: #f0f0f0;
+            --text-quaternary: #f0f0f0;
+            --accent: #f0f0f0;
         }
 
         html { transition: background-color 0.3s ease, color 0.3s ease; }
@@ -87,10 +87,11 @@
 
         .hero-left h1 {
             font-weight: 200;
-            font-size: 48px;
+            font-size: 38px;
             line-height: 1.0;
-            letter-spacing: -0.025em;
+            letter-spacing: -0.02em;
             margin: 0;
+            white-space: nowrap;
         }
 
         .identity-row {
@@ -165,11 +166,29 @@
         :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
         .hero-tagline {
-            font-size: 17px;
-            color: var(--text-secondary);
-            line-height: 1.55;
-            margin-bottom: 10px;
+            list-style: none;
+            padding: 0;
+            margin: 0 0 10px;
             max-width: 480px;
+        }
+
+        .hero-tagline li {
+            font-size: 15px;
+            color: var(--text);
+            line-height: 1.55;
+            padding-left: 18px;
+            position: relative;
+            margin-bottom: 4px;
+        }
+
+        .hero-tagline li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 9px;
+            height: 1px;
+            background: var(--text);
         }
 
         .hero-sub {
@@ -256,27 +275,38 @@
             object-fit: cover;
         }
 
-        .info-block { margin-bottom: 18px; }
+        .info-block {
+            margin-bottom: 12px;
+        }
         .info-block:last-child { margin-bottom: 0; }
 
         .info-label {
             font-size: 10px;
-            letter-spacing: 0.22em;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
             color: var(--accent);
-            margin-bottom: 10px;
             font-weight: 400;
+            margin-bottom: 10px;
         }
 
         .info-content {
-            font-size: 14px;
+            font-size: 13.5px;
             color: var(--text);
-            line-height: 1.7;
+            line-height: 1.55;
         }
 
         .info-content .sep {
             color: var(--text-quaternary);
-            margin: 0 8px;
+            margin: 0 6px;
+        }
+
+        /* Vertical stack for info blocks in left column */
+        .hero-left .info-block {
+            display: block;
+        }
+
+        .hero-left .info-label {
+            margin-bottom: 6px;
         }
 
         /* ─── Selected work selector ─── */
@@ -378,6 +408,26 @@
             margin-bottom: 24px;
         }
 
+        .work-content .research-entry.tab-open .entry-text {
+            margin-bottom: 12px;
+        }
+
+        /* When a viz tab is open, compact the intro: hide bullets/meta, shrink title */
+        .work-content .research-entry.tab-open .entry-list,
+        .work-content .research-entry.tab-open .entry-meta,
+        .work-content .research-entry.tab-open .entry-index,
+        .work-content .research-entry.tab-open .entry-tag {
+            display: none;
+        }
+
+        .work-content .research-entry.tab-open .entry-title {
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 0;
+            letter-spacing: 0;
+            line-height: 1.4;
+        }
+
         .work-content .entry-title {
             font-size: 22px;
             margin-bottom: 16px;
@@ -389,33 +439,45 @@
         .work-content .innov-grid { grid-template-columns: 1fr; }
         .work-content svg { max-height: 160px; }
 
-        /* When a viz tab is open, compact the intro: hide bullets/meta but keep a small title */
-        .work-content .research-entry.tab-open .entry-list,
-        .work-content .research-entry.tab-open .entry-meta {
-            display: none;
+        /* Expandable numbered list (used for Innovation) */
+        .expandable-list li {
+            cursor: pointer;
+            transition: background 0.2s;
+            padding: 12px 8px !important;
+            margin-left: -8px;
+            margin-right: -8px;
         }
-
-        .work-content .research-entry.tab-open .entry-text {
-            margin-bottom: 12px;
-        }
-
-        .work-content .research-entry.tab-open .entry-index,
-        .work-content .research-entry.tab-open .entry-tag {
-            display: none;
-        }
-
-        .work-content .research-entry.tab-open .entry-title {
-            font-size: 14px;
-            font-weight: 400;
+        .expandable-list li:hover { background: var(--bg-soft); }
+        .expandable-list li.expanded { background: var(--bg-soft); }
+        .expandable-list .point-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
             margin-bottom: 0;
-            color: var(--text-tertiary);
-            letter-spacing: 0;
-            line-height: 1.4;
         }
-
-        .work-content .research-entry.tab-open .entry-title a {
-            color: inherit;
-            background: none;
+        .expandable-list .expand-icon {
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--text);
+            font-weight: 400;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        .expandable-list li.expanded .expand-icon {
+            font-size: 16px;
+        }
+        .expandable-list .point-desc {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            margin-top: 0;
+            transition: max-height 0.3s ease, opacity 0.2s ease, margin-top 0.25s ease;
+        }
+        .expandable-list li.expanded .point-desc {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 6px;
         }
 
         /* Tighten panel padding so content fills more efficiently */
@@ -834,12 +896,13 @@
                     <div class="photo-frame">
                         <img src="yo_blanes.jpg" alt="Javier De Golferichs">
                     </div>
-                    <h1>Javier<br>De Golferichs</h1>
+                    <h1>Javier De Golferichs</h1>
                 </div>
 
-                <div class="hero-tagline">
-                    MS student in Finance and researcher in computational social sciences.
-                </div>
+                <ul class="hero-tagline">
+                    <li>MS student in Finance</li>
+                    <li>Researcher in computational social sciences</li>
+                </ul>
                 <div class="meta-line">Based in Barcelona</div>
 
                 <div class="info-block">
@@ -972,28 +1035,32 @@
                                     and ask whether the geography of ownership matters for systemic risk.
                                 </div>
 
-                                <div class="innov-grid">
-                                    <div class="innov-cell" onclick="toggleInnov(this)">
-                                        <div class="innov-label">— Decomposition</div>
-                                        <div class="innov-title">Cross-border vs domestic ownership</div>
-                                        <div class="innov-desc">Splits common ownership by investor geography rather than treating it as a single aggregate.</div>
-                                    </div>
-                                    <div class="innov-cell" onclick="toggleInnov(this)">
-                                        <div class="innov-label">— Scope</div>
-                                        <div class="innov-title">European banking sector</div>
-                                        <div class="innov-desc">Brings the common-ownership literature into the Banking Union debate, where the geographic dimension is central.</div>
-                                    </div>
-                                    <div class="innov-cell" onclick="toggleInnov(this)">
-                                        <div class="innov-label">— Robustness</div>
-                                        <div class="innov-title">Supervisory perimeter test</div>
-                                        <div class="innov-desc">Tests whether the EBA boundary marks a meaningful economic frontier for the contagion channel.</div>
-                                    </div>
-                                    <div class="innov-cell" onclick="toggleInnov(this)">
-                                        <div class="innov-label">— Frame</div>
-                                        <div class="innov-title">Ownership-aware integration</div>
-                                        <div class="innov-desc">Re-frames financial integration around shareholders, not just lending and interbank exposures.</div>
-                                    </div>
-                                </div>
+                                <ol class="numbered-list expandable-list">
+                                    <li onclick="toggleInnov(this)">
+                                        <div>
+                                            <div class="point-title">Cross-border vs domestic ownership <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">Splits common ownership by investor geography rather than treating it as a single aggregate.</div>
+                                        </div>
+                                    </li>
+                                    <li onclick="toggleInnov(this)">
+                                        <div>
+                                            <div class="point-title">European banking sector <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">Brings the common-ownership literature into the Banking Union debate, where the geographic dimension is central.</div>
+                                        </div>
+                                    </li>
+                                    <li onclick="toggleInnov(this)">
+                                        <div>
+                                            <div class="point-title">Supervisory perimeter test <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">Tests whether the EBA boundary marks a meaningful economic frontier for the contagion channel.</div>
+                                        </div>
+                                    </li>
+                                    <li onclick="toggleInnov(this)">
+                                        <div>
+                                            <div class="point-title">Ownership-aware integration <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">Re-frames financial integration around shareholders, not just lending and interbank exposures.</div>
+                                        </div>
+                                    </li>
+                                </ol>
                             </div>
 
                             <div class="viz-panel" id="viz-bank-policy">
@@ -1132,28 +1199,32 @@
                                     questions about EU material security can be answered with both.
                                 </div>
 
-                                <div class="innov-grid">
-                                    <div class="innov-cell" onclick="toggleInnov(this)">
-                                        <div class="innov-label">— Methods bridge</div>
-                                        <div class="innov-title">Structural trade + graph learning</div>
-                                        <div class="innov-desc">Brings dynamic graph neural networks into a domain dominated by gravity models, without abandoning the structural intuition.</div>
-                                    </div>
-                                    <div class="innov-cell" onclick="toggleInnov(this)">
-                                        <div class="innov-label">— Object</div>
-                                        <div class="innov-title">Trade as an evolving network</div>
-                                        <div class="innov-desc">Treats the global CRM trade system as a dynamic graph rather than a stack of bilateral flows, making relational structure first-class.</div>
-                                    </div>
-                                    <div class="innov-cell" onclick="toggleInnov(this)">
-                                        <div class="innov-label">— Counterfactuals</div>
-                                        <div class="innov-title">Supplier-disruption scenarios</div>
-                                        <div class="innov-desc">Asks what concentration looks like if a major supplier becomes unavailable — the question policy actually has to answer.</div>
-                                    </div>
-                                    <div class="innov-cell" onclick="toggleInnov(this)">
-                                        <div class="innov-label">— Output</div>
-                                        <div class="innov-title">Policy-aligned risk taxonomy</div>
-                                        <div class="innov-desc">Translates model outputs into a classification compatible with the EU's own concentration thresholds.</div>
-                                    </div>
-                                </div>
+                                <ol class="numbered-list expandable-list">
+                                    <li onclick="toggleInnov(this)">
+                                        <div>
+                                            <div class="point-title">Structural trade + graph learning <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">Brings dynamic graph neural networks into a domain dominated by gravity models, without abandoning the structural intuition.</div>
+                                        </div>
+                                    </li>
+                                    <li onclick="toggleInnov(this)">
+                                        <div>
+                                            <div class="point-title">Trade as an evolving network <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">Treats the global CRM trade system as a dynamic graph rather than a stack of bilateral flows, making relational structure first-class.</div>
+                                        </div>
+                                    </li>
+                                    <li onclick="toggleInnov(this)">
+                                        <div>
+                                            <div class="point-title">Supplier-disruption scenarios <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">Asks what concentration looks like if a major supplier becomes unavailable — the question policy actually has to answer.</div>
+                                        </div>
+                                    </li>
+                                    <li onclick="toggleInnov(this)">
+                                        <div>
+                                            <div class="point-title">Policy-aligned risk taxonomy <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">Translates model outputs into a classification compatible with the EU's own concentration thresholds.</div>
+                                        </div>
+                                    </li>
+                                </ol>
                             </div>
 
                             <div class="viz-panel" id="viz-crm-policy">
@@ -1235,6 +1306,10 @@
 
         function toggleInnov(cell) {
             cell.classList.toggle('expanded');
+            const icon = cell.querySelector('.expand-icon');
+            if (icon) {
+                icon.textContent = cell.classList.contains('expanded') ? '−' : '+';
+            }
         }
 
         function showVizPanel(id, btn) {
