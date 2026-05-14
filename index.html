@@ -585,12 +585,12 @@
             display: flex;
             border-bottom: 1px solid var(--border);
             background: var(--bg);
-            overflow-x: auto;
+            overflow: hidden;
         }
 
         .viz-tab {
             flex: 1;
-            min-width: max-content;
+            min-width: 0;
             padding: 16px 14px;
             font-size: 10.5px;
             font-family: var(--mono);
@@ -604,8 +604,6 @@
             text-transform: uppercase;
             text-align: center;
             border-bottom: 1px solid transparent;
-            position: relative;
-            top: 1px;
             white-space: nowrap;
         }
 
