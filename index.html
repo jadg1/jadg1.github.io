@@ -34,7 +34,7 @@
         .page {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 9vh 48px 12vh;
+            padding: 5vh 48px 4vh;
         }
 
         a { color: inherit; }
@@ -43,11 +43,8 @@
         .hero {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-            padding-bottom: 60px;
-            margin-bottom: 60px;
-            border-bottom: 1px solid var(--border);
+            gap: 48px;
+            align-items: stretch;
             opacity: 0;
             animation: fadeIn 0.8s ease forwards 0.1s;
         }
@@ -55,6 +52,7 @@
         .hero-left {
             display: flex;
             flex-direction: column;
+            min-height: 0;
         }
 
         .hero-left h1 {
@@ -69,12 +67,12 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            margin-bottom: 28px;
+            margin-bottom: 20px;
         }
 
         .contact-line {
             margin-top: auto;
-            padding-top: 32px;
+            padding-top: 20px;
             font-size: 13px;
             color: var(--text-tertiary);
             line-height: 1.6;
@@ -99,14 +97,14 @@
             font-size: 17px;
             color: var(--text-secondary);
             line-height: 1.55;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
             max-width: 480px;
         }
 
         .hero-sub {
             font-size: 15px;
             color: var(--text-tertiary);
-            margin-bottom: 36px;
+            margin-bottom: 22px;
             max-width: 480px;
         }
 
@@ -115,7 +113,7 @@
             color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 0.16em;
-            margin-bottom: 36px;
+            margin-bottom: 24px;
         }
 
         .social-row {
@@ -187,7 +185,7 @@
             object-fit: cover;
         }
 
-        .info-block { margin-bottom: 24px; }
+        .info-block { margin-bottom: 18px; }
         .info-block:last-child { margin-bottom: 0; }
 
         .info-label {
@@ -330,7 +328,7 @@
         .work-content .numbered-list .point-title { font-size: 12.5px; }
         .work-content .numbered-list .point-desc { font-size: 11.5px; }
         .work-content .pull-quote { font-size: 13px; margin-top: 20px; }
-        .work-content svg { max-height: 200px; }
+        .work-content svg { max-height: 160px; }
 
         /* When a viz tab is open, compact the intro: hide bullets/meta but keep a small title */
         .work-content .research-entry.tab-open .entry-list,
