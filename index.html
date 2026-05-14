@@ -295,7 +295,7 @@
             opacity: 0;
             animation: fadeIn 0.6s ease forwards 0.3s;
             border-top: 1px solid var(--border);
-            padding-top: 24px;
+            padding-top: 18px;
         }
 
         .work-content .research-entry {
@@ -330,7 +330,50 @@
         .work-content .numbered-list .point-title { font-size: 12.5px; }
         .work-content .numbered-list .point-desc { font-size: 11.5px; }
         .work-content .pull-quote { font-size: 13px; margin-top: 20px; }
-        .work-content svg { max-height: 220px; }
+        .work-content svg { max-height: 200px; }
+
+        /* When a viz tab is open, compact the intro: hide bullets/meta but keep a small title */
+        .work-content .research-entry.tab-open .entry-list,
+        .work-content .research-entry.tab-open .entry-meta {
+            display: none;
+        }
+
+        .work-content .research-entry.tab-open .entry-text {
+            margin-bottom: 12px;
+        }
+
+        .work-content .research-entry.tab-open .entry-index,
+        .work-content .research-entry.tab-open .entry-tag {
+            display: none;
+        }
+
+        .work-content .research-entry.tab-open .entry-title {
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 0;
+            color: var(--text-tertiary);
+            letter-spacing: 0;
+            line-height: 1.4;
+        }
+
+        .work-content .research-entry.tab-open .entry-title a {
+            color: inherit;
+            background: none;
+        }
+
+        /* Tighten panel padding so content fills more efficiently */
+        .work-content .viz-panel.active { padding: 18px 22px; }
+        .work-content .viz-title { font-size: 14px; margin-bottom: 4px; }
+        .work-content .viz-sub { font-size: 10.5px; margin-bottom: 14px; }
+        .work-content .big-idea { font-size: 13px; margin-bottom: 14px; line-height: 1.5; }
+        .work-content .innov-cell { padding: 12px 14px; }
+        .work-content .innov-label { margin-bottom: 6px; }
+        .work-content .innov-title { font-size: 12.5px; margin-bottom: 4px; }
+        .work-content .innov-desc { font-size: 11px; line-height: 1.5; }
+        .work-content .numbered-list li { padding: 10px 0; }
+        .work-content .numbered-list .point-title { font-size: 12px; margin-bottom: 2px; }
+        .work-content .numbered-list .point-desc { font-size: 11px; line-height: 1.5; }
+        .work-content .pull-quote { font-size: 12.5px; margin-top: 14px; padding: 2px 0 2px 18px; }
 
         .work-panel {
             display: none;
@@ -433,10 +476,12 @@
             font-weight: 400;
         }
 
-        /* ─── Visualization ─── */
+        /* ─── Accordion (tabs on top, panel expands below) ─── */
         .viz-container {
             border: 1px solid var(--border);
             background: var(--bg);
+            display: flex;
+            flex-direction: column;
         }
 
         .viz-tabs {
@@ -471,10 +516,22 @@
         .viz-tab.active {
             color: var(--text);
             border-bottom-color: var(--text);
+            background: var(--bg-soft);
         }
 
-        .viz-panel { display: none; padding: 36px; }
-        .viz-panel.active { display: block; }
+        .viz-panel {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            padding: 0 36px;
+            transition: max-height 0.4s ease, opacity 0.25s ease, padding 0.3s ease;
+        }
+
+        .viz-panel.active {
+            max-height: 2000px;
+            opacity: 1;
+            padding: 32px 36px;
+        }
 
         .viz-title {
             font-weight: 300;
@@ -747,12 +804,12 @@
                     <div class="entry-viz">
                         <div class="viz-container">
                             <div class="viz-tabs">
-                                <button class="viz-tab active" onclick="showVizPanel('bank-idea', this)">The Idea</button>
+                                <button class="viz-tab" onclick="showVizPanel('bank-idea', this)">The Idea</button>
                                 <button class="viz-tab" onclick="showVizPanel('bank-novelty', this)">Innovation</button>
                                 <button class="viz-tab" onclick="showVizPanel('bank-policy', this)">Policy</button>
                             </div>
 
-                            <div class="viz-panel active" id="viz-bank-idea">
+                            <div class="viz-panel" id="viz-bank-idea">
                                 <div class="viz-title">The contagion channel nobody is monitoring</div>
                                 <div class="viz-sub">EU banks · cross-border vs domestic common ownership</div>
 
@@ -893,12 +950,12 @@
                     <div class="entry-viz">
                         <div class="viz-container">
                             <div class="viz-tabs">
-                                <button class="viz-tab active" onclick="showVizPanel('crm-idea', this)">The Idea</button>
+                                <button class="viz-tab" onclick="showVizPanel('crm-idea', this)">The Idea</button>
                                 <button class="viz-tab" onclick="showVizPanel('crm-novelty', this)">Innovation</button>
                                 <button class="viz-tab" onclick="showVizPanel('crm-policy', this)">Policy</button>
                             </div>
 
-                            <div class="viz-panel active" id="viz-crm-idea">
+                            <div class="viz-panel" id="viz-crm-idea">
                                 <div class="viz-title">A structural mismatch in EU sourcing</div>
                                 <div class="viz-sub">Where strategic dependencies actually sit</div>
 
@@ -1041,16 +1098,32 @@
         function resetWork() {
             document.querySelectorAll('.work-panel').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.work-item').forEach(i => i.classList.remove('active'));
+            document.querySelectorAll('.research-entry').forEach(e => e.classList.remove('tab-open'));
+            document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.viz-tab').forEach(t => t.classList.remove('active'));
             document.getElementById('work-empty').classList.add('active');
             document.querySelector('.work-selector').classList.remove('is-selected');
         }
 
         function showVizPanel(id, btn) {
             const container = btn.closest('.viz-container');
+            const entry = btn.closest('.research-entry');
+            const targetPanel = container.querySelector('#viz-' + id);
+            const isAlreadyActive = btn.classList.contains('active');
+
+            // Always collapse all panels in this container
             container.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
             container.querySelectorAll('.viz-tab').forEach(t => t.classList.remove('active'));
-            container.querySelector('#viz-' + id).classList.add('active');
+
+            // If user clicked the already-active tab, fully collapse and restore the intro text
+            if (isAlreadyActive) {
+                if (entry) entry.classList.remove('tab-open');
+                return;
+            }
+
+            targetPanel.classList.add('active');
             btn.classList.add('active');
+            if (entry) entry.classList.add('tab-open');
         }
     </script>
 </body>
