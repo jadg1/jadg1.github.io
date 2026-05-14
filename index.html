@@ -34,7 +34,7 @@
         .page {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 5vh 48px 4vh;
+            padding: 24px 48px 24px;
         }
 
         a { color: inherit; }
@@ -137,7 +137,7 @@
         .hero-right {
             display: flex;
             flex-direction: column;
-            gap: 28px;
+            gap: 14px;
             padding-top: 8px;
             min-width: 0;
         }
@@ -167,8 +167,8 @@
             background: transparent;
             border: none;
             cursor: pointer;
-            padding: 6px 0;
-            margin-top: 8px;
+            padding: 0;
+            margin-top: 0;
             transition: opacity 0.2s;
         }
 
@@ -292,8 +292,7 @@
         .work-content {
             opacity: 0;
             animation: fadeIn 0.6s ease forwards 0.3s;
-            border-top: 1px solid var(--border);
-            padding-top: 18px;
+            padding-top: 0;
         }
 
         .work-content .research-entry {
@@ -364,10 +363,49 @@
         .work-content .viz-title { font-size: 14px; margin-bottom: 4px; }
         .work-content .viz-sub { font-size: 10.5px; margin-bottom: 14px; }
         .work-content .big-idea { font-size: 13px; margin-bottom: 14px; line-height: 1.5; }
-        .work-content .innov-cell { padding: 12px 14px; }
+        .work-content .innov-cell {
+            padding: 12px 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .work-content .innov-cell:hover { background: var(--bg-soft); }
+        .work-content .innov-cell.expanded { background: var(--bg-soft); }
         .work-content .innov-label { margin-bottom: 6px; }
-        .work-content .innov-title { font-size: 12.5px; margin-bottom: 4px; }
-        .work-content .innov-desc { font-size: 11px; line-height: 1.5; }
+        .work-content .innov-title {
+            font-size: 12.5px;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        .work-content .innov-title::after {
+            content: '+';
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--text-tertiary);
+            font-weight: 400;
+            transition: transform 0.25s, color 0.2s;
+            line-height: 1;
+        }
+        .work-content .innov-cell.expanded .innov-title::after {
+            content: '−';
+            color: var(--accent);
+        }
+        .work-content .innov-desc {
+            font-size: 11px;
+            line-height: 1.5;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            margin-top: 0;
+            transition: max-height 0.3s ease, opacity 0.2s ease, margin-top 0.25s ease;
+        }
+        .work-content .innov-cell.expanded .innov-desc {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 8px;
+        }
         .work-content .numbered-list li { padding: 10px 0; }
         .work-content .numbered-list .point-title { font-size: 12px; margin-bottom: 2px; }
         .work-content .numbered-list .point-desc { font-size: 11px; line-height: 1.5; }
@@ -860,22 +898,22 @@
                                 </div>
 
                                 <div class="innov-grid">
-                                    <div class="innov-cell">
+                                    <div class="innov-cell" onclick="toggleInnov(this)">
                                         <div class="innov-label">— Decomposition</div>
                                         <div class="innov-title">Cross-border vs domestic ownership</div>
                                         <div class="innov-desc">Splits common ownership by investor geography rather than treating it as a single aggregate.</div>
                                     </div>
-                                    <div class="innov-cell">
+                                    <div class="innov-cell" onclick="toggleInnov(this)">
                                         <div class="innov-label">— Scope</div>
                                         <div class="innov-title">European banking sector</div>
                                         <div class="innov-desc">Brings the common-ownership literature into the Banking Union debate, where the geographic dimension is central.</div>
                                     </div>
-                                    <div class="innov-cell">
+                                    <div class="innov-cell" onclick="toggleInnov(this)">
                                         <div class="innov-label">— Robustness</div>
                                         <div class="innov-title">Supervisory perimeter test</div>
                                         <div class="innov-desc">Tests whether the EBA boundary marks a meaningful economic frontier for the contagion channel.</div>
                                     </div>
-                                    <div class="innov-cell">
+                                    <div class="innov-cell" onclick="toggleInnov(this)">
                                         <div class="innov-label">— Frame</div>
                                         <div class="innov-title">Ownership-aware integration</div>
                                         <div class="innov-desc">Re-frames financial integration around shareholders, not just lending and interbank exposures.</div>
@@ -1014,22 +1052,22 @@
                                 </div>
 
                                 <div class="innov-grid">
-                                    <div class="innov-cell">
+                                    <div class="innov-cell" onclick="toggleInnov(this)">
                                         <div class="innov-label">— Methods bridge</div>
                                         <div class="innov-title">Structural trade + graph learning</div>
                                         <div class="innov-desc">Brings dynamic graph neural networks into a domain dominated by gravity models, without abandoning the structural intuition.</div>
                                     </div>
-                                    <div class="innov-cell">
+                                    <div class="innov-cell" onclick="toggleInnov(this)">
                                         <div class="innov-label">— Object</div>
                                         <div class="innov-title">Trade as an evolving network</div>
                                         <div class="innov-desc">Treats the global CRM trade system as a dynamic graph rather than a stack of bilateral flows, making relational structure first-class.</div>
                                     </div>
-                                    <div class="innov-cell">
+                                    <div class="innov-cell" onclick="toggleInnov(this)">
                                         <div class="innov-label">— Counterfactuals</div>
                                         <div class="innov-title">Supplier-disruption scenarios</div>
                                         <div class="innov-desc">Asks what concentration looks like if a major supplier becomes unavailable — the question policy actually has to answer.</div>
                                     </div>
-                                    <div class="innov-cell">
+                                    <div class="innov-cell" onclick="toggleInnov(this)">
                                         <div class="innov-label">— Output</div>
                                         <div class="innov-title">Policy-aligned risk taxonomy</div>
                                         <div class="innov-desc">Translates model outputs into a classification compatible with the EU's own concentration thresholds.</div>
@@ -1101,6 +1139,10 @@
             document.querySelectorAll('.viz-tab').forEach(t => t.classList.remove('active'));
             document.getElementById('work-empty').classList.add('active');
             document.querySelector('.work-selector').classList.remove('is-selected');
+        }
+
+        function toggleInnov(cell) {
+            cell.classList.toggle('expanded');
         }
 
         function showVizPanel(id, btn) {
