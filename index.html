@@ -72,11 +72,30 @@
         /* ─── Hero ─── */
         .hero {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: minmax(0, 540px);
+            justify-content: center;
             gap: 48px;
             align-items: start;
             opacity: 0;
             animation: fadeIn 0.8s ease forwards 0.1s;
+            transition: grid-template-columns 0.5s ease;
+        }
+
+        body.has-thesis-open .hero {
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            justify-content: stretch;
+        }
+
+        .hero-right {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease 0.1s, visibility 0s linear 0.5s;
+        }
+
+        body.has-thesis-open .hero-right {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.4s ease 0.2s, visibility 0s linear 0s;
         }
 
         .hero-left {
@@ -267,7 +286,6 @@
         /* When a work is selected, hide the list and show the reset */
         .work-selector.is-selected .work-list { display: none; }
         .work-selector.is-selected .work-reset { display: inline-block; }
-        .work-selector.is-selected .info-label { display: none; }
 
         .photo-frame img {
             width: 100%;
@@ -904,11 +922,12 @@
                     <h1>Javier De Golferichs</h1>
                 </div>
 
-                <ul class="hero-tagline">
-                    <li>MS student in Finance</li>
-                    <li>Researcher in computational social sciences</li>
-                </ul>
-                <div class="meta-line">Based in Barcelona</div>
+                <div class="info-block">
+                    <div class="info-label">About</div>
+                    <div class="info-content">
+                        MS student in Finance and researcher in computational social sciences. Based in Barcelona.
+                    </div>
+                </div>
 
                 <div class="info-block">
                     <div class="info-label">Skills</div>
@@ -923,12 +942,6 @@
                     </div>
                 </div>
 
-                <div class="contact-line">
-                    For contact, please send a <a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank">LinkedIn connection request</a>.
-                </div>
-            </div>
-
-            <div class="hero-right">
                 <div class="info-block work-selector">
                     <div class="info-label">Selected Work</div>
                     <div class="work-list">
@@ -952,6 +965,12 @@
                     <button class="work-reset" onclick="resetWork()">← Back to all</button>
                 </div>
 
+                <div class="contact-line">
+                    For contact, please send a <a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank">LinkedIn connection request</a>.
+                </div>
+            </div>
+
+            <div class="hero-right">
                 <!-- ─── INLINE WORK CONTENT (swaps based on selection) ─── -->
                 <div class="work-content">
 
@@ -1297,6 +1316,7 @@
             document.getElementById('work-' + id).classList.add('active');
             btn.classList.add('active');
             document.querySelector('.work-selector').classList.add('is-selected');
+            document.body.classList.add('has-thesis-open');
         }
 
         function resetWork() {
@@ -1307,6 +1327,7 @@
             document.querySelectorAll('.viz-tab').forEach(t => t.classList.remove('active'));
             document.getElementById('work-empty').classList.add('active');
             document.querySelector('.work-selector').classList.remove('is-selected');
+            document.body.classList.remove('has-thesis-open');
         }
 
         function toggleInnov(cell) {
