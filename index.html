@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Javier De Golferichs</title>
+    <title>Javier de Golferichs: complex systems and European economic security</title>
+    <meta name="description" content="Complex systems and network methods applied to European economic security. Research on EU banking risk, critical raw material dependencies, and network models.">
+
+    <!-- Set og:url once the final domain is live -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Javier de Golferichs">
+    <meta property="og:description" content="Complex systems and network methods applied to European economic security.">
+    <meta property="og:image" content="yo_blanes.jpg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Javier de Golferichs">
+    <meta name="twitter:description" content="Complex systems and network methods applied to European economic security.">
     <script>
-        // Theme: manual override (localStorage) takes priority; otherwise auto by local hour
+        // Theme: manual override (localStorage) wins, then the OS colour scheme, then local hour
         // 19:00–06:59 = dark, 07:00–18:59 = light
         (function() {
             try {
@@ -15,6 +25,13 @@
                     return;
                 }
             } catch (e) { /* ignore storage errors */ }
+            if (window.matchMedia) {
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    return;
+                }
+                if (window.matchMedia('(prefers-color-scheme: light)').matches) return;
+            }
             const hour = new Date().getHours();
             const isDark = hour >= 19 || hour < 7;
             if (isDark) document.documentElement.setAttribute('data-theme', 'dark');
@@ -28,10 +45,10 @@
             --bg-soft: #fafafa;
             --border: #e8e8e8;
             --text: #0a0a0a;
-            --text-secondary: #0a0a0a;
-            --text-tertiary: #0a0a0a;
-            --text-quaternary: #0a0a0a;
-            --accent: #0a0a0a;
+            --text-secondary: #3d3d3d;
+            --text-tertiary: #6b6b6b;
+            --text-quaternary: #9a9a9a;
+            --accent: #6b6b6b;
             --font: 'Calibri Light', 'Calibri', 'Segoe UI Light', 'Helvetica Neue', system-ui, sans-serif;
             --mono: 'SF Mono', 'IBM Plex Mono', 'Consolas', ui-monospace, monospace;
         }
@@ -41,10 +58,15 @@
             --bg-soft: #141414;
             --border: #232323;
             --text: #f0f0f0;
-            --text-secondary: #f0f0f0;
-            --text-tertiary: #f0f0f0;
-            --text-quaternary: #f0f0f0;
-            --accent: #f0f0f0;
+            --text-secondary: #c4c4c4;
+            --text-tertiary: #9a9a9a;
+            --text-quaternary: #6b6b6b;
+            --accent: #9a9a9a;
+        }
+
+        :focus-visible {
+            outline: 1px solid var(--text);
+            outline-offset: 3px;
         }
 
         html { transition: background-color 0.3s ease, color 0.3s ease; }
@@ -897,6 +919,10 @@
             .innov-grid { grid-template-columns: 1fr; }
             .work-item { grid-template-columns: 32px 1fr auto; gap: 10px; padding: 10px 12px; }
         }
+
+        @media (max-width: 380px) {
+            .hero-left h1 { white-space: normal; font-size: 28px; }
+        }
     </style>
 </head>
 <body>
@@ -920,7 +946,7 @@
     <div class="page">
 
         <!-- ─── HERO ─── -->
-        <header class="hero">
+        <main class="hero">
             <div class="hero-left">
                 <div class="social-row top-socials">
                     <a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank">LinkedIn</a>
@@ -938,9 +964,10 @@
                 <div class="info-block">
                     <div class="info-label">About</div>
                     <div class="info-content">
-                        Complex systems researcher working on European policy — trade, defense and finance.
-                        Two MSc degrees and a BSc across finance, quantitative economics and engineering physics.
-                        Based in Vienna.
+                        Complex systems and network methods applied to European economic security:
+                        trade, defense and finance. Two MSc degrees and a BSc, in finance, quantitative
+                        economics and engineering physics. Spanish and Mexican national, based in Vienna,
+                        with full right to work in the EU.
                     </div>
                 </div>
 
@@ -954,8 +981,8 @@
                 <div class="info-block">
                     <div class="info-label">Education</div>
                     <div class="info-content">
-                        <span class="line">MSc Finance and Banking<span class="sep">·</span><span class="line-note">UPF Barcelona School of Management, 2026</span></span>
-                        <span class="line">MSc Quantitative Economics<span class="sep">·</span><span class="line-note">Universidad Autónoma de Madrid, 2025</span></span>
+                        <span class="line">MSc Finance and Banking<span class="sep">·</span><span class="line-note">UPF Barcelona School of Management, 2026. Academic Excellence Scholarship.</span></span>
+                        <span class="line">MSc Quantitative Economics<span class="sep">·</span><span class="line-note">Universidad Autónoma de Madrid, 2025. Thesis 9/10 with Excellence.</span></span>
                         <span class="line">BSc Engineering Physics<span class="sep">·</span><span class="line-note">Tecnológico de Monterrey, 2023</span></span>
                     </div>
                 </div>
@@ -963,7 +990,8 @@
                 <div class="info-block">
                     <div class="info-label">Skills</div>
                     <div class="info-content">
-                        Python<span class="sep">/</span>R<span class="sep">/</span>Stata<span class="sep">/</span>Econometrics<span class="sep">/</span>Network Analysis<span class="sep">/</span>Machine Learning<span class="sep">/</span>SQL<span class="sep">/</span>LaTeX
+                        <span class="line">Python<span class="sep">/</span>R<span class="sep">/</span>Stata<span class="sep">/</span>Econometrics<span class="sep">/</span>Network Analysis<span class="sep">/</span>Machine Learning<span class="sep">/</span>Git<span class="sep">/</span>LaTeX</span>
+                        <span class="line line-note">Working knowledge: Go, graph neural networks, agentic coding tools</span>
                     </div>
                 </div>
 
@@ -984,7 +1012,7 @@
                 <div class="info-block work-selector">
                     <div class="info-label">Selected Work</div>
                     <div class="work-list">
-                        <button class="work-item" onclick="showWork('networks', this)">
+                        <button class="work-item" onclick="showWork('networks', this)" aria-expanded="false">
                             <span class="work-item-num">01</span>
                             <span class="work-item-content">
                                 <span class="work-item-title">Edge-Independent vs Generative Degree Models</span>
@@ -992,16 +1020,24 @@
                             </span>
                             <span class="work-item-arrow">→</span>
                         </button>
-                        <button class="work-item" onclick="showWork('banking', this)">
+                        <button class="work-item" onclick="showWork('paywall', this)" aria-expanded="false">
                             <span class="work-item-num">02</span>
+                            <span class="work-item-content">
+                                <span class="work-item-title">Agentic Content Paywall</span>
+                                <span class="work-item-sub">Agent Infrastructure · Payments · EU Data Residency</span>
+                            </span>
+                            <span class="work-item-arrow">→</span>
+                        </button>
+                        <button class="work-item" onclick="showWork('banking', this)" aria-expanded="false">
+                            <span class="work-item-num">03</span>
                             <span class="work-item-content">
                                 <span class="work-item-title">Cross-Border Common Ownership &amp; Bank Risk</span>
                                 <span class="work-item-sub">Banking Regulation · Systemic Risk · EU Integration</span>
                             </span>
                             <span class="work-item-arrow">→</span>
                         </button>
-                        <button class="work-item" onclick="showWork('crm', this)">
-                            <span class="work-item-num">03</span>
+                        <button class="work-item" onclick="showWork('crm', this)" aria-expanded="false">
+                            <span class="work-item-num">04</span>
                             <span class="work-item-content">
                                 <span class="work-item-title">Derisking EU CRM Dependencies with Graph Learning</span>
                                 <span class="work-item-sub">Trade Policy · Geopolitics · Graph Learning</span>
@@ -1013,6 +1049,9 @@
                 </div>
 
                 <div class="contact-line">
+                    <!-- P0: put an email address here. Drop-in replacement once you pick one:
+                         <a href="mailto:you@domain.tld">you@domain.tld</a>, or on
+                         <a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank">LinkedIn</a>. -->
                     For contact, please send a <a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank">LinkedIn connection request</a>.
                 </div>
             </div>
@@ -1039,7 +1078,7 @@
                         </h2>
                         <ul class="entry-list">
                             <li>Compares edge-independent models, which draw every possible link from its own probability, with generative degree models that build networks from the degree sequence</li>
-                            <li>Focuses on how each family handles the edges that are never observed — including pairs that could not have connected at all</li>
+                            <li>Focuses on how each family handles the edges that are never observed, including pairs that could not have connected at all</li>
                             <li>Relevant wherever networks are reconstructed rather than observed: trade, interbank, ownership</li>
                         </ul>
                         <div class="entry-meta">Supervised by <strong>Leonardo Ialongo</strong> and <strong>Kjartan Van Driel</strong></div>
@@ -1049,9 +1088,9 @@
                     <div class="entry-viz">
                         <div class="viz-container">
                             <div class="viz-tabs">
-                                <button class="viz-tab" onclick="showVizPanel('net-idea', this)">The Idea</button>
-                                <button class="viz-tab" onclick="showVizPanel('net-question', this)">The Question</button>
-                                <button class="viz-tab" onclick="showVizPanel('net-matters', this)">Why It Matters</button>
+                                <button class="viz-tab" onclick="showVizPanel('net-idea', this)" aria-expanded="false">The Idea</button>
+                                <button class="viz-tab" onclick="showVizPanel('net-question', this)" aria-expanded="false">The Question</button>
+                                <button class="viz-tab" onclick="showVizPanel('net-matters', this)" aria-expanded="false">Why It Matters</button>
                             </div>
 
                             <div class="viz-panel" id="viz-net-idea">
@@ -1061,11 +1100,12 @@
                                 <div class="big-idea">
                                     One family assigns every node pair its own probability and flips a coin across
                                     the whole adjacency matrix. The other starts from the degrees and places edges
-                                    to satisfy them. Both can reproduce the same degree sequence on average —
-                                    <em>but they disagree about which networks were possible in the first place.</em>
+                                    to satisfy them. Both can reproduce the same degree sequence on average.
+                                    <em>But they disagree about which networks were possible in the first place.</em>
                                 </div>
 
-                                <svg width="100%" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" style="margin-top: 8px;">
+                                <svg width="100%" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" style="margin-top: 8px;" role="img">
+                                    <title>Two node sets: on the left, every pair joined by a dashed probability with one pair marked impossible; on the right, solid edges placed to satisfy fixed node degrees.</title>
                                     <!-- Left: edge-independent -->
                                     <text x="155" y="42" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="currentColor">Edge-independent</text>
 
@@ -1123,33 +1163,33 @@
 
                                 <div class="big-idea">
                                     In a sparse network almost every entry of the adjacency matrix is a zero.
-                                    How a model treats those zeros — as absences, or as impossibilities —
+                                    How a model treats those zeros, as absences or as impossibilities,
                                     is doing most of the work behind the estimates.
                                 </div>
 
                                 <ol class="numbered-list expandable-list">
-                                    <li onclick="toggleInnov(this)">
+                                    <li onclick="toggleInnov(this)" onkeydown="keyToggle(event, this)" tabindex="0" role="button" aria-expanded="false">
                                         <div>
                                             <div class="point-title">Unobserved is not the same as impossible <span class="expand-icon">+</span></div>
                                             <div class="point-desc">A zero can mean the link did not happen, or that it could never have happened. Independent-edge likelihoods score both the same way.</div>
                                         </div>
                                     </li>
-                                    <li onclick="toggleInnov(this)">
+                                    <li onclick="toggleInnov(this)" onkeydown="keyToggle(event, this)" tabindex="0" role="button" aria-expanded="false">
                                         <div>
                                             <div class="point-title">Degrees as constraint or as outcome <span class="expand-icon">+</span></div>
                                             <div class="point-desc">One family fixes the degree sequence by construction; the other only matches it in expectation, with variance that the first does not have.</div>
                                         </div>
                                     </li>
-                                    <li onclick="toggleInnov(this)">
+                                    <li onclick="toggleInnov(this)" onkeydown="keyToggle(event, this)" tabindex="0" role="button" aria-expanded="false">
                                         <div>
                                             <div class="point-title">Sampling the non-edges <span class="expand-icon">+</span></div>
                                             <div class="point-desc">How the enormous set of candidate pairs is sampled or weighted drives parameter estimates in sparse settings.</div>
                                         </div>
                                     </li>
-                                    <li onclick="toggleInnov(this)">
+                                    <li onclick="toggleInnov(this)" onkeydown="keyToggle(event, this)" tabindex="0" role="button" aria-expanded="false">
                                         <div>
                                             <div class="point-title">Mapping the divergence <span class="expand-icon">+</span></div>
-                                            <div class="point-desc">Identifying the regimes — sparsity, degree heterogeneity, structural zeros — where the choice of model actually changes the conclusion.</div>
+                                            <div class="point-desc">Identifying the regimes where the choice of model actually changes the conclusion: sparsity, degree heterogeneity, structural zeros.</div>
                                         </div>
                                     </li>
                                 </ol>
@@ -1161,7 +1201,7 @@
 
                                 <div class="big-idea">
                                     Most economic networks are never fully observed. Interbank exposures, ownership links
-                                    and bilateral flows are <em>inferred</em> — and whatever the estimator assumes about
+                                    and bilateral flows are <em>inferred</em>, and whatever the estimator assumes about
                                     the missing entries is inherited by everything computed downstream.
                                 </div>
 
@@ -1196,31 +1236,206 @@
             </div>
 
             <!-- ═══════════════════════════════════════════════════════════ -->
-            <!-- BANKING                                                       -->
+            <!-- PAYWALL                                                       -->
             <!-- ═══════════════════════════════════════════════════════════ -->
-            <div class="work-panel" id="work-banking">
+            <div class="work-panel" id="work-paywall">
                 <article class="research-entry">
                     <div class="entry-text">
-                        <span class="entry-index">02 / Banking</span>
-                        <span class="entry-tag">MSc Finance Thesis · UPF BSM</span>
+                        <span class="entry-index">02 / Systems</span>
+                        <span class="entry-tag">Founders Hackathon Hamburg · Team AI Beavers</span>
                         <h2 class="entry-title">
-                            Does Cross-Border Common Ownership Diversify Bank Risk?
+                            A Payment Rail for Machine Clients
                         </h2>
                         <ul class="entry-list">
-                            <li>Tests whether shared institutional shareholders transmit systemic risk between European banks — a contagion channel the macroprudential framework barely touches</li>
-                            <li>Distinguishes <em>cross-border</em> from <em>domestic</em> common ownership in the EU banking sector — a separation absent from prior work</li>
-                            <li>Speaks directly to the live Banking Union debate on integration vs. contagion</li>
+                            <li>Go HTTP gateway that holds automated clients behind a machine-readable 402 challenge until payment is verified. No content leaks before the grant</li>
+                            <li>Companion MCP server acts as the agent-side wallet: budget check, payment, and grant polling as three tools an autonomous client can call</li>
+                            <li>EU data residency published as a live, machine-verifiable endpoint, backed by an append-only audit ledger</li>
                         </ul>
-                        <div class="entry-meta">Supervised by <strong>Albert Banal-Estañol</strong></div>
-                        <div class="entry-meta">Completed with merit · 2026</div>
+                        <!-- Repo name still carries the hackathon typo. Update this href after renaming. -->
+                        <div class="entry-meta">Go · Ed25519-signed JWT grants · Mollie · MCP</div>
+                        <div class="entry-meta">Hackathon build · 2026 · <a href="https://github.com/brotherlw/foudner-hackathon" target="_blank">code</a></div>
                     </div>
 
                     <div class="entry-viz">
                         <div class="viz-container">
                             <div class="viz-tabs">
-                                <button class="viz-tab" onclick="showVizPanel('bank-idea', this)">The Idea</button>
-                                <button class="viz-tab" onclick="showVizPanel('bank-novelty', this)">Innovation</button>
-                                <button class="viz-tab" onclick="showVizPanel('bank-policy', this)">Policy</button>
+                                <button class="viz-tab" onclick="showVizPanel('pay-idea', this)" aria-expanded="false">The Idea</button>
+                                <button class="viz-tab" onclick="showVizPanel('pay-build', this)" aria-expanded="false">Innovation</button>
+                                <button class="viz-tab" onclick="showVizPanel('pay-matters', this)" aria-expanded="false">Policy</button>
+                            </div>
+
+                            <div class="viz-panel" id="viz-pay-idea">
+                                <div class="viz-title">Charge the crawler instead of blocking it</div>
+                                <div class="viz-sub">HTTP 402, made parseable</div>
+
+                                <div class="big-idea">
+                                    Publishers today choose between blocking automated clients and giving the content
+                                    away. A third option exists if the refusal is legible to a machine: answer with a
+                                    structured 402 that states the price and the retry path, and
+                                    <em>let the agent settle it and come back.</em>
+                                </div>
+
+                                <svg width="100%" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" style="margin-top: 8px;" role="img">
+                                    <title>Flow diagram: an agent requests content, the gateway answers with a 402 challenge, the wallet pays the provider, a webhook returns a signed grant, and the gateway then serves the content while logging to an audit ledger.</title>
+                                    <defs>
+                                        <marker id="arrP" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                                            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </marker>
+                                    </defs>
+
+                                    <!-- Top row -->
+                                    <ellipse cx="72" cy="72" rx="56" ry="28" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <text x="72" y="76" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="currentColor">Agent</text>
+
+                                    <ellipse cx="300" cy="72" rx="66" ry="28" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <text x="300" y="76" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="currentColor">Gateway</text>
+
+                                    <ellipse cx="524" cy="72" rx="56" ry="28" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <text x="524" y="76" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="currentColor">Content</text>
+
+                                    <!-- Request / 402 -->
+                                    <path class="flow-line" d="M130 60 L228 60" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6" marker-end="url(#arrP)"/>
+                                    <text x="179" y="52" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9.5" fill="var(--text-tertiary)">request</text>
+
+                                    <path d="M228 86 L130 86" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.6" marker-end="url(#arrP)"/>
+                                    <text x="179" y="102" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9.5" fill="var(--text-tertiary)">402 + challenge</text>
+
+                                    <!-- Grant -> content -->
+                                    <path class="flow-line" d="M368 72 L464 72" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.7" marker-end="url(#arrP)"/>
+                                    <text x="416" y="60" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9.5" fill="var(--text-tertiary)">grant verified</text>
+
+                                    <!-- Bottom row -->
+                                    <ellipse cx="72" cy="228" rx="56" ry="28" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <text x="72" y="226" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="currentColor">Wallet MCP</text>
+                                    <text x="72" y="240" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9" fill="var(--text-tertiary)">budget · approval</text>
+
+                                    <ellipse cx="300" cy="228" rx="66" ry="28" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <text x="300" y="232" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="currentColor">Payment provider</text>
+
+                                    <ellipse cx="524" cy="228" rx="56" ry="28" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <text x="524" y="226" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="currentColor">Audit ledger</text>
+                                    <text x="524" y="240" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9" fill="var(--text-tertiary)">append-only</text>
+
+                                    <path class="flow-line" d="M72 102 L72 198" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6" marker-end="url(#arrP)"/>
+                                    <text x="82" y="154" font-family="Calibri Light, sans-serif" font-size="9.5" fill="var(--text-tertiary)">pay</text>
+
+                                    <path class="flow-line" d="M130 228 L230 228" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6" marker-end="url(#arrP)"/>
+                                    <text x="180" y="252" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9.5" fill="var(--text-tertiary)">authorise</text>
+
+                                    <path class="flow-line" d="M300 198 L300 102" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6" marker-end="url(#arrP)"/>
+                                    <text x="310" y="154" font-family="Calibri Light, sans-serif" font-size="9.5" fill="var(--text-tertiary)">webhook → signed grant</text>
+
+                                    <path d="M356 94 Q450 150 486 206" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.45" marker-end="url(#arrP)"/>
+
+                                    <text x="300" y="300" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="var(--text-secondary)" font-style="italic">
+                                        Nothing is served before the grant is signed. Every decision is logged.
+                                    </text>
+                                </svg>
+                            </div>
+
+                            <div class="viz-panel" id="viz-pay-build">
+                                <div class="viz-title">What was built</div>
+                                <div class="viz-sub">Gateway, wallet, grants, ledger</div>
+
+                                <div class="big-idea">
+                                    Protocol design rather than a prototype UI: a challenge format a client can parse,
+                                    a signed credential it can present, and a record of every decision the gateway made.
+                                </div>
+
+                                <ol class="numbered-list expandable-list">
+                                    <li onclick="toggleInnov(this)" onkeydown="keyToggle(event, this)" tabindex="0" role="button" aria-expanded="false">
+                                        <div>
+                                            <div class="point-title">Machine-readable 402 <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">The refusal carries a structured body and a payment header stating price, accepted methods and retry path, parseable without a human in the loop.</div>
+                                        </div>
+                                    </li>
+                                    <li onclick="toggleInnov(this)" onkeydown="keyToggle(event, this)" tabindex="0" role="button" aria-expanded="false">
+                                        <div>
+                                            <div class="point-title">Ed25519-signed access grants <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">Grants are signed JWTs scoped to a resource path, with TTL and per-token quota. The public key is served so verification can happen at the edge.</div>
+                                        </div>
+                                    </li>
+                                    <li onclick="toggleInnov(this)" onkeydown="keyToggle(event, this)" tabindex="0" role="button" aria-expanded="false">
+                                        <div>
+                                            <div class="point-title">Wallet as an MCP server <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">Three tools give an autonomous client a spending identity: check the remaining daily budget, execute the payment, poll until the grant is ready. Larger amounts require explicit approval.</div>
+                                        </div>
+                                    </li>
+                                    <li onclick="toggleInnov(this)" onkeydown="keyToggle(event, this)" tabindex="0" role="button" aria-expanded="false">
+                                        <div>
+                                            <div class="point-title">Provider-agnostic settlement <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">A mock provider for local runs and Mollie for real test-mode transactions, switched by configuration rather than code.</div>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
+
+                            <div class="viz-panel" id="viz-pay-matters">
+                                <div class="viz-title">Why it matters</div>
+                                <div class="viz-sub">Sovereignty as an implemented property</div>
+
+                                <div class="big-idea">
+                                    European digital sovereignty is usually argued for in documents. Here it is a
+                                    running endpoint: the gateway states its processing region, its sub-processors,
+                                    and that no data crosses borders, <em>and a machine can check the claim.</em>
+                                </div>
+
+                                <ol class="numbered-list">
+                                    <li>
+                                        <div>
+                                            <div class="point-title">A commercial answer to agent traffic</div>
+                                            <div class="point-desc">As more requests come from autonomous clients, publishers need something between blanket blocking and free access. A payable refusal is that something.</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <div class="point-title">Residency you can verify, not just declare</div>
+                                            <div class="point-desc">Region, sub-processors and cross-border transfer status are served at a well-known endpoint, so the compliance claim is testable by the party relying on it.</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <div class="point-title">Auditability by construction</div>
+                                            <div class="point-desc">Every access decision and grant issuance lands in an append-only ledger: the record supervision and oversight actually need, produced as a side-effect of normal operation.</div>
+                                        </div>
+                                    </li>
+                                </ol>
+
+                                <div class="pull-quote">
+                                    <strong>The takeaway.</strong> Rules for machine clients are easier to defend when they are enforceable in the protocol rather than asserted in the terms of service.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <!-- BANKING                                                       -->
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <div class="work-panel" id="work-banking">
+                <article class="research-entry">
+                    <div class="entry-text">
+                        <span class="entry-index">03 / Banking</span>
+                        <span class="entry-tag">Working thesis · MSc Finance, UPF BSM</span>
+                        <h2 class="entry-title">
+                            Does Cross-Border Common Ownership Diversify Bank Risk?
+                        </h2>
+                        <ul class="entry-list">
+                            <li>Tests whether shared institutional shareholders transmit systemic risk between European banks, a contagion channel the macroprudential framework barely touches</li>
+                            <li>Distinguishes <em>cross-border</em> from <em>domestic</em> common ownership in the EU banking sector, a separation absent from prior work</li>
+                            <li>Speaks directly to the live Banking Union debate on integration vs. contagion</li>
+                        </ul>
+                        <div class="entry-meta">Supervised by <strong>Albert Banal-Estañol</strong></div>
+                        <div class="entry-meta">Working thesis · 2026</div>
+                    </div>
+
+                    <div class="entry-viz">
+                        <div class="viz-container">
+                            <div class="viz-tabs">
+                                <button class="viz-tab" onclick="showVizPanel('bank-idea', this)" aria-expanded="false">The Idea</button>
+                                <button class="viz-tab" onclick="showVizPanel('bank-novelty', this)" aria-expanded="false">Innovation</button>
+                                <button class="viz-tab" onclick="showVizPanel('bank-policy', this)" aria-expanded="false">Policy</button>
                             </div>
 
                             <div class="viz-panel" id="viz-bank-idea">
@@ -1229,12 +1444,13 @@
 
                                 <div class="big-idea">
                                     Banking Union supervision tracks lending and interbank exposures.
-                                    But two banks in different countries can also be linked by a third party —
+                                    But two banks in different countries can also be linked by a third party,
                                     a large institutional investor that owns meaningful stakes in both.
                                     <em>If that investor reallocates, both banks move together.</em>
                                 </div>
 
-                                <svg width="100%" viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="margin-top: 8px;">
+                                <svg width="100%" viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="margin-top: 8px;" role="img">
+                                    <title>Two banks in different EU countries, each holding an equity link to the same institutional investor, with a dashed arc between them marking risk co-movement.</title>
                                     <defs>
                                         <marker id="arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
                                             <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1271,30 +1487,30 @@
 
                                 <div class="big-idea">
                                     Existing studies treat institutional ownership as one number.
-                                    We split it into the part that crosses borders and the part that stays at home —
+                                    We split it into the part that crosses borders and the part that stays at home,
                                     and ask whether the geography of ownership matters for systemic risk.
                                 </div>
 
                                 <ol class="numbered-list expandable-list">
-                                    <li onclick="toggleInnov(this)">
+                                    <li onclick="toggleInnov(this)" onkeydown="keyToggle(event, this)" tabindex="0" role="button" aria-expanded="false">
                                         <div>
                                             <div class="point-title">Cross-border vs domestic ownership <span class="expand-icon">+</span></div>
                                             <div class="point-desc">Splits common ownership by investor geography rather than treating it as a single aggregate.</div>
                                         </div>
                                     </li>
-                                    <li onclick="toggleInnov(this)">
+                                    <li onclick="toggleInnov(this)" onkeydown="keyToggle(event, this)" tabindex="0" role="button" aria-expanded="false">
                                         <div>
                                             <div class="point-title">European banking sector <span class="expand-icon">+</span></div>
                                             <div class="point-desc">Brings the common-ownership literature into the Banking Union debate, where the geographic dimension is central.</div>
                                         </div>
                                     </li>
-                                    <li onclick="toggleInnov(this)">
+                                    <li onclick="toggleInnov(this)" onkeydown="keyToggle(event, this)" tabindex="0" role="button" aria-expanded="false">
                                         <div>
                                             <div class="point-title">Supervisory perimeter test <span class="expand-icon">+</span></div>
                                             <div class="point-desc">Tests whether the EBA boundary marks a meaningful economic frontier for the contagion channel.</div>
                                         </div>
                                     </li>
-                                    <li onclick="toggleInnov(this)">
+                                    <li onclick="toggleInnov(this)" onkeydown="keyToggle(event, this)" tabindex="0" role="button" aria-expanded="false">
                                         <div>
                                             <div class="point-title">Ownership-aware integration <span class="expand-icon">+</span></div>
                                             <div class="point-desc">Re-frames financial integration around shareholders, not just lending and interbank exposures.</div>
@@ -1308,7 +1524,7 @@
                                 <div class="viz-sub">Implications for macroprudential supervision in the EU</div>
 
                                 <div class="big-idea">
-                                    The Buch position — <em>deepen integration but manage contagion</em> — is broadly supported.
+                                    The Buch position, <em>deepen integration but manage contagion</em>, is broadly supported.
                                     But contagion need not arrive only through the channels currently monitored.
                                     Shared shareholders are a parallel route the macroprudential framework barely covers.
                                 </div>
@@ -1349,8 +1565,8 @@
             <div class="work-panel" id="work-crm">
                 <article class="research-entry">
                     <div class="entry-text">
-                        <span class="entry-index">03 / Trade</span>
-                        <span class="entry-tag">MSc Quantitative Economics Thesis · Working Paper</span>
+                        <span class="entry-index">04 / Trade</span>
+                        <span class="entry-tag">Working thesis · MSc Quantitative Economics, UAM</span>
                         <h2 class="entry-title">
                             Derisking European Critical Raw Material Dependencies with Graph Learning
                         </h2>
@@ -1366,9 +1582,9 @@
                     <div class="entry-viz">
                         <div class="viz-container">
                             <div class="viz-tabs">
-                                <button class="viz-tab" onclick="showVizPanel('crm-idea', this)">The Idea</button>
-                                <button class="viz-tab" onclick="showVizPanel('crm-novelty', this)">Innovation</button>
-                                <button class="viz-tab" onclick="showVizPanel('crm-policy', this)">Policy</button>
+                                <button class="viz-tab" onclick="showVizPanel('crm-idea', this)" aria-expanded="false">The Idea</button>
+                                <button class="viz-tab" onclick="showVizPanel('crm-novelty', this)" aria-expanded="false">Innovation</button>
+                                <button class="viz-tab" onclick="showVizPanel('crm-policy', this)" aria-expanded="false">Policy</button>
                             </div>
 
                             <div class="viz-panel" id="viz-crm-idea">
@@ -1381,7 +1597,8 @@
                                     and digital transitions depend on, <em>the pattern is roughly the opposite</em>.
                                 </div>
 
-                                <svg width="100%" viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" style="margin-top: 8px;">
+                                <svg width="100%" viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" style="margin-top: 8px;" role="img">
+                                    <title>The EU at the centre of a network of critical raw material suppliers, with the heaviest flows arriving from distant and politically misaligned partners.</title>
                                     <defs>
                                         <marker id="arrC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
                                             <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1440,25 +1657,25 @@
                                 </div>
 
                                 <ol class="numbered-list expandable-list">
-                                    <li onclick="toggleInnov(this)">
+                                    <li onclick="toggleInnov(this)" onkeydown="keyToggle(event, this)" tabindex="0" role="button" aria-expanded="false">
                                         <div>
                                             <div class="point-title">Structural trade + graph learning <span class="expand-icon">+</span></div>
                                             <div class="point-desc">Brings dynamic graph neural networks into a domain dominated by gravity models, without abandoning the structural intuition.</div>
                                         </div>
                                     </li>
-                                    <li onclick="toggleInnov(this)">
+                                    <li onclick="toggleInnov(this)" onkeydown="keyToggle(event, this)" tabindex="0" role="button" aria-expanded="false">
                                         <div>
                                             <div class="point-title">Trade as an evolving network <span class="expand-icon">+</span></div>
                                             <div class="point-desc">Treats the global CRM trade system as a dynamic graph rather than a stack of bilateral flows, making relational structure first-class.</div>
                                         </div>
                                     </li>
-                                    <li onclick="toggleInnov(this)">
+                                    <li onclick="toggleInnov(this)" onkeydown="keyToggle(event, this)" tabindex="0" role="button" aria-expanded="false">
                                         <div>
                                             <div class="point-title">Supplier-disruption scenarios <span class="expand-icon">+</span></div>
-                                            <div class="point-desc">Asks what concentration looks like if a major supplier becomes unavailable — the question policy actually has to answer.</div>
+                                            <div class="point-desc">Asks what concentration looks like if a major supplier becomes unavailable. That is the question policy actually has to answer.</div>
                                         </div>
                                     </li>
-                                    <li onclick="toggleInnov(this)">
+                                    <li onclick="toggleInnov(this)" onkeydown="keyToggle(event, this)" tabindex="0" role="button" aria-expanded="false">
                                         <div>
                                             <div class="point-title">Policy-aligned risk taxonomy <span class="expand-icon">+</span></div>
                                             <div class="point-desc">Translates model outputs into a classification compatible with the EU's own concentration thresholds.</div>
@@ -1474,7 +1691,7 @@
                                 <div class="big-idea">
                                     The EU has set diversification, processing, and recycling targets for the materials its
                                     green and digital transitions depend on. The thesis offers a way to <em>prioritize</em>
-                                    those targets — telling policymakers where the structural exposure is largest before
+                                    those targets, telling policymakers where the structural exposure is largest before
                                     the next disruption forces the answer.
                                 </div>
 
@@ -1494,13 +1711,13 @@
                                     <li>
                                         <div>
                                             <div class="point-title">Frame de-risking as a structural problem</div>
-                                            <div class="point-desc">EU exposure is not random — it sits with distant, politically misaligned partners. De-risking has to confront the geography, not just the volumes.</div>
+                                            <div class="point-desc">EU exposure is not random. It sits with distant, politically misaligned partners. De-risking has to confront the geography, not just the volumes.</div>
                                         </div>
                                     </li>
                                 </ol>
 
                                 <div class="pull-quote">
-                                    <strong>The takeaway.</strong> Resource security is not a list of materials. It's a network with structural weak points — and those weak points can be located before they fail.
+                                    <strong>The takeaway.</strong> Resource security is not a list of materials. It's a network with structural weak points, and those weak points can be located before they fail.
                                 </div>
                             </div>
                         </div>
@@ -1510,7 +1727,7 @@
 
                 </div>
             </div>
-        </header>
+        </main>
 
     </div>
 
@@ -1528,19 +1745,29 @@
 
         function showWork(id, btn) {
             document.querySelectorAll('.work-panel').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.work-item').forEach(i => i.classList.remove('active'));
+            document.querySelectorAll('.work-item').forEach(i => {
+                i.classList.remove('active');
+                i.setAttribute('aria-expanded', 'false');
+            });
             document.getElementById('work-' + id).classList.add('active');
             btn.classList.add('active');
+            btn.setAttribute('aria-expanded', 'true');
             document.querySelector('.work-selector').classList.add('is-selected');
             document.body.classList.add('has-thesis-open');
         }
 
         function resetWork() {
             document.querySelectorAll('.work-panel').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.work-item').forEach(i => i.classList.remove('active'));
+            document.querySelectorAll('.work-item').forEach(i => {
+                i.classList.remove('active');
+                i.setAttribute('aria-expanded', 'false');
+            });
             document.querySelectorAll('.research-entry').forEach(e => e.classList.remove('tab-open'));
             document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.viz-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.viz-tab').forEach(t => {
+                t.classList.remove('active');
+                t.setAttribute('aria-expanded', 'false');
+            });
             document.getElementById('work-empty').classList.add('active');
             document.querySelector('.work-selector').classList.remove('is-selected');
             document.body.classList.remove('has-thesis-open');
@@ -1548,9 +1775,18 @@
 
         function toggleInnov(cell) {
             cell.classList.toggle('expanded');
+            const open = cell.classList.contains('expanded');
+            cell.setAttribute('aria-expanded', open ? 'true' : 'false');
             const icon = cell.querySelector('.expand-icon');
             if (icon) {
-                icon.textContent = cell.classList.contains('expanded') ? '−' : '+';
+                icon.textContent = open ? '−' : '+';
+            }
+        }
+
+        function keyToggle(event, el) {
+            if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+                event.preventDefault();
+                toggleInnov(el);
             }
         }
 
@@ -1562,7 +1798,10 @@
 
             // Always collapse all panels in this container
             container.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
-            container.querySelectorAll('.viz-tab').forEach(t => t.classList.remove('active'));
+            container.querySelectorAll('.viz-tab').forEach(t => {
+                t.classList.remove('active');
+                t.setAttribute('aria-expanded', 'false');
+            });
 
             // If user clicked the already-active tab, fully collapse and restore the intro text
             if (isAlreadyActive) {
@@ -1572,8 +1811,15 @@
 
             targetPanel.classList.add('active');
             btn.classList.add('active');
+            btn.setAttribute('aria-expanded', 'true');
             if (entry) entry.classList.add('tab-open');
         }
+
+        // Open the first work item on load, so a visitor who never clicks still sees research
+        document.addEventListener('DOMContentLoaded', function() {
+            const first = document.querySelector('.work-item');
+            if (first) showWork('networks', first);
+        });
     </script>
 </body>
 </html>
