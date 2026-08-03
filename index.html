@@ -334,6 +334,25 @@
             gap: 2px;
         }
 
+        .work-group {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .work-group + .work-group { margin-top: 18px; }
+
+        .work-group-label {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--text-quaternary);
+            padding-bottom: 5px;
+            margin-bottom: 2px;
+            border-bottom: 1px solid var(--border);
+        }
+
         .work-item {
             display: grid;
             grid-template-columns: 40px 1fr auto;
@@ -978,6 +997,8 @@
                 <div class="info-block work-selector">
                     <div class="info-label">Selected Work</div>
                     <div class="work-list">
+                      <div class="work-group">
+                        <div class="work-group-label">Research and policy</div>
                         <button class="work-item active" onclick="showWork('networks', this)" aria-expanded="true">
                             <span class="work-item-num">01</span>
                             <span class="work-item-content">
@@ -1002,6 +1023,10 @@
                             </span>
                             <span class="work-item-arrow">→</span>
                         </button>
+                      </div>
+
+                      <div class="work-group">
+                        <div class="work-group-label">Engineering and software</div>
                         <button class="work-item" onclick="showWork('microclinic', this)" aria-expanded="false">
                             <span class="work-item-num">04</span>
                             <span class="work-item-content">
@@ -1018,6 +1043,7 @@
                             </span>
                             <span class="work-item-arrow">→</span>
                         </button>
+                      </div>
                     </div>
                 </div>
 
