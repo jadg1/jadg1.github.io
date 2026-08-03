@@ -318,6 +318,19 @@
             margin: 0 6px;
         }
 
+        /* Stacked lines inside an info block (education, places) */
+        .info-content .line {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .info-content .line:last-child { margin-bottom: 0; }
+
+        .info-content .line-note {
+            color: var(--text-tertiary);
+            font-size: 12.5px;
+        }
+
         /* Vertical stack for info blocks in left column */
         .hero-left .info-block {
             display: block;
@@ -925,28 +938,62 @@
                 <div class="info-block">
                     <div class="info-label">About</div>
                     <div class="info-content">
-                        MS student in Finance and researcher in computational social sciences. Based in Barcelona.
+                        Complex systems researcher working on European policy — trade, defense and finance.
+                        Two MSc degrees and a BSc across finance, quantitative economics and engineering physics.
+                        Based in Vienna.
+                    </div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-label">Now</div>
+                    <div class="info-content">
+                        Complexity Science Hub, Vienna<span class="sep">/</span>edge-independent vs generative degree models for networks
+                    </div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-label">Education</div>
+                    <div class="info-content">
+                        <span class="line">MSc Finance and Banking<span class="sep">·</span><span class="line-note">UPF Barcelona School of Management, 2026</span></span>
+                        <span class="line">MSc Quantitative Economics<span class="sep">·</span><span class="line-note">Universidad Autónoma de Madrid, 2025</span></span>
+                        <span class="line">BSc Engineering Physics<span class="sep">·</span><span class="line-note">Tecnológico de Monterrey, 2023</span></span>
                     </div>
                 </div>
 
                 <div class="info-block">
                     <div class="info-label">Skills</div>
                     <div class="info-content">
-                        Python<span class="sep">/</span>R<span class="sep">/</span>Stata<span class="sep">/</span>Econometrics<span class="sep">/</span>Machine Learning<span class="sep">/</span>SQL<span class="sep">/</span>LaTeX
+                        Python<span class="sep">/</span>R<span class="sep">/</span>Stata<span class="sep">/</span>Econometrics<span class="sep">/</span>Network Analysis<span class="sep">/</span>Machine Learning<span class="sep">/</span>SQL<span class="sep">/</span>LaTeX
                     </div>
                 </div>
+
                 <div class="info-block">
                     <div class="info-label">Research Interests</div>
                     <div class="info-content">
-                        Banking Risk<span class="sep">/</span>European Policy<span class="sep">/</span>Computational Politics<span class="sep">/</span>ML Methods
+                        Complex Systems<span class="sep">/</span>European Affairs<span class="sep">/</span>Trade &amp; Defense<span class="sep">/</span>Banking Risk<span class="sep">/</span>ML Methods
+                    </div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-label">Places</div>
+                    <div class="info-content">
+                        Monterrey<span class="sep">→</span>Madrid<span class="sep">→</span>Barcelona<span class="sep">→</span>Vienna
                     </div>
                 </div>
 
                 <div class="info-block work-selector">
                     <div class="info-label">Selected Work</div>
                     <div class="work-list">
-                        <button class="work-item" onclick="showWork('banking', this)">
+                        <button class="work-item" onclick="showWork('networks', this)">
                             <span class="work-item-num">01</span>
+                            <span class="work-item-content">
+                                <span class="work-item-title">Edge-Independent vs Generative Degree Models</span>
+                                <span class="work-item-sub">Network Science · Statistical Inference · Complexity Science Hub</span>
+                            </span>
+                            <span class="work-item-arrow">→</span>
+                        </button>
+                        <button class="work-item" onclick="showWork('banking', this)">
+                            <span class="work-item-num">02</span>
                             <span class="work-item-content">
                                 <span class="work-item-title">Cross-Border Common Ownership &amp; Bank Risk</span>
                                 <span class="work-item-sub">Banking Regulation · Systemic Risk · EU Integration</span>
@@ -954,7 +1001,7 @@
                             <span class="work-item-arrow">→</span>
                         </button>
                         <button class="work-item" onclick="showWork('crm', this)">
-                            <span class="work-item-num">02</span>
+                            <span class="work-item-num">03</span>
                             <span class="work-item-content">
                                 <span class="work-item-title">Derisking EU CRM Dependencies with Graph Learning</span>
                                 <span class="work-item-sub">Trade Policy · Geopolitics · Graph Learning</span>
@@ -980,13 +1027,182 @@
                     </div>
 
             <!-- ═══════════════════════════════════════════════════════════ -->
+            <!-- NETWORKS                                                      -->
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <div class="work-panel" id="work-networks">
+                <article class="research-entry">
+                    <div class="entry-text">
+                        <span class="entry-index">01 / Networks</span>
+                        <span class="entry-tag">Complexity Science Hub · Current</span>
+                        <h2 class="entry-title">
+                            What Edge-Independent Models Get Wrong About Zeros
+                        </h2>
+                        <ul class="entry-list">
+                            <li>Compares edge-independent models, which draw every possible link from its own probability, with generative degree models that build networks from the degree sequence</li>
+                            <li>Focuses on how each family handles the edges that are never observed — including pairs that could not have connected at all</li>
+                            <li>Relevant wherever networks are reconstructed rather than observed: trade, interbank, ownership</li>
+                        </ul>
+                        <div class="entry-meta">Supervised by <strong>Leonardo Ialongo</strong> and <strong>Kjartan Van Driel</strong></div>
+                        <div class="entry-meta">Complexity Science Hub Vienna · 2026</div>
+                    </div>
+
+                    <div class="entry-viz">
+                        <div class="viz-container">
+                            <div class="viz-tabs">
+                                <button class="viz-tab" onclick="showVizPanel('net-idea', this)">The Idea</button>
+                                <button class="viz-tab" onclick="showVizPanel('net-question', this)">The Question</button>
+                                <button class="viz-tab" onclick="showVizPanel('net-matters', this)">Why It Matters</button>
+                            </div>
+
+                            <div class="viz-panel" id="viz-net-idea">
+                                <div class="viz-title">Two ways to generate the same network</div>
+                                <div class="viz-sub">Independent edges · fixed degrees</div>
+
+                                <div class="big-idea">
+                                    One family assigns every node pair its own probability and flips a coin across
+                                    the whole adjacency matrix. The other starts from the degrees and places edges
+                                    to satisfy them. Both can reproduce the same degree sequence on average —
+                                    <em>but they disagree about which networks were possible in the first place.</em>
+                                </div>
+
+                                <svg width="100%" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" style="margin-top: 8px;">
+                                    <!-- Left: edge-independent -->
+                                    <text x="155" y="42" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="currentColor">Edge-independent</text>
+
+                                    <path d="M100 95 L210 95" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.65"/>
+                                    <path d="M100 175 L210 175" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.65"/>
+                                    <path d="M100 95 L100 175" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.65"/>
+                                    <path d="M210 95 L210 175" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.65"/>
+                                    <path d="M100 95 L210 175" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
+
+                                    <text x="155" y="86" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="var(--text-tertiary)" font-style="italic">p</text>
+
+                                    <circle cx="100" cy="95" r="11" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="210" cy="95" r="11" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="100" cy="175" r="11" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="210" cy="175" r="11" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>
+
+                                    <path d="M148 128 L168 148 M168 128 L148 148" stroke="currentColor" stroke-width="1.2" opacity="0.9"/>
+                                    <text x="158" y="170" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="var(--text-tertiary)" font-style="italic">impossible pair</text>
+
+                                    <text x="155" y="220" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10.5" fill="var(--text-secondary)">every pair flips its own coin</text>
+
+                                    <!-- Divider -->
+                                    <path d="M300 55 L300 230" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+
+                                    <!-- Right: generative degree -->
+                                    <text x="445" y="42" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="currentColor">Generative degree</text>
+
+                                    <path d="M390 95 L500 95" fill="none" stroke="currentColor" stroke-width="1.2"/>
+                                    <path d="M390 95 L390 175" fill="none" stroke="currentColor" stroke-width="1.2"/>
+                                    <path d="M500 95 L500 175" fill="none" stroke="currentColor" stroke-width="1.2"/>
+
+                                    <path d="M390 175 L406 189 M500 175 L484 189" stroke="currentColor" stroke-width="1" opacity="0.55"/>
+
+                                    <circle cx="390" cy="95" r="11" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="500" cy="95" r="11" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="390" cy="175" r="11" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="500" cy="175" r="11" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>
+
+                                    <text x="390" y="99" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="currentColor">2</text>
+                                    <text x="500" y="99" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="currentColor">2</text>
+                                    <text x="390" y="179" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="currentColor">1</text>
+                                    <text x="500" y="179" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="currentColor">1</text>
+
+                                    <text x="445" y="220" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10.5" fill="var(--text-secondary)">edges placed to meet degrees</text>
+
+                                    <text x="300" y="272" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="var(--text-secondary)" font-style="italic">
+                                        Same degrees on average. Different answers about the zeros.
+                                    </text>
+                                </svg>
+                            </div>
+
+                            <div class="viz-panel" id="viz-net-question">
+                                <div class="viz-title">The question</div>
+                                <div class="viz-sub">Where the two families stop agreeing</div>
+
+                                <div class="big-idea">
+                                    In a sparse network almost every entry of the adjacency matrix is a zero.
+                                    How a model treats those zeros — as absences, or as impossibilities —
+                                    is doing most of the work behind the estimates.
+                                </div>
+
+                                <ol class="numbered-list expandable-list">
+                                    <li onclick="toggleInnov(this)">
+                                        <div>
+                                            <div class="point-title">Unobserved is not the same as impossible <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">A zero can mean the link did not happen, or that it could never have happened. Independent-edge likelihoods score both the same way.</div>
+                                        </div>
+                                    </li>
+                                    <li onclick="toggleInnov(this)">
+                                        <div>
+                                            <div class="point-title">Degrees as constraint or as outcome <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">One family fixes the degree sequence by construction; the other only matches it in expectation, with variance that the first does not have.</div>
+                                        </div>
+                                    </li>
+                                    <li onclick="toggleInnov(this)">
+                                        <div>
+                                            <div class="point-title">Sampling the non-edges <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">How the enormous set of candidate pairs is sampled or weighted drives parameter estimates in sparse settings.</div>
+                                        </div>
+                                    </li>
+                                    <li onclick="toggleInnov(this)">
+                                        <div>
+                                            <div class="point-title">Mapping the divergence <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">Identifying the regimes — sparsity, degree heterogeneity, structural zeros — where the choice of model actually changes the conclusion.</div>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
+
+                            <div class="viz-panel" id="viz-net-matters">
+                                <div class="viz-title">Why it matters</div>
+                                <div class="viz-sub">Reconstructed networks carry their model's assumptions</div>
+
+                                <div class="big-idea">
+                                    Most economic networks are never fully observed. Interbank exposures, ownership links
+                                    and bilateral flows are <em>inferred</em> — and whatever the estimator assumes about
+                                    the missing entries is inherited by everything computed downstream.
+                                </div>
+
+                                <ol class="numbered-list">
+                                    <li>
+                                        <div>
+                                            <div class="point-title">Systemic risk numbers inherit the reconstruction</div>
+                                            <div class="point-desc">Contagion estimates are computed on networks that were estimated, not measured. The model's treatment of absent links propagates straight into the risk figure.</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <div class="point-title">Null models set the bar for what counts as surprising</div>
+                                            <div class="point-desc">Clustering, assortativity and motif significance are all measured against a generative benchmark. Change the family, change the benchmark.</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <div class="point-title">Structural zeros deserve modelling, not deletion</div>
+                                            <div class="point-desc">Embargoes, regulatory perimeters and simple non-existence make some links impossible. Treating them as ordinary absences distorts the fit.</div>
+                                        </div>
+                                    </li>
+                                </ol>
+
+                                <div class="pull-quote">
+                                    <strong>The takeaway.</strong> A model of a network is also a model of everything the network did not do. In sparse data, the non-edges are the data.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════ -->
             <!-- BANKING                                                       -->
             <!-- ═══════════════════════════════════════════════════════════ -->
             <div class="work-panel" id="work-banking">
                 <article class="research-entry">
                     <div class="entry-text">
-                        <span class="entry-index">01 / Banking</span>
-                        <span class="entry-tag">Finance Thesis</span>
+                        <span class="entry-index">02 / Banking</span>
+                        <span class="entry-tag">MSc Finance Thesis · UPF BSM</span>
                         <h2 class="entry-title">
                             Does Cross-Border Common Ownership Diversify Bank Risk?
                         </h2>
@@ -996,7 +1212,7 @@
                             <li>Speaks directly to the live Banking Union debate on integration vs. contagion</li>
                         </ul>
                         <div class="entry-meta">Supervised by <strong>Albert Banal-Estañol</strong></div>
-                        <div class="entry-meta">In progress · 2026</div>
+                        <div class="entry-meta">Completed with merit · 2026</div>
                     </div>
 
                     <div class="entry-viz">
@@ -1133,8 +1349,8 @@
             <div class="work-panel" id="work-crm">
                 <article class="research-entry">
                     <div class="entry-text">
-                        <span class="entry-index">02 / Trade</span>
-                        <span class="entry-tag">Quantitative Economics Thesis · Working Paper</span>
+                        <span class="entry-index">03 / Trade</span>
+                        <span class="entry-tag">MSc Quantitative Economics Thesis · Working Paper</span>
                         <h2 class="entry-title">
                             Derisking European Critical Raw Material Dependencies with Graph Learning
                         </h2>
