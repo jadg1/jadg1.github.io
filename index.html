@@ -950,7 +950,7 @@
                 <div class="info-block">
                     <div class="info-label">Now</div>
                     <div class="info-content">
-                        Complexity Science Hub, Vienna<span class="sep">/</span>network reconstruction methods and their application to trade
+                        Complexity Science Hub, Vienna<span class="sep">/</span>deep generative models for the dynamics of world trade networks
                     </div>
                 </div>
 
@@ -1002,8 +1002,8 @@
                         <button class="work-item active" onclick="showWork('networks', this)" aria-expanded="true">
                             <span class="work-item-num">01</span>
                             <span class="work-item-content">
-                                <span class="work-item-title">Edge-Independent vs Generative Degree Models</span>
-                                <span class="work-item-sub">Network Science · Statistical Inference · Complexity Science Hub</span>
+                                <span class="work-item-title">Generative Models for the Rewiring of World Trade</span>
+                                <span class="work-item-sub">Generative Models · Trade Networks · Complexity Science Hub</span>
                             </span>
                             <span class="work-item-arrow">→</span>
                         </button>
@@ -1066,162 +1066,262 @@
                 <article class="research-entry">
                     <div class="entry-text">
                         <span class="entry-index">01 / Networks</span>
-                        <span class="entry-tag">Complexity Science Hub · Current</span>
+                        <span class="entry-tag">Complexity Science Hub Vienna · Current</span>
                         <h2 class="entry-title">
-                            What Edge-Independent Models Get Wrong About Zeros
+                            Can a Generative Model Learn How World Trade Rewires Itself?
                         </h2>
                         <ul class="entry-list">
-                            <li>Compares edge-independent models, which draw every possible link from its own probability, with generative degree models that build networks from the degree sequence</li>
-                            <li>Focuses on how each family handles the edges that are never observed, including pairs that could not have connected at all</li>
-                            <li>Relevant wherever networks are reconstructed rather than observed: trade, interbank, ownership</li>
+                            <li>Applied GenDeg, a normalizing-flow generative model for dynamic graphs, to 30 years of CEPII BACI trade data: 172 countries, 96 product sectors, 1995 to 2024</li>
+                            <li>Built the 15-stage training and evaluation pipeline, and benchmarked the model against gravity models, latent-space and STERGM baselines, and deliberately stripped-down nulls</li>
+                            <li>The answer is partly yes and partly no, and one of the affirmative results turned out to be a statistical artefact that I found and killed</li>
                         </ul>
-                        <div class="entry-meta">Supervised by <strong>Leonardo Ialongo</strong> and <strong>Kjartan Van Driel</strong></div>
-                        <div class="entry-meta">Complexity Science Hub Vienna · 2026</div>
+                        <div class="entry-meta">Supervised by <strong>Leonardo N. Ialongo</strong></div>
+                        <div class="entry-meta">Python, PyTorch, Hydra, polars · 2026</div>
                     </div>
 
                     <div class="entry-viz">
                         <div class="viz-container">
                             <div class="viz-tabs">
                                 <button class="viz-tab" onclick="showVizPanel('net-idea', this)" aria-expanded="false">The Idea</button>
-                                <button class="viz-tab" onclick="showVizPanel('net-question', this)" aria-expanded="false">The Question</button>
-                                <button class="viz-tab" onclick="showVizPanel('net-matters', this)" aria-expanded="false">Why It Matters</button>
+                                <button class="viz-tab" onclick="showVizPanel('net-found', this)" aria-expanded="false">Findings</button>
+                                <button class="viz-tab" onclick="showVizPanel('net-wrong', this)" aria-expanded="false">What I Got Wrong</button>
                             </div>
 
                             <div class="viz-panel" id="viz-net-idea">
-                                <div class="viz-title">Two ways to generate the same network</div>
-                                <div class="viz-sub">Independent edges · fixed degrees</div>
+                                <div class="viz-title">A hole in the standard class, in three nodes</div>
+                                <div class="viz-sub">Edge-independent models · exclusivity · co-occurrence</div>
 
                                 <div class="big-idea">
-                                    One family assigns every node pair its own probability and flips a coin across
-                                    the whole adjacency matrix. The other starts from the degrees and places edges
-                                    to satisfy them. Both can reproduce the same degree sequence on average.
-                                    <em>But they disagree about which networks were possible in the first place.</em>
+                                    Erdős-Rényi, Chung-Lu, stochastic block models and all four gravity models used in
+                                    trade economics belong to one class: every possible link gets its own probability
+                                    and its own independent coin flip. <em>That class has a hole, and three countries
+                                    are enough to show it.</em>
                                 </div>
 
-                                <svg width="100%" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" style="margin-top: 8px;" role="img" aria-label="Left: every node pair joined by a dashed probability, one pair marked impossible. Right: solid edges placed to satisfy fixed node degrees.">
-                                    <title>Two node sets: on the left, every pair joined by a dashed probability with one pair marked impossible; on the right, solid edges placed to satisfy fixed node degrees.</title>
-                                    <!-- Left: edge-independent -->
-                                    <text x="155" y="42" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="currentColor">Edge-independent</text>
+                                <svg width="100%" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reality contains two worlds in which country A trades with exactly one of B and C. The best independent model spreads equal probability across four worlds, two of which never occur." style="margin-top: 8px;">
+                                    <title>Exclusivity: half the probability mass on worlds that never occur</title>
 
-                                    <path d="M100 95 L210 95" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.65"/>
-                                    <path d="M100 175 L210 175" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.65"/>
-                                    <path d="M100 95 L100 175" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.65"/>
-                                    <path d="M210 95 L210 175" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.65"/>
-                                    <path d="M100 95 L210 175" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
+                                    <text x="150" y="30" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11.5" fill="currentColor">Reality</text>
+                                    <text x="150" y="46" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9.5" fill="var(--text-tertiary)">A trades with B or C, never both</text>
 
-                                    <text x="155" y="86" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="var(--text-tertiary)" font-style="italic">p</text>
+                                    <circle cx="110" cy="86" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <text x="110" y="90" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9" fill="currentColor">A</text>
+                                    <circle cx="80" cy="140" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <text x="80" y="144" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9" fill="currentColor">B</text>
+                                    <circle cx="140" cy="140" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <text x="140" y="144" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9" fill="currentColor">C</text>
+                                    <path d="M104 95 L86 131" stroke="currentColor" stroke-width="1.3"/>
 
-                                    <circle cx="100" cy="95" r="11" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>
-                                    <circle cx="210" cy="95" r="11" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>
-                                    <circle cx="100" cy="175" r="11" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>
-                                    <circle cx="210" cy="175" r="11" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="230" cy="86" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <text x="230" y="90" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9" fill="currentColor">A</text>
+                                    <circle cx="200" cy="140" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <text x="200" y="144" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9" fill="currentColor">B</text>
+                                    <circle cx="260" cy="140" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <text x="260" y="144" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9" fill="currentColor">C</text>
+                                    <path d="M236 95 L254 131" stroke="currentColor" stroke-width="1.3"/>
 
-                                    <path d="M148 128 L168 148 M168 128 L148 148" stroke="currentColor" stroke-width="1.2" opacity="0.9"/>
-                                    <text x="158" y="170" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="var(--text-tertiary)" font-style="italic">impossible pair</text>
+                                    <text x="170" y="176" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9.5" fill="var(--text-tertiary)">two worlds, each 1/2</text>
 
-                                    <text x="155" y="220" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10.5" fill="var(--text-secondary)">every pair flips its own coin</text>
+                                    <path d="M310 40 L310 190" stroke="currentColor" stroke-width="1" opacity="0.2"/>
 
-                                    <!-- Divider -->
-                                    <path d="M300 55 L300 230" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+                                    <text x="455" y="30" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11.5" fill="currentColor">Best independent fit</text>
+                                    <text x="455" y="46" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9.5" fill="var(--text-tertiary)">every marginal exactly right</text>
 
-                                    <!-- Right: generative degree -->
-                                    <text x="445" y="42" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="12" fill="currentColor">Generative degree</text>
+                                    <circle cx="370" cy="86" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="345" cy="134" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="395" cy="134" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <path d="M364 95 L351 125" stroke="currentColor" stroke-width="1.2"/>
 
-                                    <path d="M390 95 L500 95" fill="none" stroke="currentColor" stroke-width="1.2"/>
-                                    <path d="M390 95 L390 175" fill="none" stroke="currentColor" stroke-width="1.2"/>
-                                    <path d="M500 95 L500 175" fill="none" stroke="currentColor" stroke-width="1.2"/>
+                                    <circle cx="455" cy="86" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="430" cy="134" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="480" cy="134" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+                                    <path d="M461 95 L474 125" stroke="currentColor" stroke-width="1.2"/>
 
-                                    <path d="M390 175 L406 189 M500 175 L484 189" stroke="currentColor" stroke-width="1" opacity="0.55"/>
+                                    <circle cx="540" cy="86" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+                                    <circle cx="515" cy="134" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+                                    <circle cx="565" cy="134" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+                                    <path d="M534 95 L521 125" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+                                    <path d="M546 95 L559 125" stroke="currentColor" stroke-width="1" opacity="0.45"/>
 
-                                    <circle cx="390" cy="95" r="11" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>
-                                    <circle cx="500" cy="95" r="11" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>
-                                    <circle cx="390" cy="175" r="11" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>
-                                    <circle cx="500" cy="175" r="11" fill="var(--bg)" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="540" cy="176" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+                                    <circle cx="515" cy="224" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+                                    <circle cx="565" cy="224" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>
 
-                                    <text x="390" y="99" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="currentColor">2</text>
-                                    <text x="500" y="99" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="currentColor">2</text>
-                                    <text x="390" y="179" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="currentColor">1</text>
-                                    <text x="500" y="179" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="currentColor">1</text>
+                                    <path d="M498 100 L582 240" stroke="currentColor" stroke-width="1.1" opacity="0.75"/>
+                                    <text x="455" y="248" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9.5" fill="var(--text-secondary)" font-style="italic">half the mass on worlds that never occur</text>
 
-                                    <text x="445" y="220" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10.5" fill="var(--text-secondary)">edges placed to meet degrees</text>
-
-                                    <text x="300" y="272" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="var(--text-secondary)" font-style="italic">
-                                        Same degrees on average. Different answers about the zeros.
-                                    </text>
+                                    <path d="M40 268 L560 268" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+                                    <text x="40" y="288" font-family="Calibri Light, sans-serif" font-size="10" fill="var(--text-secondary)">E[degree of A]</text>
+                                    <text x="200" y="288" font-family="Calibri Light, sans-serif" font-size="10" fill="currentColor">1.0 both</text>
+                                    <text x="330" y="288" font-family="Calibri Light, sans-serif" font-size="10" fill="var(--text-secondary)">Var[degree of A]</text>
+                                    <text x="470" y="288" font-family="Calibri Light, sans-serif" font-size="10" fill="currentColor">0.0 vs 0.5</text>
                                 </svg>
-                            </div>
-
-                            <div class="viz-panel" id="viz-net-question">
-                                <div class="viz-title">The question</div>
-                                <div class="viz-sub">Where the two families stop agreeing</div>
-
-                                <div class="big-idea">
-                                    In a sparse network almost every entry of the adjacency matrix is a zero.
-                                    How a model treats those zeros, as absences or as impossibilities,
-                                    is doing most of the work behind the estimates.
-                                </div>
 
                                 <ol class="numbered-list expandable-list">
-                                    <li onclick="toggleInnov(this)" onkeydown="innovKey(event, this)" tabindex="0" role="button" aria-expanded="false">
+                                    <li role="button" tabindex="0" aria-expanded="false" onclick="toggleInnov(this)" onkeydown="innovKey(event, this)">
                                         <div>
-                                            <div class="point-title">Unobserved is not the same as impossible <span class="expand-icon">+</span></div>
-                                            <div class="point-desc">A zero can mean the link did not happen, or that it could never have happened. Independent-edge likelihoods score both the same way.</div>
+                                            <div class="point-title">Exclusivity: the variance it cannot reach <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">A degree in this class is a sum of independent coin flips, so its variance is pinned by the marginals. The model cannot represent a country whose number of partners is more certain than its choice of partner.</div>
                                         </div>
                                     </li>
-                                    <li onclick="toggleInnov(this)" onkeydown="innovKey(event, this)" tabindex="0" role="button" aria-expanded="false">
+                                    <li role="button" tabindex="0" aria-expanded="false" onclick="toggleInnov(this)" onkeydown="innovKey(event, this)">
                                         <div>
-                                            <div class="point-title">Degrees as constraint or as outcome <span class="expand-icon">+</span></div>
-                                            <div class="point-desc">One family fixes the degree sequence by construction; the other only matches it in expectation, with variance that the first does not have.</div>
+                                            <div class="point-title">Co-occurrence: an impossibility, not a bad fit <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">Where all three links exist or none, expected triangles are 0.500 and the best independent fit gives 0.125. Chanpuriya et al. cap any edge-independent model at 0.306 unless it partially memorises the graph and stops generating variety.</div>
                                         </div>
                                     </li>
-                                    <li onclick="toggleInnov(this)" onkeydown="innovKey(event, this)" tabindex="0" role="button" aria-expanded="false">
+                                    <li role="button" tabindex="0" aria-expanded="false" onclick="toggleInnov(this)" onkeydown="innovKey(event, this)">
                                         <div>
-                                            <div class="point-title">Sampling the non-edges <span class="expand-icon">+</span></div>
-                                            <div class="point-desc">How the enormous set of candidate pairs is sampled or weighted drives parameter estimates in sparse settings.</div>
+                                            <div class="point-title">One hole seen from both sides <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">Carrying only marginals means having neither the negative dependence that pins a country's partner count nor the positive dependence that closes a triangle. Diversity and structure trade off inside the class, and the theorem says by how much.</div>
                                         </div>
                                     </li>
-                                    <li onclick="toggleInnov(this)" onkeydown="innovKey(event, this)" tabindex="0" role="button" aria-expanded="false">
+                                    <li role="button" tabindex="0" aria-expanded="false" onclick="toggleInnov(this)" onkeydown="innovKey(event, this)">
                                         <div>
-                                            <div class="point-title">Mapping the divergence <span class="expand-icon">+</span></div>
-                                            <div class="point-desc">Identifying the regimes where the choice of model actually changes the conclusion: sparsity, degree heterogeneity, structural zeros.</div>
+                                            <div class="point-title">How GenDeg escapes by construction <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">It models the count first, next year's generalized degree, and only then places edges, so a degree is never a sum of independent Bernoullis. Whether that theoretical escape shows up on real trade data is the empirical question.</div>
                                         </div>
                                     </li>
                                 </ol>
                             </div>
 
-                            <div class="viz-panel" id="viz-net-matters">
-                                <div class="viz-title">Why it matters</div>
-                                <div class="viz-sub">Reconstructed networks carry their model's assumptions</div>
+                            <div class="viz-panel" id="viz-net-found">
+                                <div class="viz-title">The shape of persistence, not its level</div>
+                                <div class="viz-sub">Impulse response to a shock in a country's partner count</div>
 
                                 <div class="big-idea">
-                                    Most economic networks are never fully observed. Interbank exposures, ownership links
-                                    and bilateral flows are <em>inferred</em>, and whatever the estimator assumes about
-                                    the missing entries is inherited by everything computed downstream.
+                                    Shock a country's number of trade partners and watch the effect decay. Observed
+                                    trade decays gradually, and so does GenDeg. The gravity response collapses at
+                                    horizon 1, which is independent sampling noise disappearing, then flattens into a
+                                    tail driven purely by GDP. <em>It fails in the same direction in 10 of 10 sectors,
+                                    on a feature no refitting can reach.</em>
                                 </div>
+
+                                <svg width="100%" viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Decay curves over six years. Observed and GenDeg decline gradually and almost together, with GenDeg slightly above. The gravity curve drops sharply after the first year and then stays nearly flat and low." style="margin-top: 8px;">
+                                    <title>Impulse response decay: observed, GenDeg and gravity</title>
+
+                                    <path d="M70 40 L70 220 L570 220" fill="none" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+                                    <text x="58" y="44" text-anchor="end" font-family="Calibri Light, sans-serif" font-size="9" fill="var(--text-tertiary)">1.0</text>
+                                    <text x="58" y="224" text-anchor="end" font-family="Calibri Light, sans-serif" font-size="9" fill="var(--text-tertiary)">0</text>
+                                    <text x="320" y="246" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9.5" fill="var(--text-tertiary)">years after the shock</text>
+
+                                    <path d="M70 40 L152 69 L233 92 L315 112 L397 130 L478 144 L560 155" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55" stroke-dasharray="4 3"/>
+                                    <text x="566" y="152" font-family="Calibri Light, sans-serif" font-size="9" fill="var(--text-tertiary)">GenDeg</text>
+
+                                    <path d="M70 40 L152 74 L233 101 L315 123 L397 141 L478 155 L560 168" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                                    <text x="566" y="172" font-family="Calibri Light, sans-serif" font-size="9" fill="currentColor">observed</text>
+
+                                    <path d="M70 40 L152 173 L233 177 L315 179 L397 180 L478 181 L560 182" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+                                    <text x="566" y="188" font-family="Calibri Light, sans-serif" font-size="9" fill="var(--text-tertiary)">gravity</text>
+
+                                    <path d="M120 96 L146 140" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
+                                    <text x="118" y="92" text-anchor="end" font-family="Calibri Light, sans-serif" font-size="9" fill="var(--text-secondary)" font-style="italic">collapse, then flat</text>
+
+                                    <text x="320" y="30" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9.5" fill="var(--text-secondary)">half-life: observed 3.0 yr · GenDeg 3.5 yr · gravity 1.0 yr</text>
+                                </svg>
+
+                                <ol class="numbered-list expandable-list">
+                                    <li role="button" tabindex="0" aria-expanded="false" onclick="toggleInnov(this)" onkeydown="innovKey(event, this)">
+                                        <div>
+                                            <div class="point-title">Right decay shape, slightly too persistent <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">GenDeg reaches persistence 0.842 against an observed 0.814, running above in 6 of 10 sectors. The gravity family sits at 0.711 to 0.721 and below observed in 10 of 10.</div>
+                                        </div>
+                                    </li>
+                                    <li role="button" tabindex="0" aria-expanded="false" onclick="toggleInnov(this)" onkeydown="innovKey(event, this)">
+                                        <div>
+                                            <div class="point-title">Most persistence is covariates, not dynamics <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">A model with no dynamics at all, each year an independent cross-sectional fit, still recovers about 73% of cumulative degree persistence. That reframes the target: the interesting quantity was never the level, it was the shape.</div>
+                                        </div>
+                                    </li>
+                                    <li role="button" tabindex="0" aria-expanded="false" onclick="toggleInnov(this)" onkeydown="innovKey(event, this)">
+                                        <div>
+                                            <div class="point-title">Two failure modes, reality in between <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">Models with an explicit carry-forward term overshoot (GenDeg 1.21×, STERGM 1.34×); models that redraw edges each step undershoot (latent-space 0.40×). No simple generator lands on reality. Over-persistence is a property of a class, not a quirk.</div>
+                                        </div>
+                                    </li>
+                                    <li role="button" tabindex="0" aria-expanded="false" onclick="toggleInnov(this)" onkeydown="innovKey(event, this)">
+                                        <div>
+                                            <div class="point-title">Rate right, mechanism wrong <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">Left running free, mean degree error stays under 1.6% for four years while the degree Gini falls from 0.591 to 0.422 against an observed 0.595. Reality adds partners while holding the hierarchy; GenDeg fills the bottom and erodes the top.</div>
+                                        </div>
+                                    </li>
+                                    <li role="button" tabindex="0" aria-expanded="false" onclick="toggleInnov(this)" onkeydown="innovKey(event, this)">
+                                        <div>
+                                            <div class="point-title">Blind to what is being traded <span class="expand-icon">+</span></div>
+                                            <div class="point-desc">Observed persistence rises across the Rauch bands from 0.624 to 0.685 as theory predicts. GenDeg is flat to three decimals. A purely topological generator has no channel through which product type can matter.</div>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
+
+                            <div class="viz-panel" id="viz-net-wrong">
+                                <div class="viz-title">The result I killed</div>
+                                <div class="viz-sub">A binning artefact, and what survived it</div>
+
+                                <div class="big-idea">
+                                    My earlier headline was that trade-link retention is far more over-dispersed than
+                                    independent retention allows, evidence of exactly the edge dependence the toys say
+                                    the standard class cannot represent. <em>It was largely an artefact of how the
+                                    benchmark was binned, and I found it in my own result.</em>
+                                </div>
+
+                                <svg width="100%" viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The variance of retained links splits into a benchmark term and a second term from degree variation within each bin, which the benchmark cannot see. Correcting it drops observed peak dispersion from 6.67 to 1.18." style="margin-top: 8px;">
+                                    <title>Variance decomposition and the corrected dispersion values</title>
+
+                                    <text x="300" y="34" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="13" fill="currentColor">Var(K)  =  E[k]·p(1−p)  +  p²·Var(k)</text>
+
+                                    <path d="M196 46 L196 58 L286 58 L286 46" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55"/>
+                                    <text x="241" y="74" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9.5" fill="var(--text-tertiary)">the benchmark</text>
+
+                                    <path d="M312 46 L312 58 L404 58 L404 46" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55"/>
+                                    <text x="358" y="74" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="9.5" fill="currentColor">unaccounted for</text>
+
+                                    <text x="300" y="102" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="var(--text-secondary)" font-style="italic">Degree varies within a bin, and log-spaced bins are widest at the top.</text>
+
+                                    <path d="M90 124 L510 124" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+                                    <text x="90" y="146" font-family="Calibri Light, sans-serif" font-size="10" fill="var(--text-tertiary)">peak dispersion</text>
+                                    <text x="330" y="146" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="var(--text-tertiary)">before</text>
+                                    <text x="450" y="146" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="10" fill="var(--text-tertiary)">corrected</text>
+
+                                    <path d="M90 156 L510 156" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+                                    <text x="90" y="176" font-family="Calibri Light, sans-serif" font-size="11" fill="currentColor">observed</text>
+                                    <text x="330" y="176" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="var(--text-tertiary)">6.67</text>
+                                    <text x="450" y="176" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="currentColor">1.18</text>
+
+                                    <path d="M90 186 L510 186" stroke="currentColor" stroke-width="1" opacity="0.12"/>
+                                    <text x="90" y="206" font-family="Calibri Light, sans-serif" font-size="11" fill="currentColor">GenDeg</text>
+                                    <text x="330" y="206" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="var(--text-tertiary)">4.13</text>
+                                    <text x="450" y="206" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="currentColor">1.25</text>
+
+                                    <path d="M90 216 L510 216" stroke="currentColor" stroke-width="1" opacity="0.12"/>
+                                    <text x="90" y="236" font-family="Calibri Light, sans-serif" font-size="11" fill="currentColor">gravity ZIP</text>
+                                    <text x="330" y="236" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="var(--text-tertiary)">4.90</text>
+                                    <text x="450" y="236" text-anchor="middle" font-family="Calibri Light, sans-serif" font-size="11" fill="currentColor">1.87</text>
+                                </svg>
 
                                 <ol class="numbered-list">
                                     <li>
                                         <div>
-                                            <div class="point-title">Systemic risk numbers inherit the reconstruction</div>
-                                            <div class="point-desc">Contagion estimates are computed on networks that were estimated, not measured. The model's treatment of absent links propagates straight into the risk figure.</div>
+                                            <div class="point-title">A clean process read 3.9 instead of 1.0</div>
+                                            <div class="point-desc">The benchmark was built from each bin's mean degree, so within-bin degree variation contributed a term it could not see. A homogeneous, perfectly independent simulated process scored 3.9. My toy validations missed it because they calibrate at exact degree, where that term is identically zero.</div>
                                         </div>
                                     </li>
                                     <li>
                                         <div>
-                                            <div class="point-title">Null models set the bar for what counts as surprising</div>
-                                            <div class="point-desc">Clustering, assortativity and motif significance are all measured against a generative benchmark. Change the family, change the benchmark.</div>
+                                            <div class="point-title">After the fix, no residual is left to explain</div>
+                                            <div class="point-desc">Simulating the null on the same degrees rather than the bin mean, the edge-independent family brackets the observed value: Poisson 1.04, observed 1.18, negative binomial 1.29. On this statistic the data give no evidence that trade retention requires edge dependence.</div>
                                         </div>
                                     </li>
                                     <li>
                                         <div>
-                                            <div class="point-title">Structural zeros deserve modelling, not deletion</div>
-                                            <div class="point-desc">Embargoes, regulatory perimeters and simple non-existence make some links impossible. Treating them as ordinary absences distorts the fit.</div>
+                                            <div class="point-title">The persistence result was untouched</div>
+                                            <div class="point-desc">F1 uses a panel VAR on degree series with no binning and re-ran identical to the last digit. It now carries more of the argument than it did before, and the toys still do the theoretical work on their own.</div>
                                         </div>
                                     </li>
                                 </ol>
 
                                 <div class="pull-quote">
-                                    <strong>The takeaway.</strong> A model of a network is also a model of everything the network did not do. In sparse data, the non-edges are the data.
+                                    <strong>The takeaway.</strong> The toys prove the standard class has a representational hole. The data, once the benchmark was fixed, do not show that trade needs it. Those are different claims and the project keeps them apart.
                                 </div>
                             </div>
                         </div>
@@ -1236,7 +1336,7 @@
                 <article class="research-entry">
                     <div class="entry-text">
                         <span class="entry-index">02 / Banking</span>
-                        <span class="entry-tag">Working thesis · MSc Finance, UPF BSM</span>
+                        <span class="entry-tag">MSc Finance thesis · UPF BSM</span>
                         <h2 class="entry-title">
                             Does Cross-Border Common Ownership Diversify Bank Risk?
                         </h2>
@@ -1246,7 +1346,7 @@
                             <li>Speaks directly to the live Banking Union debate on integration vs. contagion</li>
                         </ul>
                         <div class="entry-meta">Supervised by <strong>Albert Banal-Estañol</strong></div>
-                        <div class="entry-meta">Working thesis · 2026</div>
+                        <div class="entry-meta">Completed with merit · 2026</div>
                     </div>
 
                     <div class="entry-viz">
@@ -1385,7 +1485,7 @@
                 <article class="research-entry">
                     <div class="entry-text">
                         <span class="entry-index">03 / Trade</span>
-                        <span class="entry-tag">Working thesis · MSc Quantitative Economics, UAM</span>
+                        <span class="entry-tag">MSc Quantitative Economics thesis · UAM</span>
                         <h2 class="entry-title">
                             Derisking European Critical Raw Material Dependencies with Graph Learning
                         </h2>
@@ -1395,7 +1495,7 @@
                             <li>Produces a risk taxonomy aligned with the EU 2030 Critical Raw Materials Act</li>
                         </ul>
                         <div class="entry-meta">Supervised by <strong>Santiago Pérez Balsalobre</strong> and <strong>Javier Bas</strong></div>
-                        <div class="entry-meta">Working paper · 2026</div>
+                        <div class="entry-meta">Graded 9/10 with Excellence · now a working paper · 2026</div>
                     </div>
 
                     <div class="entry-viz">
