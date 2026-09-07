@@ -36,13 +36,15 @@
 
   html { -webkit-text-size-adjust: 100%; }
 
+  /* Everything scales off one root size tied to window height, so the CV
+     holds to a single screen instead of scrolling. */
   body {
     background: var(--paper);
     color: var(--ink);
     font-family: var(--serif);
-    font-size: 17px;
-    line-height: 1.45;
-    padding: 64px 24px 96px;
+    font-size: clamp(12px, 2.1vh, 18px);
+    line-height: 1.4;
+    padding: 2.2em 1.4em 1.6em;
   }
 
   /* One centered column. Opening a diagram adds a second column to its right. */
@@ -50,7 +52,7 @@
     display: grid;
     grid-template-columns: minmax(0, 34em);
     justify-content: center;
-    gap: 56px;
+    gap: 3em;
     align-items: start;
     transition: grid-template-columns 0.4s ease;
   }
@@ -64,53 +66,53 @@
   main { max-width: 34em; margin: 0 auto; }
 
   h1 {
-    font-size: 26px;
+    font-size: 1.5em;
     font-weight: normal;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     line-height: 1.2;
   }
 
-  .place { font-style: italic; margin-top: 4px; }
+  .place { font-style: italic; margin-top: 0.2em; }
 
-  .masthead { display: flow-root; padding-bottom: 10px; }
-  .masthead .names { padding-top: 12px; }
+  .masthead { display: flow-root; padding-bottom: 0.5em; }
+  .masthead .names { padding-top: 0.7em; }
 
   .portrait {
     float: right;
-    width: 96px;
-    height: 120px;
+    width: 5.6em;
+    height: 7em;
     object-fit: cover;
-    margin-left: 24px;
+    margin-left: 1.4em;
     border: 1px solid var(--rule);
     background: var(--soft);
   }
 
   h2 {
     text-align: center;
-    font-size: 15px;
+    font-size: 0.86em;
     font-weight: bold;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    margin: 34px 0 14px;
-    padding-bottom: 6px;
+    margin: 1.5em 0 0.6em;
+    padding-bottom: 0.35em;
     border-bottom: 1px solid var(--rule);
   }
 
-  .org { font-weight: bold; margin-top: 14px; }
+  .org { font-weight: bold; margin-top: 0.75em; }
   .org:first-of-type { margin-top: 0; }
   .role { font-style: italic; }
 
-  p { margin-top: 8px; text-wrap: pretty; }
+  p { margin-top: 0.4em; text-wrap: pretty; }
 
-  .skills p { margin-top: 4px; }
+  .skills p { margin-top: 0.2em; }
   .skills span { font-weight: bold; }
 
   footer {
-    margin-top: 40px;
-    padding-top: 14px;
+    margin-top: 1.5em;
+    padding-top: 0.6em;
     border-top: 1px solid var(--rule);
-    font-size: 15px;
+    font-size: 0.88em;
     font-style: italic;
   }
 
@@ -120,7 +122,7 @@
 
   /* ─── Research entries ─── */
 
-  .ref { position: relative; margin-top: 16px; }
+  .ref { position: relative; margin-top: 0.7em; }
   .ref:first-of-type { margin-top: 0; }
 
   .ref-text {
@@ -132,7 +134,7 @@
     border: none;
     text-align: left;
     cursor: pointer;
-    padding: 6px 0;
+    padding: 0.3em 0;
     text-wrap: pretty;
   }
 
@@ -144,10 +146,10 @@
   .callout {
     position: absolute;
     left: 100%;
-    top: 4px;
-    margin-left: 52px;
+    top: 0.2em;
+    margin-left: 3.1em;
     width: 9.5em;
-    font-size: 14px;
+    font-size: 0.82em;
     font-style: italic;
     line-height: 1.35;
     color: var(--dim);
@@ -156,15 +158,15 @@
   .callout-box {
     display: block;
     border: 1px dotted var(--dimmer);
-    padding: 7px 10px;
+    padding: 0.5em 0.7em;
   }
 
   .arrow {
     position: absolute;
     right: 100%;
-    top: 7px;
-    width: 46px;
-    height: 22px;
+    top: 0.45em;
+    width: 3.2em;
+    height: 1.5em;
     color: var(--dimmer);
   }
 
@@ -172,26 +174,33 @@
 
   /* ─── The diagram column ─── */
 
-  .figures { position: sticky; top: 40px; max-width: 28em; margin: 0 auto; }
+  .figures { position: sticky; top: 2.2em; max-width: 28em; margin: 0 auto; }
   .figures[hidden] { display: none; }
 
   figure {
     border: 1px solid var(--hair);
-    padding: 20px 22px 22px;
+    padding: 1.1em 1.3em 1.2em;
   }
 
   figure[hidden] { display: none; }
 
-  .fig-title { font-size: 19px; }
-  .fig-sub { font-style: italic; color: var(--dimmer); font-size: 15px; margin-top: 2px; }
-  .fig-lede { margin-top: 14px; color: var(--dim); font-size: 16px; }
+  .fig-title { font-size: 1.12em; }
+  .fig-sub { font-style: italic; color: var(--dimmer); font-size: 0.88em; margin-top: 0.1em; }
+  .fig-lede { margin-top: 0.7em; color: var(--dim); font-size: 0.94em; }
   .fig-lede em { color: var(--ink); }
 
-  figure svg { display: block; width: 100%; height: auto; margin-top: 16px; color: var(--ink); }
+  figure svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 42vh;
+    margin-top: 0.8em;
+    color: var(--ink);
+  }
 
   .close {
     font: inherit;
-    font-size: 14px;
+    font-size: 0.82em;
     font-style: italic;
     color: var(--dimmer);
     background: none;
@@ -199,7 +208,7 @@
     border-bottom: 1px solid var(--hair);
     cursor: pointer;
     padding: 0;
-    margin-top: 16px;
+    margin-top: 0.9em;
   }
 
   .close:hover { color: var(--ink); }
@@ -216,18 +225,19 @@
   @media (max-width: 1080px) {
     body.is-open .layout { grid-template-columns: minmax(0, 34em); }
     .figures { position: static; }
-    .callout { position: static; width: auto; margin: 4px 0 0; }
+    .callout { position: static; width: auto; margin: 0.3em 0 0; }
     .arrow { display: none; }
   }
 
+  /* On a phone the column reflows and one screen is not realistic, so
+     type goes back to a comfortable reading size and the page scrolls. */
   @media (max-width: 480px) {
-    body { font-size: 16px; padding: 40px 18px 64px; }
-    h1 { font-size: 23px; letter-spacing: 0.1em; }
-    h2 { font-size: 14px; letter-spacing: 0.16em; }
+    body { font-size: 16px; padding: 2.4em 1.1em 3em; }
+    h1 { font-size: 1.4em; letter-spacing: 0.1em; }
     .masthead { text-align: center; }
-    .masthead .names { padding-top: 14px; }
+    .masthead .names { padding-top: 0.8em; }
     .portrait { float: none; display: block; margin: 0 auto; }
-    figure { padding: 16px 14px 18px; }
+    figure svg { max-height: none; }
   }
 
   @media print {
@@ -422,4 +432,3 @@
 </script>
 </body>
 </html>
-
