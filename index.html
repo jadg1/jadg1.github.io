@@ -1,341 +1,698 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Javier de Golferichs</title>
-    <meta name="description" content="Political economy, network science and machine learning. BSc, MSc.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Javier de Golferichs</title>
+<meta name="description" content="Curriculum vitae. Complexity Science Hub Vienna. Trade networks, graph learning, financial systemic risk.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Javier de Golferichs">
+<meta property="og:description" content="Curriculum vitae. Trade networks, graph learning, financial systemic risk.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Javier de Golferichs">
-    <meta property="og:description" content="Political economy, network science and machine learning.">
-    <meta property="og:image" content="yo_blanes.jpg">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Javier de Golferichs">
-    <meta name="twitter:description" content="Political economy, network science and machine learning.">
+  :root {
+    --paper: #ffffff;
+    --ink: #111111;
+    --dim: #3f3f3f;
+    --dimmer: #6f6f6f;
+    --rule: #111111;
+    --hair: #d8d4cc;
+    --soft: #f6f4f0;
+    --serif: 'Times New Roman', Times, 'Liberation Serif', 'Nimbus Roman', serif;
+  }
 
-    <script>
-        // Theme: manual override (localStorage) wins, then the OS colour scheme, then local hour
-        // 19:00–06:59 = dark, 07:00–18:59 = light
-        (function() {
-            try {
-                const saved = localStorage.getItem('theme');
-                if (saved === 'dark' || saved === 'light') {
-                    if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
-                    return;
-                }
-            } catch (e) { /* ignore storage errors */ }
-            if (window.matchMedia) {
-                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    return;
-                }
-                if (window.matchMedia('(prefers-color-scheme: light)').matches) return;
-            }
-            const hour = new Date().getHours();
-            if (hour >= 19 || hour < 7) document.documentElement.setAttribute('data-theme', 'dark');
-        })();
-    </script>
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #12100e;
+      --ink: #e9e5dd;
+      --dim: #c3beb4;
+      --dimmer: #928c81;
+      --rule: #6a655c;
+      --hair: #322e29;
+      --soft: #1a1815;
+    }
+  }
 
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
 
-        :root {
-            --bg: #ffffff;
-            --bg-soft: #fafafa;
-            --border: #e8e8e8;
-            --text: #0a0a0a;
-            --text-secondary: #3d3d3d;
-            --text-tertiary: #6b6b6b;
-            --text-quaternary: #9a9a9a;
-            --accent: #6b6b6b;
-            --font: 'Calibri Light', 'Calibri', 'Segoe UI Light', 'Helvetica Neue', system-ui, sans-serif;
-        }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.45;
+    text-align: left;
+    padding: 64px 24px 96px;
+  }
 
-        :root[data-theme="dark"] {
-            --bg: #0a0a0a;
-            --bg-soft: #141414;
-            --border: #232323;
-            --text: #f0f0f0;
-            --text-secondary: #c2c2c2;
-            --text-tertiary: #8f8f8f;
-            --text-quaternary: #666666;
-            --accent: #8f8f8f;
-        }
+  main { max-width: 34em; margin: 0 auto; }
 
-        :focus-visible {
-            outline: 1px solid var(--text);
-            outline-offset: 3px;
-        }
+  h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
 
-        html, body { transition: background-color 0.3s ease, color 0.3s ease; }
+  .place { font-style: italic; margin-top: 4px; }
 
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: var(--font);
-            font-weight: 300;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+  .masthead {
+    display: flow-root;
+    padding-bottom: 10px;
+  }
 
-        .page {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 8vh 48px;
-        }
+  .masthead .names { padding-top: 12px; }
 
-        /* ─── Layout ─── */
-        .hero {
-            display: grid;
-            grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
-            gap: 56px;
-            align-items: start;
-            opacity: 0;
-            animation: fadeIn 0.8s ease forwards 0.1s;
-        }
+  .portrait {
+    float: right;
+    width: 96px;
+    height: 120px;
+    object-fit: cover;
+    margin-left: 24px;
+    border: 1px solid var(--rule);
+    background: var(--soft);
+  }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+  @media (max-width: 480px) {
+    .masthead { text-align: center; }
+    .masthead .names { padding-top: 14px; }
+    .portrait { float: none; display: block; margin: 0 auto; }
+  }
 
-        @media (prefers-reduced-motion: reduce) {
-            .hero { animation: none; opacity: 1; }
-        }
+  h2 {
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin: 34px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+  }
 
-        /* ─── Identity ─── */
-        .photo-frame {
-            width: 100%;
-            max-width: 200px;
-            aspect-ratio: 1 / 1;
-            border-radius: 50%;
-            overflow: hidden;
-            background: var(--bg-soft);
-        }
+  .org { font-weight: bold; margin-top: 14px; }
+  .org:first-of-type { margin-top: 0; }
+  .role { font-style: italic; }
 
-        .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+  p { margin-top: 8px; text-wrap: pretty; }
 
-        .hero-left h1 {
-            font-weight: 200;
-            font-size: 30px;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            margin-top: 24px;
-        }
+  .skills p { margin-top: 4px; }
+  .skills span { font-weight: bold; }
 
-        .degrees {
-            font-size: 12px;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-top: 12px;
-        }
+  footer {
+    margin-top: 40px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    font-size: 15px;
+    font-style: italic;
+  }
 
-        /* ─── Info blocks ─── */
-        .info-block { margin-bottom: 26px; }
-        .info-block:last-child { margin-bottom: 0; }
+  a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--rule); }
+  a:hover, a:focus-visible { opacity: 0.55; }
+  :focus-visible { outline: 2px solid var(--rule); outline-offset: 3px; }
 
-        .info-label {
-            font-size: 10px;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: var(--accent);
-            font-weight: 400;
-            margin-bottom: 8px;
-        }
+  /* ─── Entry that opens ─── */
 
-        .info-content {
-            font-size: 13.5px;
-            color: var(--text);
-            line-height: 1.55;
-        }
+  .entry { margin-top: 16px; }
+  .entry:first-of-type { margin-top: 0; }
 
-        .info-content .sep {
-            color: var(--text-quaternary);
-            margin: 0 6px;
-        }
+  .entry-head {
+    display: block;
+    width: 100%;
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    padding: 4px 0;
+    text-wrap: pretty;
+  }
 
-        /* ─── Links ─── */
-        .social-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 22px;
-        }
+  .entry-head:hover { background: var(--soft); }
+  .entry-head cite { font-style: italic; }
 
-        .social-row a {
-            font-size: 13px;
-            color: var(--text);
-            text-decoration: none;
-            border-bottom: 1px solid var(--text);
-            padding-bottom: 1px;
-            transition: opacity 0.2s;
-        }
+  .pm {
+    font-style: normal;
+    color: var(--dimmer);
+    margin-left: 2px;
+  }
 
-        .social-row a:hover { opacity: 0.5; }
+  .entry-head[aria-expanded="true"] .pm { color: var(--ink); }
 
-        .contact-line a {
-            color: var(--text);
-            text-decoration: none;
-            border-bottom: 1px solid var(--text);
-            padding-bottom: 1px;
-            transition: opacity 0.2s;
-        }
+  .lead-in { font-style: italic; color: var(--dim); }
 
-        .contact-line a:hover { opacity: 0.5; }
+  .cue {
+    display: block;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--dimmer);
+    margin-top: 2px;
+  }
 
-        /* ─── Theme toggle ─── */
-        .theme-toggle {
-            position: fixed;
-            top: 24px;
-            right: 24px;
-            z-index: 100;
-            width: 36px;
-            height: 36px;
-            border: 1px solid var(--border);
-            border-radius: 50%;
-            background: var(--bg);
-            color: var(--text);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s, border-color 0.2s;
-            padding: 0;
-        }
+  .entry-head[aria-expanded="true"] .cue { visibility: hidden; }
 
-        .theme-toggle:hover {
-            background: var(--bg-soft);
-            border-color: var(--text-tertiary);
-        }
+  /* ─── Panel ─── */
 
-        .theme-toggle svg {
-            width: 16px;
-            height: 16px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 1.4;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
+  .panel {
+    border: 1px solid var(--hair);
+    margin-top: 10px;
+    text-align: left;
+  }
 
-        .theme-toggle .icon-sun { display: none; }
-        .theme-toggle .icon-moon { display: block; }
-        :root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
-        :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+  .panel[hidden] { display: none; }
 
-        /* ─── Responsive ─── */
-        @media (max-width: 760px) {
-            body { align-items: flex-start; }
-            .page { padding: 6vh 24px; }
-            .hero { grid-template-columns: 1fr; gap: 40px; }
-            .photo-frame { max-width: 150px; }
-            .hero-left h1 { font-size: 27px; }
-        }
-    </style>
+  .tabs { display: flex; border-bottom: 1px solid var(--hair); }
+
+  .tab {
+    flex: 1;
+    min-width: 0;
+    font: inherit;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dimmer);
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 11px 6px;
+    cursor: pointer;
+  }
+
+  .tab + .tab { border-left: 1px solid var(--hair); }
+  .tab:hover { color: var(--ink); }
+  .tab[aria-selected="true"] { color: var(--ink); background: var(--soft); border-bottom-color: var(--ink); }
+
+  .tabpanel { padding: 18px 22px 22px; }
+  .tabpanel[hidden] { display: none; }
+
+  .viz-title { font-size: 19px; }
+  .viz-sub { font-style: italic; color: var(--dimmer); font-size: 15px; margin-top: 2px; }
+  .lede { margin-top: 14px; color: var(--dim); }
+  .lede em { color: var(--ink); }
+
+  .panel svg { display: block; width: 100%; height: auto; margin: 16px 0 4px; color: var(--ink); }
+
+  .points { list-style: none; counter-reset: pt; margin-top: 14px; }
+
+  .points > li {
+    counter-increment: pt;
+    border-top: 1px solid var(--hair);
+    padding: 11px 0;
+    display: grid;
+    grid-template-columns: 2.2em 1fr;
+    gap: 4px;
+    font-size: 15.5px;
+  }
+
+  .points > li:last-child { border-bottom: 1px solid var(--hair); }
+
+  .points > li::before {
+    content: counter(pt, decimal-leading-zero);
+    color: var(--dimmer);
+    font-size: 13px;
+    padding-top: 3px;
+  }
+
+  .points .pt-title { font-weight: bold; }
+  .points .pt-desc { color: var(--dim); margin-top: 3px; }
+
+  details > summary {
+    cursor: pointer;
+    font-weight: bold;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  details > summary::-webkit-details-marker { display: none; }
+  details > summary::after { content: '+'; color: var(--dimmer); font-weight: normal; }
+  details[open] > summary::after { content: '\2212'; color: var(--ink); }
+  details > summary:hover { opacity: 0.7; }
+  details > p { color: var(--dim); margin-top: 5px; }
+
+  .takeaway {
+    border-left: 1px solid var(--rule);
+    padding-left: 18px;
+    margin-top: 20px;
+    font-style: italic;
+    color: var(--dim);
+    font-size: 15.5px;
+  }
+
+  .takeaway strong { font-style: normal; color: var(--ink); }
+
+  .flow { stroke-dasharray: 4 4; animation: flow 1.8s linear infinite; }
+  @keyframes flow { to { stroke-dashoffset: -16; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flow { animation: none; }
+  }
+
+  @media (max-width: 480px) {
+    body { font-size: 16px; padding: 40px 18px 64px; }
+    h1 { font-size: 23px; letter-spacing: 0.1em; }
+    h2 { font-size: 14px; letter-spacing: 0.16em; }
+    .tab { font-size: 10.5px; letter-spacing: 0.08em; padding: 10px 4px; }
+    .tabpanel { padding: 14px 14px 18px; }
+  }
+
+  @media print {
+    :root { --paper: #ffffff; --ink: #000000; --dim: #000000; --rule: #000000; }
+    body { font-size: 11pt; padding: 0; }
+    main { max-width: none; }
+    a { border-bottom: none; }
+    .panel, .cue, .pm { display: none !important; }
+    .entry-head:hover { background: none; }
+    @page { margin: 20mm 32mm; }
+  }
+</style>
 </head>
 <body>
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" aria-pressed="false">
-        <svg class="icon-moon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="4"/>
-            <line x1="12" y1="2" x2="12" y2="5"/>
-            <line x1="12" y1="19" x2="12" y2="22"/>
-            <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/>
-            <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
-            <line x1="2" y1="12" x2="5" y2="12"/>
-            <line x1="19" y1="12" x2="22" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/>
-            <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
-        </svg>
+<main>
+
+  <header class="masthead">
+    <img class="portrait" src="yo_blanes.jpg" alt="Javier de Golferichs" width="96" height="120">
+    <div class="names">
+      <h1>Javier de Golferichs Garcia</h1>
+      <p class="place">Vienna, Austria</p>
+    </div>
+  </header>
+
+  <!-- ─────────────── POSITIONS ─────────────── -->
+
+  <h2>Positions</h2>
+  <p class="org">Complexity Science Hub, Vienna, Austria</p>
+  <p class="role">Summer Intern, Supply Chain Science. 7/2026 &ndash; 8/2026.</p>
+  <p>Applied a normalizing-flow dynamic graph generator to trade networks, building an end-to-end reproducible Python pipeline.</p>
+  <p>Prepared benchmarks to gravity-model and latent-space baselines with impulse responses, showing similar shock persistence.</p>
+
+  <div class="entry">
+    <button class="entry-head" aria-expanded="false" aria-controls="p-net" onclick="toggleEntry(this)">
+      <span class="lead-in">Generative models for the rewiring of world trade</span> <span class="pm">+</span>
     </button>
 
-    <div class="page">
-        <main class="hero">
+    <div class="panel" id="p-net" hidden>
+      <div class="tabs" role="tablist" aria-label="Generative models for the rewiring of world trade">
+        <button class="tab" role="tab" id="t-net-1" aria-selected="false" aria-controls="v-net-1" onclick="showTab(this)">The Idea</button>
+        <button class="tab" role="tab" id="t-net-2" aria-selected="false" aria-controls="v-net-2" onclick="showTab(this)">Findings</button>
+        <button class="tab" role="tab" id="t-net-3" aria-selected="false" aria-controls="v-net-3" onclick="showTab(this)">What I Got Wrong</button>
+      </div>
 
-            <div class="hero-left">
-                <div class="photo-frame">
-                    <img src="yo_blanes.jpg" alt="Portrait of Javier de Golferichs">
-                </div>
-                <h1>Javier de Golferichs</h1>
-                <div class="degrees">BSc<span>&nbsp;·&nbsp;</span>MSc</div>
-            </div>
+      <section class="tabpanel" id="v-net-1" role="tabpanel" aria-labelledby="t-net-1" hidden>
+        <p class="viz-title">A hole in the standard class, in three nodes</p>
+        <p class="viz-sub">Edge-independent models, exclusivity, co-occurrence</p>
+        <p class="lede">Erd&#337;s-R&eacute;nyi, Chung-Lu, stochastic block models and all four gravity models used in trade economics belong to one class: every possible link gets its own probability and its own independent coin flip. <em>That class has a hole, and three countries are enough to show it.</em></p>
 
-            <div class="hero-right">
-                <div class="info-block">
-                    <div class="info-label">Education</div>
-                    <div class="info-content">
-                        Engineering physics<span class="sep">/</span>Economics<span class="sep">/</span>Finance
-                    </div>
-                </div>
+        <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reality contains two worlds in which country A trades with exactly one of B and C. The best independent model spreads equal probability across four worlds, two of which never occur.">
+          <text x="150" y="30" text-anchor="middle" font-family="Times New Roman, serif" font-size="13" fill="currentColor">Reality</text>
+          <text x="150" y="46" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="var(--dimmer)">A trades with B or C, never both</text>
 
-                <div class="info-block">
-                    <div class="info-label">Expertise</div>
-                    <div class="info-content">
-                        Political economy<span class="sep">/</span>Network science<span class="sep">/</span>Machine learning
-                    </div>
-                </div>
+          <circle cx="110" cy="86" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="110" y="90" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" fill="currentColor">A</text>
+          <circle cx="80" cy="140" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="80" y="144" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" fill="currentColor">B</text>
+          <circle cx="140" cy="140" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="140" y="144" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" fill="currentColor">C</text>
+          <path d="M104 95 L86 131" stroke="currentColor" stroke-width="1.3"/>
 
-                <div class="info-block">
-                    <div class="info-label">Interests</div>
-                    <div class="info-content">
-                        Foundational machine learning<span class="sep">/</span>Biomedical engineering<span class="sep">/</span>Financial economics and international trade
-                    </div>
-                </div>
+          <circle cx="230" cy="86" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="230" y="90" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" fill="currentColor">A</text>
+          <circle cx="200" cy="140" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="200" y="144" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" fill="currentColor">B</text>
+          <circle cx="260" cy="140" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="260" y="144" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" fill="currentColor">C</text>
+          <path d="M236 95 L254 131" stroke="currentColor" stroke-width="1.3"/>
 
-                <div class="info-block">
-                    <div class="info-label">Elsewhere</div>
-                    <div class="social-row">
-                        <a href="https://scholar.google.es/citations?user=EJig7tkAAAAJ&hl=es" target="_blank" rel="noopener">Google Scholar</a>
-                        <a href="https://github.com/jadg1" target="_blank" rel="noopener">GitHub</a>
-                        <a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank" rel="noopener">LinkedIn</a>
-                    </div>
-                </div>
+          <text x="170" y="176" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="var(--dimmer)">two worlds, each 1/2</text>
 
-                <div class="info-block">
-                    <div class="info-label">Contact</div>
-                    <div class="info-content contact-line">
-                        Please send a
-                        <a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank" rel="noopener">LinkedIn connection request</a>.
-                    </div>
-                </div>
-            </div>
+          <path d="M310 40 L310 190" stroke="currentColor" stroke-width="1" opacity="0.2"/>
 
-        </main>
+          <text x="455" y="30" text-anchor="middle" font-family="Times New Roman, serif" font-size="13" fill="currentColor">Best independent fit</text>
+          <text x="455" y="46" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="var(--dimmer)">every marginal exactly right</text>
+
+          <circle cx="370" cy="86" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="345" cy="134" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="395" cy="134" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <path d="M364 95 L351 125" stroke="currentColor" stroke-width="1.2"/>
+
+          <circle cx="455" cy="86" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="430" cy="134" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="480" cy="134" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <path d="M461 95 L474 125" stroke="currentColor" stroke-width="1.2"/>
+
+          <circle cx="540" cy="86" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+          <circle cx="515" cy="134" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+          <circle cx="565" cy="134" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+          <path d="M534 95 L521 125" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+          <path d="M546 95 L559 125" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+
+          <circle cx="540" cy="176" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+          <circle cx="515" cy="224" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+          <circle cx="565" cy="224" r="10" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+
+          <path d="M498 100 L582 240" stroke="currentColor" stroke-width="1.1" opacity="0.75"/>
+          <text x="455" y="248" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="var(--dim)" font-style="italic">half the mass on worlds that never occur</text>
+
+          <path d="M40 268 L560 268" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+          <text x="40" y="288" font-family="Times New Roman, serif" font-size="11.5" fill="var(--dim)">E[degree of A]</text>
+          <text x="200" y="288" font-family="Times New Roman, serif" font-size="11.5" fill="currentColor">1.0 both</text>
+          <text x="330" y="288" font-family="Times New Roman, serif" font-size="11.5" fill="var(--dim)">Var[degree of A]</text>
+          <text x="470" y="288" font-family="Times New Roman, serif" font-size="11.5" fill="currentColor">0.0 vs 0.5</text>
+        </svg>
+
+        <ol class="points">
+          <li><details><summary>Exclusivity: the variance it cannot reach</summary><p>A degree in this class is a sum of independent coin flips, so its variance is pinned by the marginals. The model cannot represent a country whose number of partners is more certain than its choice of partner.</p></details></li>
+          <li><details><summary>Co-occurrence: an impossibility, not a bad fit</summary><p>Where all three links exist or none, expected triangles are 0.500 and the best independent fit gives 0.125. Chanpuriya et al. cap any edge-independent model at 0.306 unless it partially memorises the graph and stops generating variety.</p></details></li>
+          <li><details><summary>One hole seen from both sides</summary><p>Carrying only marginals means having neither the negative dependence that pins a country's partner count nor the positive dependence that closes a triangle. Diversity and structure trade off inside the class, and the theorem says by how much.</p></details></li>
+          <li><details><summary>How GenDeg escapes by construction</summary><p>It models the count first, next year's generalized degree, and only then places edges, so a degree is never a sum of independent Bernoullis. Whether that theoretical escape shows up on real trade data is the empirical question.</p></details></li>
+        </ol>
+      </section>
+
+      <section class="tabpanel" id="v-net-2" role="tabpanel" aria-labelledby="t-net-2" hidden>
+        <p class="viz-title">The shape of persistence, not its level</p>
+        <p class="viz-sub">Impulse response to a shock in a country's partner count</p>
+        <p class="lede">Shock a country's number of trade partners and watch the effect decay. Observed trade decays gradually, and so does GenDeg. The gravity response collapses at horizon 1, which is independent sampling noise disappearing, then flattens into a tail driven purely by GDP. <em>It fails in the same direction in 10 of 10 sectors, on a feature no refitting can reach.</em></p>
+
+        <svg viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Decay curves over six years. Observed and GenDeg decline gradually and almost together, with GenDeg slightly above. The gravity curve drops sharply after the first year and then stays nearly flat and low.">
+          <path d="M70 40 L70 220 L570 220" fill="none" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+          <text x="58" y="44" text-anchor="end" font-family="Times New Roman, serif" font-size="10.5" fill="var(--dimmer)">1.0</text>
+          <text x="58" y="224" text-anchor="end" font-family="Times New Roman, serif" font-size="10.5" fill="var(--dimmer)">0</text>
+          <text x="320" y="246" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="var(--dimmer)">years after the shock</text>
+
+          <path d="M70 40 L152 69 L233 92 L315 112 L397 130 L478 144 L560 155" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55" stroke-dasharray="4 3"/>
+          <text x="566" y="152" font-family="Times New Roman, serif" font-size="10.5" fill="var(--dimmer)">GenDeg</text>
+
+          <path d="M70 40 L152 74 L233 101 L315 123 L397 141 L478 155 L560 168" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <text x="566" y="172" font-family="Times New Roman, serif" font-size="10.5" fill="currentColor">observed</text>
+
+          <path d="M70 40 L152 173 L233 177 L315 179 L397 180 L478 181 L560 182" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <text x="566" y="188" font-family="Times New Roman, serif" font-size="10.5" fill="var(--dimmer)">gravity</text>
+
+          <path d="M120 96 L146 140" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
+          <text x="118" y="92" text-anchor="end" font-family="Times New Roman, serif" font-size="11" fill="var(--dim)" font-style="italic">collapse, then flat</text>
+
+          <text x="320" y="30" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="var(--dim)">half-life: observed 3.0 yr, GenDeg 3.5 yr, gravity 1.0 yr</text>
+        </svg>
+
+        <ol class="points">
+          <li><details><summary>Right decay shape, slightly too persistent</summary><p>GenDeg reaches persistence 0.842 against an observed 0.814, running above in 6 of 10 sectors. The gravity family sits at 0.711 to 0.721 and below observed in 10 of 10.</p></details></li>
+          <li><details><summary>Most persistence is covariates, not dynamics</summary><p>A model with no dynamics at all, each year an independent cross-sectional fit, still recovers about 73% of cumulative degree persistence. That reframes the target: the interesting quantity was never the level, it was the shape.</p></details></li>
+          <li><details><summary>Two failure modes, reality in between</summary><p>Models with an explicit carry-forward term overshoot (GenDeg 1.21x, STERGM 1.34x); models that redraw edges each step undershoot (latent-space 0.40x). No simple generator lands on reality. Over-persistence is a property of a class, not a quirk.</p></details></li>
+          <li><details><summary>Rate right, mechanism wrong</summary><p>Left running free, mean degree error stays under 1.6% for four years while the degree Gini falls from 0.591 to 0.422 against an observed 0.595. Reality adds partners while holding the hierarchy; GenDeg fills the bottom and erodes the top.</p></details></li>
+          <li><details><summary>Blind to what is being traded</summary><p>Observed persistence rises across the Rauch bands from 0.624 to 0.685 as theory predicts. GenDeg is flat to three decimals. A purely topological generator has no channel through which product type can matter.</p></details></li>
+        </ol>
+      </section>
+
+      <section class="tabpanel" id="v-net-3" role="tabpanel" aria-labelledby="t-net-3" hidden>
+        <p class="viz-title">The result I killed</p>
+        <p class="viz-sub">A binning artefact, and what survived it</p>
+        <p class="lede">My earlier headline was that trade-link retention is far more over-dispersed than independent retention allows, evidence of exactly the edge dependence the toys say the standard class cannot represent. <em>It was largely an artefact of how the benchmark was binned, and I found it in my own result.</em></p>
+
+        <svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The variance of retained links splits into a benchmark term and a second term from degree variation within each bin, which the benchmark cannot see. Correcting it drops observed peak dispersion from 6.67 to 1.18.">
+          <text x="300" y="34" text-anchor="middle" font-family="Times New Roman, serif" font-size="15" fill="currentColor">Var(K)  =  E[k]&middot;p(1&minus;p)  +  p&sup2;&middot;Var(k)</text>
+
+          <path d="M196 46 L196 58 L286 58 L286 46" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55"/>
+          <text x="241" y="74" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="var(--dimmer)">the benchmark</text>
+
+          <path d="M312 46 L312 58 L404 58 L404 46" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55"/>
+          <text x="358" y="74" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="currentColor">unaccounted for</text>
+
+          <text x="300" y="102" text-anchor="middle" font-family="Times New Roman, serif" font-size="11.5" fill="var(--dim)" font-style="italic">Degree varies within a bin, and log-spaced bins are widest at the top.</text>
+
+          <path d="M90 124 L510 124" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+          <text x="90" y="146" font-family="Times New Roman, serif" font-size="11.5" fill="var(--dimmer)">peak dispersion</text>
+          <text x="330" y="146" text-anchor="middle" font-family="Times New Roman, serif" font-size="11.5" fill="var(--dimmer)">before</text>
+          <text x="450" y="146" text-anchor="middle" font-family="Times New Roman, serif" font-size="11.5" fill="var(--dimmer)">corrected</text>
+
+          <path d="M90 156 L510 156" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+          <text x="90" y="176" font-family="Times New Roman, serif" font-size="12.5" fill="currentColor">observed</text>
+          <text x="330" y="176" text-anchor="middle" font-family="Times New Roman, serif" font-size="12.5" fill="var(--dimmer)">6.67</text>
+          <text x="450" y="176" text-anchor="middle" font-family="Times New Roman, serif" font-size="12.5" fill="currentColor">1.18</text>
+
+          <path d="M90 186 L510 186" stroke="currentColor" stroke-width="1" opacity="0.12"/>
+          <text x="90" y="206" font-family="Times New Roman, serif" font-size="12.5" fill="currentColor">GenDeg</text>
+          <text x="330" y="206" text-anchor="middle" font-family="Times New Roman, serif" font-size="12.5" fill="var(--dimmer)">4.13</text>
+          <text x="450" y="206" text-anchor="middle" font-family="Times New Roman, serif" font-size="12.5" fill="currentColor">1.25</text>
+
+          <path d="M90 216 L510 216" stroke="currentColor" stroke-width="1" opacity="0.12"/>
+          <text x="90" y="236" font-family="Times New Roman, serif" font-size="12.5" fill="currentColor">gravity ZIP</text>
+          <text x="330" y="236" text-anchor="middle" font-family="Times New Roman, serif" font-size="12.5" fill="var(--dimmer)">4.90</text>
+          <text x="450" y="236" text-anchor="middle" font-family="Times New Roman, serif" font-size="12.5" fill="currentColor">1.87</text>
+        </svg>
+
+        <ol class="points">
+          <li>
+            <p class="pt-title">A clean process read 3.9 instead of 1.0</p>
+            <p class="pt-desc">The benchmark was built from each bin's mean degree, so within-bin degree variation contributed a term it could not see. A homogeneous, perfectly independent simulated process scored 3.9. My toy validations missed it because they calibrate at exact degree, where that term is identically zero.</p>
+          </li>
+          <li>
+            <p class="pt-title">After the fix, no residual is left to explain</p>
+            <p class="pt-desc">Simulating the null on the same degrees rather than the bin mean, the edge-independent family brackets the observed value: Poisson 1.04, observed 1.18, negative binomial 1.29. On this statistic the data give no evidence that trade retention requires edge dependence.</p>
+          </li>
+          <li>
+            <p class="pt-title">The persistence result was untouched</p>
+            <p class="pt-desc">F1 uses a panel VAR on degree series with no binning and re-ran identical to the last digit. It now carries more of the argument than it did before, and the toys still do the theoretical work on their own.</p>
+          </li>
+        </ol>
+
+        <p class="takeaway"><strong>The takeaway.</strong> The toys prove the standard class has a representational hole. The data, once the benchmark was fixed, do not show that trade needs it. Those are different claims and the project keeps them apart.</p>
+      </section>
     </div>
+  </div>
 
-    <script>
-        function toggleTheme() {
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            if (isDark) {
-                document.documentElement.removeAttribute('data-theme');
-                try { localStorage.setItem('theme', 'light'); } catch (e) {}
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                try { localStorage.setItem('theme', 'dark'); } catch (e) {}
-            }
-            syncThemeButton();
-        }
+  <!-- ─────────────── DEGREES ─────────────── -->
 
-        function syncThemeButton() {
-            const btn = document.querySelector('.theme-toggle');
-            if (!btn) return;
-            const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-            btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
-        }
+  <h2>Degrees</h2>
+  <p class="org">UPF Barcelona School of Management, Barcelona, Spain</p>
+  <p class="role">MSc, Finance and Banking. 9/2025 &ndash; 7/2026.</p>
 
-        document.addEventListener('DOMContentLoaded', syncThemeButton);
-    </script>
+  <!-- ─────────────── RESEARCH ─────────────── -->
+
+  <h2>Research</h2>
+
+  <div class="entry">
+    <button class="entry-head" aria-expanded="false" aria-controls="p-crm" onclick="toggleEntry(this)">
+      De Golferichs-Garcia, J., Bas, J., Perez-Balsalobre, S. (2026). <cite>&ldquo;European Critical Raw Materials Dependencies and Graph Learning.&rdquo;</cite> Working paper. <span class="pm">+</span>
+      <span class="cue">the idea, the innovation, the policy</span>
+    </button>
+
+    <div class="panel" id="p-crm" hidden>
+      <div class="tabs" role="tablist" aria-label="European Critical Raw Materials Dependencies and Graph Learning">
+        <button class="tab" role="tab" id="t-crm-1" aria-selected="false" aria-controls="v-crm-1" onclick="showTab(this)">The Idea</button>
+        <button class="tab" role="tab" id="t-crm-2" aria-selected="false" aria-controls="v-crm-2" onclick="showTab(this)">Innovation</button>
+        <button class="tab" role="tab" id="t-crm-3" aria-selected="false" aria-controls="v-crm-3" onclick="showTab(this)">Policy</button>
+      </div>
+
+      <section class="tabpanel" id="v-crm-1" role="tabpanel" aria-labelledby="t-crm-1" hidden>
+        <p class="viz-title">A structural mismatch in EU sourcing</p>
+        <p class="viz-sub">Where strategic dependencies actually sit</p>
+        <p class="lede">Trade theory predicts that countries source most from partners that are nearby, culturally close, and politically aligned. For the materials the EU's green and digital transitions depend on, <em>the pattern is roughly the opposite</em>.</p>
+
+        <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The EU at the centre of inbound critical raw material flows from China, Russia, Canada, Turkey, Brazil and South Africa, with the heaviest flow from China.">
+          <defs>
+            <marker id="arrC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+
+          <circle cx="300" cy="170" r="30" fill="currentColor"/>
+          <text x="300" y="175" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="var(--paper)">EU</text>
+
+          <circle cx="70" cy="60" r="28" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="70" y="64" text-anchor="middle" font-family="Times New Roman, serif" font-size="13" fill="currentColor">China</text>
+          <path class="flow" d="M95 80 Q190 120 273 158" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.7" marker-end="url(#arrC)"/>
+
+          <circle cx="530" cy="60" r="26" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="530" y="64" text-anchor="middle" font-family="Times New Roman, serif" font-size="13" fill="currentColor">Russia</text>
+          <path class="flow" d="M508 76 Q410 120 328 158" fill="none" stroke="currentColor" stroke-width="1.1" opacity="0.65" marker-end="url(#arrC)"/>
+
+          <circle cx="60" cy="180" r="22" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="60" y="184" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="currentColor">Canada</text>
+          <path class="flow" d="M82 178 Q170 173 270 172" fill="none" stroke="currentColor" stroke-width="0.9" opacity="0.55" marker-end="url(#arrC)"/>
+
+          <circle cx="540" cy="180" r="22" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="540" y="184" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="currentColor">Turkey</text>
+          <path class="flow" d="M518 178 Q430 173 330 172" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6" marker-end="url(#arrC)"/>
+
+          <circle cx="120" cy="290" r="22" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="120" y="294" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="currentColor">Brazil</text>
+          <path class="flow" d="M140 274 Q210 230 280 194" fill="none" stroke="currentColor" stroke-width="0.9" opacity="0.55" marker-end="url(#arrC)"/>
+
+          <circle cx="480" cy="290" r="22" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="480" y="294" text-anchor="middle" font-family="Times New Roman, serif" font-size="10.5" fill="currentColor">S. Africa</text>
+          <path class="flow" d="M460 274 Q390 230 320 194" fill="none" stroke="currentColor" stroke-width="0.9" opacity="0.55" marker-end="url(#arrC)"/>
+
+          <text x="300" y="332" text-anchor="middle" font-family="Times New Roman, serif" font-size="12" fill="var(--dim)" font-style="italic">Distant, linguistically different, often politically misaligned partners</text>
+        </svg>
+      </section>
+
+      <section class="tabpanel" id="v-crm-2" role="tabpanel" aria-labelledby="t-crm-2" hidden>
+        <p class="viz-title">What is new</p>
+        <p class="viz-sub">Two literatures, one question</p>
+        <p class="lede">Trade economics tells us <em>why</em> patterns hold. Graph learning tells us <em>what happens when they break</em>. The paper combines the two so policy questions about EU material security can be answered with both.</p>
+
+        <ol class="points">
+          <li><details><summary>Structural trade and graph learning</summary><p>Brings dynamic graph neural networks into a domain dominated by gravity models, without abandoning the structural intuition.</p></details></li>
+          <li><details><summary>Trade as an evolving network</summary><p>Treats the global critical raw materials trade system as a dynamic graph rather than a stack of bilateral flows, making relational structure first-class.</p></details></li>
+          <li><details><summary>Supplier-disruption scenarios</summary><p>Asks what concentration looks like if a major supplier becomes unavailable, the question policy actually has to answer.</p></details></li>
+          <li><details><summary>Policy-aligned risk taxonomy</summary><p>Translates model outputs into a classification compatible with the EU's own concentration thresholds.</p></details></li>
+        </ol>
+      </section>
+
+      <section class="tabpanel" id="v-crm-3" role="tabpanel" aria-labelledby="t-crm-3" hidden>
+        <p class="viz-title">Why it matters for policy</p>
+        <p class="viz-sub">A quantitative complement to the EU 2030 Critical Raw Materials agenda</p>
+        <p class="lede">The EU has set diversification, processing, and recycling targets for the materials its green and digital transitions depend on. The paper offers a way to <em>prioritize</em> those targets, telling policymakers where the structural exposure is largest before the next disruption forces the answer.</p>
+
+        <ol class="points">
+          <li>
+            <p class="pt-title">Identify which materials carry the most structural risk</p>
+            <p class="pt-desc">Move the conversation from "all 16 are critical" to a defensible ranking of where attention is most needed first.</p>
+          </li>
+          <li>
+            <p class="pt-title">Stress-test dependencies before they break</p>
+            <p class="pt-desc">Quantify what supplier-by-supplier disruption would do to market concentration, in advance of the political moment that makes it urgent.</p>
+          </li>
+          <li>
+            <p class="pt-title">Frame de-risking as a structural problem</p>
+            <p class="pt-desc">EU exposure is not random. It sits with distant, politically misaligned partners, so de-risking has to confront the geography, not just the volumes.</p>
+          </li>
+        </ol>
+
+        <p class="takeaway"><strong>The takeaway.</strong> Resource security is not a list of materials. It is a network with structural weak points, and those weak points can be located before they fail.</p>
+      </section>
+    </div>
+  </div>
+
+  <div class="entry">
+    <button class="entry-head" aria-expanded="false" aria-controls="p-bank" onclick="toggleEntry(this)">
+      De Golferichs-Garcia, J. (2026). <cite>&ldquo;Cross Border Common Ownership Systemic Risk in the European Banking Union.&rdquo;</cite> Thesis at UPF Barcelona School of Management for the MSc in Finance and Banking degree, supervised by Albert Banal-Estanol. <span class="pm">+</span>
+      <span class="cue">the idea, the innovation, the policy</span>
+    </button>
+
+    <div class="panel" id="p-bank" hidden>
+      <div class="tabs" role="tablist" aria-label="Cross Border Common Ownership Systemic Risk in the European Banking Union">
+        <button class="tab" role="tab" id="t-bank-1" aria-selected="false" aria-controls="v-bank-1" onclick="showTab(this)">The Idea</button>
+        <button class="tab" role="tab" id="t-bank-2" aria-selected="false" aria-controls="v-bank-2" onclick="showTab(this)">Innovation</button>
+        <button class="tab" role="tab" id="t-bank-3" aria-selected="false" aria-controls="v-bank-3" onclick="showTab(this)">Policy</button>
+      </div>
+
+      <section class="tabpanel" id="v-bank-1" role="tabpanel" aria-labelledby="t-bank-1" hidden>
+        <p class="viz-title">The contagion channel nobody is monitoring</p>
+        <p class="viz-sub">EU banks, cross-border versus domestic common ownership</p>
+        <p class="lede">Banking Union supervision tracks lending and interbank exposures. But two banks in different countries can also be linked by a third party, a large institutional investor that owns meaningful stakes in both. <em>If that investor reallocates, both banks move together.</em></p>
+
+        <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two banks in different EU countries, each held by the same institutional investor, with risk co-movement drawn between them.">
+          <defs>
+            <marker id="arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+
+          <circle cx="120" cy="90" r="42" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="120" y="88" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="currentColor">Bank A</text>
+          <text x="120" y="104" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="var(--dimmer)">EU country X</text>
+
+          <circle cx="480" cy="90" r="42" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="480" y="88" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="currentColor">Bank B</text>
+          <text x="480" y="104" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="var(--dimmer)">EU country Y</text>
+
+          <ellipse cx="300" cy="200" rx="120" ry="32" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="300" y="197" text-anchor="middle" font-family="Times New Roman, serif" font-size="13" fill="currentColor">Shared institutional investor</text>
+          <text x="300" y="213" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="var(--dimmer)">cross-border equity stake in both</text>
+
+          <path class="flow" d="M148 120 Q220 165 230 180" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55" marker-end="url(#arrB)"/>
+          <path class="flow" d="M452 120 Q380 165 370 180" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55" marker-end="url(#arrB)"/>
+
+          <path d="M165 85 Q300 50 435 85" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
+          <text x="300" y="45" text-anchor="middle" font-family="Times New Roman, serif" font-size="12" fill="currentColor" font-style="italic">Risk co-movement</text>
+
+          <text x="300" y="262" text-anchor="middle" font-family="Times New Roman, serif" font-size="12" fill="var(--dim)" font-style="italic">Does this channel show up in tail-risk co-movement?</text>
+        </svg>
+      </section>
+
+      <section class="tabpanel" id="v-bank-2" role="tabpanel" aria-labelledby="t-bank-2" hidden>
+        <p class="viz-title">What is new</p>
+        <p class="viz-sub">An empirical separation prior work does not make</p>
+        <p class="lede">Existing studies treat institutional ownership as one number. The thesis splits it into the part that crosses borders and the part that stays at home, and asks whether the geography of ownership matters for systemic risk.</p>
+
+        <ol class="points">
+          <li><details><summary>Cross-border versus domestic ownership</summary><p>Splits common ownership by investor geography rather than treating it as a single aggregate.</p></details></li>
+          <li><details><summary>European banking sector</summary><p>Brings the common-ownership literature into the Banking Union debate, where the geographic dimension is central.</p></details></li>
+          <li><details><summary>Supervisory perimeter test</summary><p>Tests whether the EBA boundary marks a meaningful economic frontier for the contagion channel.</p></details></li>
+          <li><details><summary>Ownership-aware integration</summary><p>Re-frames financial integration around shareholders, not just lending and interbank exposures.</p></details></li>
+        </ol>
+      </section>
+
+      <section class="tabpanel" id="v-bank-3" role="tabpanel" aria-labelledby="t-bank-3" hidden>
+        <p class="viz-title">Why it matters for policy</p>
+        <p class="viz-sub">Implications for macroprudential supervision in the EU</p>
+        <p class="lede">The Buch position, <em>deepen integration but manage contagion</em>, is broadly supported. But contagion need not arrive only through the channels currently monitored. Shared shareholders are a parallel route the macroprudential framework barely covers.</p>
+
+        <ol class="points">
+          <li>
+            <p class="pt-title">Ownership transparency belongs in the macroprudential toolkit</p>
+            <p class="pt-desc">Supervisors already track lending and capital. The investor side of the balance sheet deserves the same visibility.</p>
+          </li>
+          <li>
+            <p class="pt-title">Stress tests should include common-investor scenarios</p>
+            <p class="pt-desc">Standard scenarios capture asset shocks. They should also capture coordinated reallocation by shared shareholders.</p>
+          </li>
+          <li>
+            <p class="pt-title">Banking Union integration should be ownership-aware</p>
+            <p class="pt-desc">The supervisory perimeter alone may not capture where contagion travels. Integration policy needs to look through to the investor base.</p>
+          </li>
+        </ol>
+
+        <p class="takeaway"><strong>The takeaway.</strong> Integration is desirable and contagion is the side-effect. Watching only the lending side leaves a blind spot on the equity side.</p>
+      </section>
+    </div>
+  </div>
+
+  <!-- ─────────────── SKILLS ─────────────── -->
+
+  <h2>Skills</h2>
+  <div class="skills">
+    <p><span>Programming.</span> Python, R, Stata.</p>
+    <p><span>Languages.</span> English, Spanish.</p>
+  </div>
+
+  <footer>
+    Email and full CV on request, kept off this page by choice. A
+    <a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank" rel="noopener">LinkedIn connection request</a>
+    reaches me.
+  </footer>
+
+</main>
+
+<script>
+  function toggleEntry(btn) {
+    var panel = document.getElementById(btn.getAttribute('aria-controls'));
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    btn.querySelector('.pm').textContent = open ? '+' : '\u2212';
+    panel.hidden = open;
+    if (!open && !panel.querySelector('.tab[aria-selected="true"]')) {
+      showTab(panel.querySelector('.tab'));
+    }
+  }
+
+  function showTab(tab) {
+    var tabs = tab.closest('.panel');
+    var target = document.getElementById(tab.getAttribute('aria-controls'));
+    var already = tab.getAttribute('aria-selected') === 'true';
+
+    tabs.querySelectorAll('.tab').forEach(function (t) { t.setAttribute('aria-selected', 'false'); });
+    tabs.querySelectorAll('.tabpanel').forEach(function (p) { p.hidden = true; });
+
+    if (already) { return; }
+    tab.setAttribute('aria-selected', 'true');
+    target.hidden = false;
+  }
+</script>
 </body>
 </html>
