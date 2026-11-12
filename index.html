@@ -134,7 +134,7 @@ nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
   </nav>
 </div>
 
-<p class="note" id="note" role="tooltip">LinkedIn is my preferred way to be contacted through this page. Send a connection request and I'll check it regularly.</p>
+<p class="note" id="note" role="tooltip">Send a LinkedIn request and I'll get back to you as soon as possible.</p>
 
 <script>
 (function(){
@@ -183,8 +183,8 @@ nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
 
   /* Views: home and #about */
   var home=document.getElementById('home'), about=document.getElementById('about'), nav=document.getElementById('nav-about');
-  function show(){
-    var onAbout=location.hash==='#about', inEl=onAbout?about:home, outEl=onAbout?home:about;
+  function show(onAbout){
+    var inEl=onAbout?about:home, outEl=onAbout?home:about;
     nav.textContent=onAbout?'Home':'About';
     nav.setAttribute('href',onAbout?'#home':'#about');
     if(!inEl.hidden) return;
@@ -192,7 +192,13 @@ nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
     requestAnimationFrame(function(){ requestAnimationFrame(function(){ inEl.classList.remove('fading'); }); });
     window.scrollTo(0,0);
   }
-  window.addEventListener('hashchange',show); show();
+  nav.addEventListener('click',function(e){
+    e.preventDefault();
+    var go=about.hidden; show(go);
+    try{ history.replaceState(null,'',go?'#about':location.pathname+location.search); }catch(err){}
+  });
+  window.addEventListener('hashchange',function(){ show(location.hash==='#about'); });
+  show(location.hash==='#about');
 
   /* Contact note */
   var li=document.getElementById('li'), note=document.getElementById('note');
