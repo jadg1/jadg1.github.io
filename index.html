@@ -3,132 +3,159 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Javier de Golferichs. Based in Madrid. Complex systems and machine learning.">
+<meta name="description" content="Javier de Golferichs. Madrid, Spain. Computer vision, AI systems engineering, graph neural networks, European trade policy and financial analysis.">
 <title>Javier de Golferichs</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap">
 <style>
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0}
-/* Layout: one screen. Name and split-flap board on top, a 2x2 grid of short sections below, all vertically centered. */
+/* Layout: two views on one page. Home = split-flap board, name and place centred, About + Contact at the bottom.
+   About = Research and Experience in a narrow reading column (Garamond headings, Inter text). Pure black and white. */
 :root{
-  --bg:#FFFFFF; --fg:#1D1D1F; --muted:#6E6E73; --line:#E5E5EA; --link:#0066CC;
-  --frame:#1C1C1E; --tile:#2C2C2E; --tile-hi:#333336; --glyph:#F5F5F7; --seam:#0B0B0C;
-  --sans:-apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  --bg:#FFFFFF; --fg:#000000; --body:#1F1F1F;
+  --serif:"EB Garamond", Garamond, "Times New Roman", Times, serif;
+  --sans:"Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#000000; --fg:#F5F5F7; --muted:#86868B; --line:#2C2C2E; --link:#2997FF;
-  --frame:#161617; --tile:#262628; --tile-hi:#2E2E30; --glyph:#F5F5F7; --seam:#000000; color-scheme:dark;
+  --bg:#000000; --fg:#FFFFFF; --body:#E6E6E6; color-scheme:dark;
 }}
 :root[data-theme="dark"]{
-  --bg:#000000; --fg:#F5F5F7; --muted:#86868B; --line:#2C2C2E; --link:#2997FF;
-  --frame:#161617; --tile:#262628; --tile-hi:#2E2E30; --glyph:#F5F5F7; --seam:#000000; color-scheme:dark;
+  --bg:#000000; --fg:#FFFFFF; --body:#E6E6E6; color-scheme:dark;
 }
 html,body{height:100%}
-body{background:var(--bg);color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;
-  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
-.wrap{min-height:100%;max-width:720px;margin:0 auto;padding-block:clamp(16px,4vh,48px);
-  display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,5vh,52px)}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));
+  transition:background-color .5s ease,color .5s ease}
+.page{min-height:100%;display:grid;grid-template-rows:1fr auto;padding-block:clamp(56px,8vh,88px) clamp(20px,4vh,40px)}
+.view{min-width:0;transition:opacity .6s ease}
+.view[hidden]{display:none}
+.view.fading{opacity:0}
 
-.top{text-align:center}
-.eyebrow{font-size:clamp(13px,1.9vh,15px);font-weight:500;color:var(--muted);margin:0 0 8px}
-h1{font-size:clamp(32px,min(8vw,8.5vh),72px);font-weight:700;letter-spacing:-.035em;line-height:1.02;margin:0;text-wrap:balance}
-.sub{font-size:clamp(16px,min(2.6vw,2.8vh),22px);font-weight:500;letter-spacing:-.01em;color:var(--muted);margin:10px 0 0}
-
-/* Split-flap board */
-.board{width:100%;background:var(--frame);border-radius:14px;padding:10px;container-type:inline-size}
-.row{display:grid;grid-template-columns:repeat(16,1fr);gap:4px}
-.tile{position:relative;aspect-ratio:.7;perspective:400px;font-weight:600;color:var(--glyph);
-  font-size:calc((100cqi - 20px - 60px) / 16 * .9)}
-.half,.flap{position:absolute;left:0;right:0;height:50%;overflow:hidden;background:var(--tile);backface-visibility:hidden}
-.half.t,.flap.t{top:0;border-radius:4px 4px 0 0;transform-origin:50% 100%;background:var(--tile-hi)}
-.half.b,.flap.b{bottom:0;border-radius:0 0 4px 4px;transform-origin:50% 0}
-.flap.t{z-index:3}
-.flap.b{z-index:3;transform:rotateX(90deg)}
+/* Home */
+.home{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:clamp(22px,4vh,36px)}
+.board{width:min(100%,620px,calc((100vh - 300px) * 2.2));container-type:inline-size;display:flex;flex-direction:column;gap:6px}
+.row{display:grid;grid-template-columns:repeat(14,1fr);gap:4px}
+.tile{position:relative;aspect-ratio:.7;perspective:400px;font-weight:500;color:var(--fg);font-size:calc((100cqi - 52px) / 14 * .74)}
+.half,.flap{position:absolute;left:0;right:0;height:50%;overflow:hidden;background:var(--bg);backface-visibility:hidden}
+.half.t,.flap.t{top:0;border-radius:3px 3px 0 0;transform-origin:50% 100%}
+.half.b,.flap.b{bottom:0;border-radius:0 0 3px 3px;transform-origin:50% 0}
+.flap.t,.flap.b{z-index:3}
+.flap.b{transform:rotateX(90deg)}
 .half span,.flap span{position:absolute;left:0;right:0;height:200%;display:flex;align-items:center;justify-content:center;line-height:1}
 .t span{top:0}
 .b span{top:-100%}
-.tile::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.5px;margin-top:-.75px;background:var(--seam);z-index:4}
+.tile::before{content:"";position:absolute;inset:0;border:1px solid var(--fg);border-radius:3px;z-index:5;pointer-events:none}
+.tile::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;margin-top:-.5px;background:var(--fg);z-index:4}
+.who p{margin:0}
+.name{font-family:var(--serif);font-size:clamp(28px,4.4vh,40px);letter-spacing:-.01em;line-height:1.1}
+.place{font-size:15px;margin-top:8px!important}
 
-/* Sections grid */
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3.5vh,32px) 48px;border-top:1px solid var(--line);padding-top:clamp(18px,3.5vh,32px)}
-.grid section{min-width:0;display:flex;flex-direction:column;gap:3px}
-.label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
-.strong{font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.3;margin:0;text-wrap:balance}
-.small{font-size:15px;line-height:1.4;color:var(--muted);margin:0;text-wrap:pretty}
-.item + .item{margin-top:6px}
-a{color:var(--link);text-decoration:none}
-a:hover{text-decoration:underline}
-a:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:4px}
+/* About */
+.about{width:min(100%,640px);margin:0 auto;padding-bottom:40px}
+.about h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5vw,48px);letter-spacing:-.015em;line-height:1.1;margin:0 0 20px}
+.about h2 + *{margin-top:0}
+.about section + section{margin-top:clamp(36px,6vh,56px)}
+.about p{color:var(--body);line-height:1.65;margin:0 0 14px;text-wrap:pretty}
+.about .ptitle{font-family:var(--serif);font-style:italic;font-size:24px;line-height:1.3;color:var(--fg);margin-bottom:8px}
+.about a{color:var(--fg);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.jobs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.jobs li{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px;padding-bottom:14px;border-bottom:1px solid var(--fg)}
+.jobs .r{font-family:var(--serif);font-size:24px;color:var(--fg)}
+.jobs .w{color:var(--body)}
+
+/* Bottom nav */
+nav{display:flex;justify-content:center;gap:clamp(40px,6vw,64px);font-family:var(--serif);font-size:clamp(22px,3vh,26px);padding-top:16px}
+nav a{color:var(--fg);text-decoration:none;padding-bottom:1px;border-bottom:1px solid transparent;transition:border-color .25s}
+nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
+:focus-visible{outline:1px solid var(--fg);outline-offset:4px}
+
+/* Contact note, bottom right */
+.note{position:fixed;right:max(20px,calc(env(safe-area-inset-right,0px) + 16px));bottom:calc(env(safe-area-inset-bottom,0px) + 20px);z-index:30;
+  max-width:min(300px,calc(100vw - 40px));margin:0;padding:14px 16px;font-size:14px;line-height:1.45;
+  background:var(--bg);color:var(--fg);border:1px solid var(--fg);
+  opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .4s ease,transform .4s ease}
+.note.show{opacity:1;transform:none}
+
+/* Light / dark toggle */
+.theme{position:fixed;top:calc(env(safe-area-inset-top,0px) + 20px);right:max(20px,calc(env(safe-area-inset-right,0px) + 16px));z-index:20;
+  width:40px;height:40px;display:grid;place-items:center;background:none;border:0;padding:0;color:var(--fg);cursor:pointer;transition:opacity .2s}
+.theme:hover{opacity:.6}
+.theme svg{width:20px;height:20px;display:block}
+.theme .sun{display:none}
+:root[data-theme="dark"] .theme .sun{display:block}
+:root[data-theme="dark"] .theme .moon{display:none}
 
 @media (max-width:560px){
-  .board{padding:7px;border-radius:10px}
+  .board{gap:3px}
   .row{gap:2px}
-  .tile{font-size:calc((100cqi - 14px - 30px) / 16 * .9)}
-  .half.t,.flap.t{border-radius:2px 2px 0 0}
-  .half.b,.flap.b{border-radius:0 0 2px 2px}
-  .grid{column-gap:20px}
-  .grid .wide{grid-column:1 / -1}
-  .strong{font-size:15px}
-  .small{font-size:14px}
+  .tile{font-size:calc((100cqi - 26px) / 14 * .74)}
+  .tile::before,.half.t,.flap.t,.half.b,.flap.b{border-radius:2px}
+}
+@media (prefers-reduced-motion: reduce){
+  .view,.note{transition:none}
 }
 </style>
 </head>
 <body>
-<main class="wrap">
-  <div class="top">
-    <p class="eyebrow">Based in Madrid</p>
-    <h1>Javier de Golferichs.</h1>
-    <p class="sub">Complex systems and machine learning.</p>
-  </div>
+<button class="theme" id="theme" type="button" aria-label="Switch to dark mode">
+  <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+  <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+</button>
 
-  <div class="board" role="img" aria-label="Interests: venture capital, European affairs, economic policy, complex systems, machine learning">
-    <div class="row" id="row"></div>
-  </div>
+<div class="page">
+  <main class="view home" id="home">
+    <div class="board" id="board" role="img" aria-label="Expertise: computer vision, AI systems engineering, graph neural networks, European trade policy, financial analysis"></div>
+    <div class="who">
+      <p class="name">Javier de Golferichs</p>
+      <p class="place">Madrid, Spain</p>
+    </div>
+  </main>
 
-  <div class="grid">
-    <section class="wide">
-      <p class="label">Research</p>
-      <p class="strong">European Critical Raw Materials Dependencies and Graph Learning</p>
-      <p class="small">Working paper, 2026. With <a href="https://www.uam.es/economicas/facultad/departamentos/analisis-economico-economia-cuantitativa/bas-vicente-javier" target="_blank" rel="noopener">Javier Bas</a> and <a href="https://www.uam.es/economicas/facultad/departamentos/economia-aplicada-estadistica/perez-balsalobre-santiago-jose" target="_blank" rel="noopener">Santiago Pérez-Balsalobre</a>.</p>
-    </section>
-
+  <main class="view about" id="about" hidden>
     <section>
-      <p class="label">Experience</p>
-      <div class="item"><p class="strong">Cofounder</p><p class="small">Healthen Group</p></div>
-      <div class="item"><p class="strong">Research Assistant</p><p class="small">Complex Networks Lab, Vienna</p></div>
+      <h2>Research</h2>
+      <p class="ptitle">European Critical Raw Materials Dependencies and Graph Learning</p>
+      <p>Working paper, 2026, with <a href="https://www.uam.es/economicas/facultad/departamentos/analisis-economico-economia-cuantitativa/bas-vicente-javier" target="_blank" rel="noopener">Javier Bas</a> and <a href="https://www.uam.es/economicas/facultad/departamentos/economia-aplicada-estadistica/perez-balsalobre-santiago-jose" target="_blank" rel="noopener">Santiago Pérez-Balsalobre</a>.</p>
+      <p>A framework that processes input-output trade data with graph neural networks to assess the risk in the EU's dependencies on critical raw materials.</p>
     </section>
-
     <section>
-      <p class="label">Expertise</p>
-      <p class="small">Computer vision</p>
-      <p class="small">AI systems engineering</p>
-      <p class="small">Graph neural networks</p>
+      <h2>Experience</h2>
+      <ul class="jobs">
+        <li><span class="r">Cofounder</span><span class="w"><a href="https://healthengroup.com" target="_blank" rel="noopener">Healthen Group</a></span></li>
+        <li><span class="r">Summer Intern</span><span class="w">Complex Networks Lab, Vienna · 2026</span></li>
+      </ul>
     </section>
+  </main>
 
-    <section class="wide">
-      <p class="label">Contact</p>
-      <p class="small">Send me a <a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank" rel="noopener">LinkedIn connection request</a>. I check regularly.</p>
-    </section>
-  </div>
-</main>
+  <nav>
+    <a href="#about" id="nav-about">About</a>
+    <a href="https://www.linkedin.com/in/javier-de-golferichs/" id="li" target="_blank" rel="noopener" aria-describedby="note">Contact</a>
+  </nav>
+</div>
+
+<p class="note" id="note" role="tooltip">LinkedIn is my preferred way to be contacted through this page. Send a connection request and I'll check it regularly.</p>
 
 <script>
 (function(){
-  var WORDS=["VENTURE CAPITAL","EUROPEAN AFFAIRS","ECONOMIC POLICY","COMPLEX SYSTEMS","MACHINE LEARNING"];
-  var N=16, CH=" ABCDEFGHIJKLMNOPQRSTUVWXYZ", STEP=70;
+  /* Split-flap board */
+  var LINES=[["COMPUTER","VISION"],["AI SYSTEMS","ENGINEERING"],["GRAPH NEURAL","NETWORKS"],["EUROPEAN TRADE","POLICY"],["FINANCIAL","ANALYSIS"]];
+  var W=14, CH=" ABCDEFGHIJKLMNOPQRSTUVWXYZ", STEP=70;
   var reduce=false; try{reduce=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
-  var row=document.getElementById('row'), tiles=[];
-  function pad(w){ var l=Math.floor((N-w.length)/2); return (" ".repeat(l)+w+" ".repeat(N)).slice(0,N); }
-  function el(c){ var d=document.createElement('div'); d.className=c; var s=document.createElement('span'); d.appendChild(s); return d; }
-  var first=pad(WORDS[0]);
-  for(var i=0;i<N;i++){
-    var t=document.createElement('div'); t.className='tile';
-    var o={el:t,ht:el('half t'),hb:el('half b'),ft:el('flap t'),fb:el('flap b'),c:first[i]};
-    [o.ht,o.hb,o.ft,o.fb].forEach(function(p){ t.appendChild(p); p.firstChild.textContent=o.c; });
-    row.appendChild(t); tiles.push(o);
+  function pad(w){ var l=Math.floor((W-w.length)/2); return (" ".repeat(l)+w+" ".repeat(W)).slice(0,W); }
+  function text(k){ return pad(LINES[k][0])+pad(LINES[k][1]); }
+  function el(c){ var d=document.createElement('div'); d.className=c; d.appendChild(document.createElement('span')); return d; }
+  var board=document.getElementById('board'), tiles=[], first=text(0);
+  for(var r=0;r<2;r++){
+    var row=document.createElement('div'); row.className='row'; board.appendChild(row);
+    for(var c=0;c<W;c++){
+      var t=document.createElement('div'); t.className='tile';
+      var o={ht:el('half t'),hb:el('half b'),ft:el('flap t'),fb:el('flap b'),c:first[r*W+c]};
+      [o.ht,o.hb,o.ft,o.fb].forEach(function(p){ t.appendChild(p); p.firstChild.textContent=o.c; });
+      row.appendChild(t); tiles.push(o);
+    }
   }
-  function set(p,c){ p.firstChild.textContent=c; }
+  function set(p,ch){ p.firstChild.textContent=ch; }
   function flip(o,next){
     return new Promise(function(res){
       if(reduce || !o.ft.animate){ [o.ht,o.hb,o.ft,o.fb].forEach(function(p){set(p,next)}); o.c=next; return res(); }
@@ -143,17 +170,43 @@ a:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:4
       setTimeout(function step(){
         if(o.c===target) return res();
         if(reduce){ flip(o,target).then(res); return; }
-        var i=CH.indexOf(o.c); var n=CH[(i+1)%CH.length];
-        flip(o,n).then(step);
+        flip(o,CH[(CH.indexOf(o.c)+1)%CH.length]).then(step);
       },delay);
     });
   }
   var k=0;
   function cycle(){
-    k=(k+1)%WORDS.length; var w=pad(WORDS[k]);
-    Promise.all(tiles.map(function(o,i){ return run(o,w[i],i*25); })).then(function(){ setTimeout(cycle,2800); });
+    k=(k+1)%LINES.length; var target=text(k);
+    Promise.all(tiles.map(function(o,i){ return run(o,target[i],(i%W)*30); })).then(function(){ setTimeout(cycle,3200); });
   }
-  setTimeout(cycle,2200);
+  setTimeout(cycle,2600);
+
+  /* Views: home and #about */
+  var home=document.getElementById('home'), about=document.getElementById('about'), nav=document.getElementById('nav-about');
+  function show(){
+    var onAbout=location.hash==='#about', inEl=onAbout?about:home, outEl=onAbout?home:about;
+    nav.textContent=onAbout?'Home':'About';
+    nav.setAttribute('href',onAbout?'#home':'#about');
+    if(!inEl.hidden) return;
+    outEl.hidden=true; inEl.hidden=false; inEl.classList.add('fading');
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ inEl.classList.remove('fading'); }); });
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange',show); show();
+
+  /* Contact note */
+  var li=document.getElementById('li'), note=document.getElementById('note');
+  function on(){ note.classList.add('show'); } function off(){ note.classList.remove('show'); }
+  li.addEventListener('mouseenter',on); li.addEventListener('mouseleave',off);
+  li.addEventListener('focus',on); li.addEventListener('blur',off);
+
+  /* Light / dark */
+  var root=document.documentElement, tbtn=document.getElementById('theme');
+  function isDark(){ var t=root.getAttribute('data-theme'); if(t) return t==='dark'; try{return matchMedia('(prefers-color-scheme: dark)').matches}catch(e){return false} }
+  function apply(dark){ root.setAttribute('data-theme',dark?'dark':'light'); tbtn.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode'); }
+  var saved=null; try{saved=localStorage.getItem('theme')}catch(e){}
+  apply(saved?saved==='dark':isDark());
+  tbtn.addEventListener('click',function(){ var d=!isDark(); apply(d); try{localStorage.setItem('theme',d?'dark':'light')}catch(e){} });
 })();
 </script>
 </body>
