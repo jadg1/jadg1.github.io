@@ -1,434 +1,160 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Javier de Golferichs. Based in Madrid. Complex systems, machine learning, venture capital, European affairs and economic policy.">
 <title>Javier de Golferichs</title>
-<meta name="description" content="Curriculum vitae. Complexity Science Hub Vienna. Trade networks, graph learning, financial systemic risk.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Javier de Golferichs">
-<meta property="og:description" content="Curriculum vitae. Trade networks, graph learning, financial systemic risk.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+/* Layout: one centered column, lots of air. Big name, a split-flap board cycling interests, one experience line. */
+:root{
+  --bg:#FFFFFF; --fg:#1D1D1F; --muted:#6E6E73; --line:#E5E5EA; --link:#0066CC;
+  --frame:#1C1C1E; --tile:#2C2C2E; --tile-hi:#333336; --glyph:#F5F5F7; --seam:#0B0B0C;
+  --sans:-apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#000000; --fg:#F5F5F7; --muted:#86868B; --line:#2C2C2E; --link:#2997FF;
+  --frame:#161617; --tile:#262628; --tile-hi:#2E2E30; --glyph:#F5F5F7; --seam:#000000; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#000000; --fg:#F5F5F7; --muted:#86868B; --line:#2C2C2E; --link:#2997FF;
+  --frame:#161617; --tile:#262628; --tile-hi:#2E2E30; --glyph:#F5F5F7; --seam:#000000; color-scheme:dark;
+}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.wrap{max-width:780px;margin:0 auto;padding-block:clamp(56px,12vw,140px) 64px;display:flex;flex-direction:column;align-items:center;text-align:center}
 
-  :root {
-    --paper: #ffffff;
-    --ink: #111111;
-    --dim: #3f3f3f;
-    --dimmer: #6f6f6f;
-    --rule: #111111;
-    --hair: #d8d4cc;
-    --soft: #f6f4f0;
-    --serif: 'Times New Roman', Times, 'Liberation Serif', 'Nimbus Roman', serif;
-  }
+.eyebrow{font-size:15px;font-weight:500;color:var(--muted);margin:0 0 14px}
+h1{font-size:clamp(40px,8vw,80px);font-weight:700;letter-spacing:-.035em;line-height:1.02;margin:0;text-wrap:balance}
+.sub{font-size:clamp(19px,2.6vw,24px);font-weight:500;letter-spacing:-.01em;line-height:1.35;color:var(--muted);margin:18px 0 0;max-width:30em;text-wrap:balance}
+.sub b{color:var(--fg);font-weight:600}
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #12100e;
-      --ink: #e9e5dd;
-      --dim: #c3beb4;
-      --dimmer: #928c81;
-      --rule: #6a655c;
-      --hair: #322e29;
-      --soft: #1a1815;
-    }
-  }
+/* Split-flap board */
+.board{width:100%;margin-top:clamp(48px,8vw,80px);background:var(--frame);border-radius:18px;padding:14px;container-type:inline-size;text-align:left}
+.board-head{display:flex;justify-content:space-between;gap:12px;color:#8E8E93;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:2px 4px 12px}
+.row{display:grid;grid-template-columns:repeat(16,1fr);gap:5px}
+.tile{position:relative;aspect-ratio:.68;perspective:400px;font-weight:600;color:var(--glyph);
+  font-size:calc((100cqi - 28px - 75px) / 16 * .9);font-variant-numeric:tabular-nums}
+.half,.flap{position:absolute;left:0;right:0;height:50%;overflow:hidden;background:var(--tile);backface-visibility:hidden}
+.half.t,.flap.t{top:0;border-radius:4px 4px 0 0;transform-origin:50% 100%;background:var(--tile-hi)}
+.half.b,.flap.b{bottom:0;border-radius:0 0 4px 4px;transform-origin:50% 0}
+.flap.t{z-index:3}
+.flap.b{z-index:3;transform:rotateX(90deg)}
+.half span,.flap span{position:absolute;left:0;right:0;height:200%;display:flex;align-items:center;justify-content:center;line-height:1}
+.t span{top:0}
+.b span{top:-100%}
+.tile::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.5px;margin-top:-.75px;background:var(--seam);z-index:4}
 
-  html { -webkit-text-size-adjust: 100%; }
+/* Experience */
+.exp{width:100%;margin-top:clamp(64px,10vw,104px);border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.label{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.role{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:-.02em;margin:0}
+.where{font-size:17px;color:var(--muted);margin:0}
+.desc{font-size:17px;line-height:1.5;margin:10px auto 0;max-width:32em;text-wrap:pretty}
+.exp + .exp{margin-top:56px}
+.jobs{display:flex;flex-direction:column;gap:36px;width:100%}
+.job{display:flex;flex-direction:column;gap:6px}
+.skills{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.skills li{font-size:17px;font-weight:500;padding:9px 18px;border-radius:999px;border:1px solid var(--line)}
 
-  /* Everything scales off one root size tied to window height, so the CV
-     holds to a single screen instead of scrolling. */
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--serif);
-    font-size: clamp(12px, 2.1vh, 18px);
-    line-height: 1.4;
-    padding: 2.2em 1.4em 1.6em;
-  }
+footer{margin-top:64px;font-size:17px}
+footer a{color:var(--link);text-decoration:none}
+footer a:hover{text-decoration:underline}
+a:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:4px}
 
-  /* One centered column. Opening a diagram adds a second column to its right. */
-  .layout {
-    display: grid;
-    grid-template-columns: minmax(0, 34em);
-    justify-content: center;
-    gap: 3em;
-    align-items: start;
-    transition: grid-template-columns 0.4s ease;
-  }
-
-  body.is-open .layout {
-    grid-template-columns: minmax(0, 34em) minmax(0, 28em);
-  }
-
-  /* ─── The CV column ─── */
-
-  main { max-width: 34em; margin: 0 auto; }
-
-  h1 {
-    font-size: 1.5em;
-    font-weight: normal;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    line-height: 1.2;
-  }
-
-  .place { font-style: italic; margin-top: 0.2em; }
-
-  .masthead { display: flow-root; padding-bottom: 0.5em; }
-  .masthead .names { padding-top: 0.7em; }
-
-  .portrait {
-    float: right;
-    width: 5.6em;
-    height: 7em;
-    object-fit: cover;
-    margin-left: 1.4em;
-    border: 1px solid var(--rule);
-    background: var(--soft);
-  }
-
-  h2 {
-    text-align: center;
-    font-size: 0.86em;
-    font-weight: bold;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    margin: 1.5em 0 0.6em;
-    padding-bottom: 0.35em;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .org { font-weight: bold; margin-top: 0.75em; }
-  .org:first-of-type { margin-top: 0; }
-  .role { font-style: italic; }
-
-  p { margin-top: 0.4em; text-wrap: pretty; }
-
-  .skills p { margin-top: 0.2em; }
-  .skills span { font-weight: bold; }
-
-  footer {
-    margin-top: 1.5em;
-    padding-top: 0.6em;
-    border-top: 1px solid var(--rule);
-    font-size: 0.88em;
-    font-style: italic;
-  }
-
-  a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--rule); }
-  a:hover, a:focus-visible { opacity: 0.55; }
-  :focus-visible { outline: 2px solid var(--rule); outline-offset: 3px; }
-
-  /* ─── Research entries ─── */
-
-  .ref { position: relative; margin-top: 0.7em; }
-  .ref:first-of-type { margin-top: 0; }
-
-  .ref-text {
-    display: block;
-    width: 100%;
-    font: inherit;
-    color: inherit;
-    background: none;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-    padding: 0.3em 0;
-    text-wrap: pretty;
-  }
-
-  .ref-text:hover { background: var(--soft); }
-  .ref-text cite { font-style: italic; }
-
-  /* The note lives in the right margin, outside the column, and is
-     tied back to its reference by a dotted arrow. */
-  .callout {
-    position: absolute;
-    left: 100%;
-    top: 0.2em;
-    margin-left: 3.1em;
-    width: 9.5em;
-    font-size: 0.82em;
-    font-style: italic;
-    line-height: 1.35;
-    color: var(--dim);
-  }
-
-  .callout-box {
-    display: block;
-    border: 1px dotted var(--dimmer);
-    padding: 0.5em 0.7em;
-  }
-
-  .arrow {
-    position: absolute;
-    right: 100%;
-    top: 0.45em;
-    width: 3.2em;
-    height: 1.5em;
-    color: var(--dimmer);
-  }
-
-  body.is-open .callout { display: none; }
-
-  /* ─── The diagram column ─── */
-
-  .figures { position: sticky; top: 2.2em; max-width: 28em; margin: 0 auto; }
-  .figures[hidden] { display: none; }
-
-  figure {
-    border: 1px solid var(--hair);
-    padding: 1.1em 1.3em 1.2em;
-  }
-
-  figure[hidden] { display: none; }
-
-  .fig-title { font-size: 1.12em; }
-  .fig-sub { font-style: italic; color: var(--dimmer); font-size: 0.88em; margin-top: 0.1em; }
-  .fig-lede { margin-top: 0.7em; color: var(--dim); font-size: 0.94em; }
-  .fig-lede em { color: var(--ink); }
-
-  figure svg {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: 42vh;
-    margin-top: 0.8em;
-    color: var(--ink);
-  }
-
-  .close {
-    font: inherit;
-    font-size: 0.82em;
-    font-style: italic;
-    color: var(--dimmer);
-    background: none;
-    border: none;
-    border-bottom: 1px solid var(--hair);
-    cursor: pointer;
-    padding: 0;
-    margin-top: 0.9em;
-  }
-
-  .close:hover { color: var(--ink); }
-
-  .flow { stroke-dasharray: 4 4; animation: flow 1.8s linear infinite; }
-  @keyframes flow { to { stroke-dashoffset: -16; } }
-
-  @media (prefers-reduced-motion: reduce) {
-    .flow { animation: none; }
-    .layout { transition: none; }
-  }
-
-  /* Below two columns' worth of room, the diagram sits under the CV instead. */
-  @media (max-width: 1080px) {
-    body.is-open .layout { grid-template-columns: minmax(0, 34em); }
-    .figures { position: static; }
-    .callout { position: static; width: auto; margin: 0.3em 0 0; }
-    .arrow { display: none; }
-  }
-
-  /* On a phone the column reflows and one screen is not realistic, so
-     type goes back to a comfortable reading size and the page scrolls. */
-  @media (max-width: 480px) {
-    body { font-size: 16px; padding: 2.4em 1.1em 3em; }
-    h1 { font-size: 1.4em; letter-spacing: 0.1em; }
-    .masthead { text-align: center; }
-    .masthead .names { padding-top: 0.8em; }
-    .portrait { float: none; display: block; margin: 0 auto; }
-    figure svg { max-height: none; }
-  }
-
-  @media print {
-    :root { --paper: #ffffff; --ink: #000000; --dim: #000000; --rule: #000000; }
-    body { font-size: 11pt; padding: 0; }
-    .layout, body.is-open .layout { display: block; }
-    .figures, .callout { display: none !important; }
-    a { border-bottom: none; }
-    @page { margin: 20mm 32mm; }
-  }
+@media (max-width:560px){
+  .board{padding:8px;border-radius:12px}
+  .row{gap:2px}
+  .tile{font-size:calc((100cqi - 16px - 30px) / 16 * .9)}
+  .half.t,.flap.t{border-radius:2px 2px 0 0}
+  .half.b,.flap.b{border-radius:0 0 2px 2px}
+}
 </style>
 </head>
 <body>
+<main class="wrap">
+  <p class="eyebrow">Based in Madrid</p>
+  <h1>Javier de Golferichs.</h1>
+  <p class="sub">Experience in <b>complex systems</b> and <b>machine learning</b>. Interested in venture capital, European affairs and economic policy.</p>
 
-<div class="layout">
+  <div class="board" role="img" aria-label="Interests: venture capital, European affairs, economic policy, complex systems, machine learning">
+    <div class="board-head"><span>Interests</span><span>MAD 40.42° N</span></div>
+    <div class="row" id="row"></div>
+  </div>
 
-  <main>
+  <section class="exp">
+    <p class="label">Expertise</p>
+    <ul class="skills">
+      <li>Computer vision</li>
+      <li>AI systems engineering</li>
+      <li>Graph neural networks</li>
+    </ul>
+  </section>
 
-    <header class="masthead">
-      <img class="portrait" src="yo_blanes.jpg" alt="Javier de Golferichs" width="96" height="120">
-      <div class="names">
-        <h1>Javier de Golferichs Garcia</h1>
-        <p class="place">Madrid, Spain</p>
+  <section class="exp">
+    <p class="label">Experience</p>
+    <div class="jobs">
+      <div class="job">
+        <p class="role">Cofounder</p>
+        <p class="where">Healthen Group</p>
       </div>
-    </header>
-
-    <h2>Positions</h2>
-    <p class="org">Complexity Science Hub, Vienna, Austria</p>
-    <p class="role">Summer Intern, Supply Chain Science. 7/2026 &ndash; 8/2026.</p>
-    <p>Applied a normalizing-flow dynamic graph generator to trade networks, building an <a href="https://github.com/KjartanvanDriel" target="_blank" rel="noopener">end-to-end reproducible Python pipeline</a>.</p>
-    <p>Prepared benchmarks to gravity-model and latent-space baselines with impulse responses, showing similar shock persistence.</p>
-
-    <h2>Degrees</h2>
-    <p class="org">UPF Barcelona School of Management, Barcelona, Spain</p>
-    <p class="role">MSc, Finance and Banking. 9/2025 &ndash; 7/2026.</p>
-
-    <h2>Research</h2>
-
-    <div class="ref">
-      <button class="ref-text" aria-expanded="false" aria-controls="fig-crm" onclick="openFigure(this)">De Golferichs-Garcia, J., Bas, J., Perez-Balsalobre, S. (2026). <cite>&ldquo;European Critical Raw Materials Dependencies and Graph Learning.&rdquo;</cite> Working paper.</button>
-      <span class="callout" aria-hidden="true">
-        <svg class="arrow" viewBox="0 0 46 22" xmlns="http://www.w3.org/2000/svg" focusable="false">
-          <defs>
-            <marker id="tip1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </marker>
-          </defs>
-          <path d="M44 11 Q26 11 6 13" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3" marker-end="url(#tip1)"/>
-        </svg>
-        <span class="callout-box">Click the reference for the idea, in one diagram</span>
-      </span>
+      <div class="job">
+        <p class="role">Research Assistant</p>
+        <p class="where">Complex Networks Lab, Vienna · Summer 2026</p>
+        <p class="desc">Studied where independent edge models fall short when sampling observed edges and edges assumed to be impossible.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="ref">
-      <button class="ref-text" aria-expanded="false" aria-controls="fig-bank" onclick="openFigure(this)">De Golferichs-Garcia, J. (2026). <cite>&ldquo;Cross Border Common Ownership Systemic Risk in the European Banking Union.&rdquo;</cite> Thesis at UPF Barcelona School of Management for the MSc in Finance and Banking degree, supervised by Albert Banal-Estanol.</button>
-      <span class="callout" aria-hidden="true">
-        <svg class="arrow" viewBox="0 0 46 22" xmlns="http://www.w3.org/2000/svg" focusable="false">
-          <defs>
-            <marker id="tip2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </marker>
-          </defs>
-          <path d="M44 11 Q26 11 6 13" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3" marker-end="url(#tip2)"/>
-        </svg>
-        <span class="callout-box">Click the reference for the idea, in one diagram</span>
-      </span>
-    </div>
-
-    <h2>Skills</h2>
-    <div class="skills">
-      <p><span>Programming.</span> Python, R, Stata.</p>
-      <p><span>Languages.</span> English, Spanish.</p>
-    </div>
-
-    <footer>
-      Email and full CV on request, kept off this page by choice. A
-      <a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank" rel="noopener">LinkedIn connection request</a>
-      reaches me.
-    </footer>
-
-  </main>
-
-  <aside class="figures" hidden>
-
-    <figure id="fig-crm" hidden>
-      <p class="fig-title">A structural mismatch in EU sourcing</p>
-      <p class="fig-sub">Where strategic dependencies actually sit</p>
-      <p class="fig-lede">Trade theory predicts that countries source most from partners that are nearby, culturally close, and politically aligned. For the materials the EU's green and digital transitions depend on, <em>the pattern is roughly the opposite</em>.</p>
-
-      <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The EU at the centre of inbound critical raw material flows from China, Russia, Canada, Turkey, Brazil and South Africa, with the heaviest flow from China.">
-        <defs>
-          <marker id="arrC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-          </marker>
-        </defs>
-
-        <circle cx="300" cy="170" r="30" fill="currentColor"/>
-        <text x="300" y="175" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="var(--paper)">EU</text>
-
-        <circle cx="70" cy="60" r="28" fill="none" stroke="currentColor" stroke-width="1"/>
-        <text x="70" y="64" text-anchor="middle" font-family="Times New Roman, serif" font-size="13" fill="currentColor">China</text>
-        <path class="flow" d="M95 80 Q190 120 273 158" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.7" marker-end="url(#arrC)"/>
-
-        <circle cx="530" cy="60" r="26" fill="none" stroke="currentColor" stroke-width="1"/>
-        <text x="530" y="64" text-anchor="middle" font-family="Times New Roman, serif" font-size="13" fill="currentColor">Russia</text>
-        <path class="flow" d="M508 76 Q410 120 328 158" fill="none" stroke="currentColor" stroke-width="1.1" opacity="0.65" marker-end="url(#arrC)"/>
-
-        <circle cx="60" cy="180" r="22" fill="none" stroke="currentColor" stroke-width="1"/>
-        <text x="60" y="184" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="currentColor">Canada</text>
-        <path class="flow" d="M82 178 Q170 173 270 172" fill="none" stroke="currentColor" stroke-width="0.9" opacity="0.55" marker-end="url(#arrC)"/>
-
-        <circle cx="540" cy="180" r="22" fill="none" stroke="currentColor" stroke-width="1"/>
-        <text x="540" y="184" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="currentColor">Turkey</text>
-        <path class="flow" d="M518 178 Q430 173 330 172" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6" marker-end="url(#arrC)"/>
-
-        <circle cx="120" cy="290" r="22" fill="none" stroke="currentColor" stroke-width="1"/>
-        <text x="120" y="294" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="currentColor">Brazil</text>
-        <path class="flow" d="M140 274 Q210 230 280 194" fill="none" stroke="currentColor" stroke-width="0.9" opacity="0.55" marker-end="url(#arrC)"/>
-
-        <circle cx="480" cy="290" r="22" fill="none" stroke="currentColor" stroke-width="1"/>
-        <text x="480" y="294" text-anchor="middle" font-family="Times New Roman, serif" font-size="10.5" fill="currentColor">S. Africa</text>
-        <path class="flow" d="M460 274 Q390 230 320 194" fill="none" stroke="currentColor" stroke-width="0.9" opacity="0.55" marker-end="url(#arrC)"/>
-
-        <text x="300" y="332" text-anchor="middle" font-family="Times New Roman, serif" font-size="12" fill="var(--dim)" font-style="italic">Distant, linguistically different, often politically misaligned partners</text>
-      </svg>
-
-      <button class="close" onclick="closeFigures()">Close</button>
-    </figure>
-
-    <figure id="fig-bank" hidden>
-      <p class="fig-title">The contagion channel nobody is monitoring</p>
-      <p class="fig-sub">EU banks, cross-border versus domestic common ownership</p>
-      <p class="fig-lede">Banking Union supervision tracks lending and interbank exposures. But two banks in different countries can also be linked by a third party, a large institutional investor that owns meaningful stakes in both. <em>If that investor reallocates, both banks move together.</em></p>
-
-      <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two banks in different EU countries, each held by the same institutional investor, with risk co-movement drawn between them.">
-        <defs>
-          <marker id="arrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-          </marker>
-        </defs>
-
-        <circle cx="120" cy="90" r="42" fill="none" stroke="currentColor" stroke-width="1"/>
-        <text x="120" y="88" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="currentColor">Bank A</text>
-        <text x="120" y="104" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="var(--dimmer)">EU country X</text>
-
-        <circle cx="480" cy="90" r="42" fill="none" stroke="currentColor" stroke-width="1"/>
-        <text x="480" y="88" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" fill="currentColor">Bank B</text>
-        <text x="480" y="104" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="var(--dimmer)">EU country Y</text>
-
-        <ellipse cx="300" cy="200" rx="120" ry="32" fill="none" stroke="currentColor" stroke-width="1"/>
-        <text x="300" y="197" text-anchor="middle" font-family="Times New Roman, serif" font-size="13" fill="currentColor">Shared institutional investor</text>
-        <text x="300" y="213" text-anchor="middle" font-family="Times New Roman, serif" font-size="11" fill="var(--dimmer)">cross-border equity stake in both</text>
-
-        <path class="flow" d="M148 120 Q220 165 230 180" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55" marker-end="url(#arrB)"/>
-        <path class="flow" d="M452 120 Q380 165 370 180" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55" marker-end="url(#arrB)"/>
-
-        <path d="M165 85 Q300 50 435 85" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
-        <text x="300" y="45" text-anchor="middle" font-family="Times New Roman, serif" font-size="12" fill="currentColor" font-style="italic">Risk co-movement</text>
-
-        <text x="300" y="262" text-anchor="middle" font-family="Times New Roman, serif" font-size="12" fill="var(--dim)" font-style="italic">Does this channel show up in tail-risk co-movement?</text>
-      </svg>
-
-      <button class="close" onclick="closeFigures()">Close</button>
-    </figure>
-
-  </aside>
-
-</div>
+  <footer><a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank" rel="noopener">Connect on LinkedIn ›</a></footer>
+</main>
 
 <script>
-  function openFigure(btn) {
-    var wanted = btn.getAttribute('aria-controls');
-    var open = btn.getAttribute('aria-expanded') === 'true';
-
-    closeFigures();
-    if (open) { return; }
-
-    btn.setAttribute('aria-expanded', 'true');
-    document.getElementById(wanted).hidden = false;
-    document.querySelector('.figures').hidden = false;
-    document.body.classList.add('is-open');
+(function(){
+  var WORDS=["VENTURE CAPITAL","EUROPEAN AFFAIRS","ECONOMIC POLICY","COMPLEX SYSTEMS","MACHINE LEARNING"];
+  var N=16, CH=" ABCDEFGHIJKLMNOPQRSTUVWXYZ", STEP=70;
+  var reduce=false; try{reduce=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
+  var row=document.getElementById('row'), tiles=[];
+  function pad(w){ var l=Math.floor((N-w.length)/2); return (" ".repeat(l)+w+" ".repeat(N)).slice(0,N); }
+  function el(c){ var d=document.createElement('div'); d.className=c; var s=document.createElement('span'); d.appendChild(s); return d; }
+  var first=pad(WORDS[0]);
+  for(var i=0;i<N;i++){
+    var t=document.createElement('div'); t.className='tile';
+    var o={el:t,ht:el('half t'),hb:el('half b'),ft:el('flap t'),fb:el('flap b'),c:first[i]};
+    [o.ht,o.hb,o.ft,o.fb].forEach(function(p){ t.appendChild(p); p.firstChild.textContent=o.c; });
+    row.appendChild(t); tiles.push(o);
   }
-
-  function closeFigures() {
-    document.querySelectorAll('.ref-text').forEach(function (b) {
-      b.setAttribute('aria-expanded', 'false');
+  function set(p,c){ p.firstChild.textContent=c; }
+  function flip(o,next){
+    return new Promise(function(res){
+      if(reduce || !o.ft.animate){ [o.ht,o.hb,o.ft,o.fb].forEach(function(p){set(p,next)}); o.c=next; return res(); }
+      set(o.ht,next); set(o.hb,o.c); set(o.ft,o.c); set(o.fb,next);
+      o.ft.animate([{transform:'rotateX(0deg)'},{transform:'rotateX(-90deg)'}],{duration:STEP/2,fill:'forwards',easing:'ease-in'});
+      var a=o.fb.animate([{transform:'rotateX(90deg)'},{transform:'rotateX(0deg)'}],{duration:STEP/2,delay:STEP/2,fill:'forwards',easing:'ease-out'});
+      a.onfinish=function(){ set(o.hb,next); set(o.ft,next); o.ft.getAnimations().forEach(function(x){x.cancel()}); o.fb.getAnimations().forEach(function(x){x.cancel()}); o.c=next; res(); };
     });
-    document.querySelectorAll('figure').forEach(function (f) { f.hidden = true; });
-    document.querySelector('.figures').hidden = true;
-    document.body.classList.remove('is-open');
   }
+  function run(o,target,delay){
+    return new Promise(function(res){
+      setTimeout(function step(){
+        if(o.c===target) return res();
+        if(reduce){ flip(o,target).then(res); return; }
+        var i=CH.indexOf(o.c); var n=CH[(i+1)%CH.length];
+        flip(o,n).then(step);
+      },delay);
+    });
+  }
+  var k=0;
+  function cycle(){
+    k=(k+1)%WORDS.length; var w=pad(WORDS[k]);
+    Promise.all(tiles.map(function(o,i){ return run(o,w[i],i*25); })).then(function(){ setTimeout(cycle,2800); });
+  }
+  setTimeout(cycle,2200);
+})();
 </script>
 </body>
 </html>
