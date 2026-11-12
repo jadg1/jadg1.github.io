@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Javier de Golferichs. Economist and engineer in Madrid, Spain. Computer vision, AI systems engineering, graph neural networks, European trade policy and financial analysis.">
+<meta name="description" content="Javier de Golferichs. Economist and engineer in Madrid, Spain. Computer vision, machine learning, network science, econometrics, systemic risk, European affairs and trade policy.">
 <title>Javier de Golferichs</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap">
 <style>
@@ -110,7 +110,7 @@ nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
 
 <div class="page">
   <main class="view home" id="home">
-    <div class="board" id="board" role="img" aria-label="Expertise: computer vision, AI systems engineering, graph neural networks, European trade policy, financial analysis"></div>
+    <div class="board" id="board" role="img" aria-label="Computer vision, European trade policy, network science, teamwork, econometrics, systemic risk, AI systems engineering, financial analysis, European affairs, graph neural networks, machine learning"></div>
     <div class="who">
       <p class="name">Javier de Golferichs</p>
       <p class="tagline">Economist and engineer</p>
@@ -146,7 +146,8 @@ nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
 (function(){
   /* Split-flap board */
   /* Ordered so every change keeps at least one letter in the same box */
-  var LINES=[["COMPUTER","VISION"],["AI SYSTEMS","ENGINEERING"],["GRAPH NEURAL","NETWORKS"],["FINANCIAL","ANALYSIS"],["EUROPEAN TRADE","POLICY"]];
+  var LINES=[["COMPUTER","VISION"],["EUROPEAN TRADE","POLICY"],["NETWORK","SCIENCE"],["TEAMWORK",""],["ECONOMETRICS",""],["SYSTEMIC","RISK"],
+             ["AI SYSTEMS","ENGINEERING"],["FINANCIAL","ANALYSIS"],["EUROPEAN","AFFAIRS"],["GRAPH NEURAL","NETWORKS"],["MACHINE","LEARNING"]];
   var W=14;
   var reduce=false; try{reduce=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
   function pad(w){ var l=Math.floor((W-w.length)/2); return (" ".repeat(l)+w+" ".repeat(W)).slice(0,W); }
@@ -234,7 +235,7 @@ nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
   tbtn.addEventListener('click',function(){ var d=!isDark(); apply(d); try{localStorage.setItem('theme',d?'dark':'light')}catch(e){} });
 
   /* Sand: a field of grains the cursor pushes aside. Pressing digs a wider, deeper trail,
-     like a finger drawn through sand. Grains drift back slowly once the cursor moves on. */
+     like a finger drawn through sand. Trails stay until the page is reloaded. */
   var cv=document.getElementById('sand'), cx=cv.getContext('2d');
   var SP=6, N=0, X, Y, HX, HY, VX, VY, w=0, h=0, img, buf, col=0, running=false;
   var P={x:-1e4, y:-1e4, vx:0, vy:0, down:false, last:0, seen:false};
@@ -266,7 +267,7 @@ nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
   }
   function step(){
     var now=performance.now(), active=P.seen && (P.down || now-P.last<140);
-    var R=P.down?60:38, R2=R*R, F=P.down?2.4:0.9, DRAG=P.down?0.5:0.18, K=0.004, maxo=0;
+    var R=P.down?60:38, R2=R*R, F=P.down?2.4:0.9, DRAG=P.down?0.5:0.18, maxv=0;
     for(var i=0;i<N;i++){
       var vx=VX[i], vy=VY[i];
       if(active){
@@ -280,13 +281,14 @@ nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
           }
         }
       }
-      vx=(vx+(HX[i]-X[i])*K)*0.8; vy=(vy+(HY[i]-Y[i])*K)*0.8;
+      vx*=0.8; vy*=0.8;
+      if(vx>-0.01 && vx<0.01) vx=0; if(vy>-0.01 && vy<0.01) vy=0;
       X[i]+=vx; Y[i]+=vy; VX[i]=vx; VY[i]=vy;
-      var o=Math.abs(HX[i]-X[i])+Math.abs(HY[i]-Y[i]); if(o>maxo) maxo=o;
+      var v=Math.abs(vx)+Math.abs(vy); if(v>maxv) maxv=v;
     }
     draw();
     P.vx*=0.6; P.vy*=0.6;
-    if(active || maxo>0.35) requestAnimationFrame(step); else running=false;
+    if(active || maxv>0) requestAnimationFrame(step); else running=false;
   }
   function kick(){ if(!running){ running=true; requestAnimationFrame(step); } }
   window.addEventListener('pointermove',function(e){
@@ -306,7 +308,10 @@ nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
   tbtn.addEventListener('click',recolor);
   try{ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',recolor); }catch(e){}
   try{ new MutationObserver(recolor).observe(root,{attributes:true,attributeFilter:['data-theme']}); }catch(e){}
-  var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(build,150); });
+  /* Rebuild only for a real size change, so a phone's address bar showing or hiding keeps the trails */
+  var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(function(){
+    if(Math.abs(innerWidth-w)>1 || Math.abs(innerHeight-h)>140) build();
+  },200); });
   sandColor(); build();
 })();
 </script>
