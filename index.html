@@ -234,27 +234,64 @@ nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
   apply(saved?saved==='dark':isDark());
   tbtn.addEventListener('click',function(){ var d=!isDark(); apply(d); try{localStorage.setItem('theme',d?'dark':'light')}catch(e){} });
 
-  /* Sand: a field of grains the cursor pushes aside. Pressing digs a wider, deeper trail,
-     like a finger drawn through sand. Trails stay until the page is reloaded. */
+  /* Sand: grains that open already raked into marbled ridges. The cursor pushes grains aside;
+     pressing digs a wider, deeper trail. Trails stay where they are drawn until the page is reloaded:
+     grains never drift back, and resizing the window keeps the field instead of rebuilding it. */
   var cv=document.getElementById('sand'), cx=cv.getContext('2d');
-  var SP=6, N=0, X, Y, HX, HY, VX, VY, w=0, h=0, img, buf, col=0, running=false;
+  var SP=8, N=0, X, Y, VX, VY, w=0, h=0, img, buf, col=0, running=false;
   var P={x:-1e4, y:-1e4, vx:0, vy:0, down:false, last:0, seen:false};
   function sandColor(){
     var f=getComputedStyle(root).getPropertyValue('--fg').trim().replace('#','');
     if(f.length===3) f=f.replace(/./g,'$&$&');
-    var n=parseInt(f,16)||0, r=(n>>16)&255, g=(n>>8)&255, b=n&255, a=120;
+    var n=parseInt(f,16)||0, r=(n>>16)&255, g=(n>>8)&255, b=n&255, a=150;
     col=((a<<24)|(b<<16)|(g<<8)|r)>>>0;
   }
-  function build(){
+  /* Smooth value noise, new pattern on every visit */
+  var PERM=new Uint8Array(512), GV=new Float32Array(256);
+  (function(){ for(var i=0;i<256;i++){ PERM[i]=i; GV[i]=Math.random()*2-1; }
+    for(var i=255;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=PERM[i]; PERM[i]=PERM[j]; PERM[j]=t; }
+    for(var i=0;i<256;i++) PERM[i+256]=PERM[i]; })();
+  function vnoise(x,y){
+    var xi=Math.floor(x), yi=Math.floor(y), xf=x-xi, yf=y-yi; xi&=255; yi&=255;
+    var u=xf*xf*(3-2*xf), v=yf*yf*(3-2*yf);
+    var a=GV[PERM[PERM[xi]+yi]], b=GV[PERM[PERM[xi+1]+yi]], c=GV[PERM[PERM[xi]+yi+1]], d=GV[PERM[PERM[xi+1]+yi+1]];
+    return (a+(b-a)*u)+((c+(d-c)*u)-(a+(b-a)*u))*v;
+  }
+  /* Domain-warped noise: the warp twists the ridges into swirls, like sand pushed around by hand */
+  function field(x,y){
+    var wx=vnoise(x/260+3.7,y/260+9.2), wy=vnoise(x/260+41.1,y/260+27.6);
+    var u=x/210+1.6*wx, v=y/210+1.6*wy;
+    return Math.sin(2.4*(vnoise(u,v)+0.5*vnoise(2.1*u+7.7,2.1*v+3.3)));
+  }
+  /* Grains are laid once over an area as large as the screen can ever be, so a resize or rotation never erases trails.
+     Each grain then slides toward the nearest zero line of the noise field, which gathers the sand into winding ridges
+     as if a hand had already been through it. A few grains stay where they fell. */
+  function seed(){
+    var fw=Math.ceil(Math.max(innerWidth, (screen&&screen.width)||0, (screen&&screen.height)||0));
+    var fh=Math.ceil(Math.max(innerHeight, (screen&&screen.width)||0, (screen&&screen.height)||0));
+    N=Math.round(fw*fh/(SP*SP));
+    X=new Float32Array(N); Y=new Float32Array(N); VX=new Float32Array(N); VY=new Float32Array(N);
+    var e=1.5;
+    for(var i=0;i<N;i++){
+      var x=Math.random()*fw, y=Math.random()*fh;
+      if(Math.random()>0.10){
+        var rate=0.25+Math.random()*0.75, its=2+Math.floor(Math.random()*7);
+        for(var it=0;it<its;it++){
+          var f=field(x,y), gx=(field(x+e,y)-f)/e, gy=(field(x,y+e)-f)/e, g2=gx*gx+gy*gy+1e-9;
+          var sx=-f*gx/g2*rate, sy=-f*gy/g2*rate, m=Math.abs(sx)+Math.abs(sy);
+          if(m>40){ sx*=40/m; sy*=40/m; }
+          x+=sx; y+=sy;
+          if(m<0.3) break;
+        }
+        x+=(Math.random()-0.5)*4; y+=(Math.random()-0.5)*4;
+      }
+      X[i]=x; Y[i]=y;
+    }
+  }
+  function fit(){
     w=Math.max(1,Math.ceil(innerWidth)); h=Math.max(1,Math.ceil(innerHeight));
     cv.width=w; cv.height=h;
     img=cx.createImageData(w,h); buf=new Uint32Array(img.data.buffer);
-    var cols=Math.ceil(w/SP), rows=Math.ceil(h/SP); N=cols*rows;
-    X=new Float32Array(N); Y=new Float32Array(N); HX=new Float32Array(N); HY=new Float32Array(N); VX=new Float32Array(N); VY=new Float32Array(N);
-    var s=12345; function rnd(){ s=(s*16807)%2147483647; return s/2147483647; }
-    for(var j=0,i=0;j<rows;j++) for(var c=0;c<cols;c++,i++){
-      HX[i]=X[i]=c*SP+rnd()*SP; HY[i]=Y[i]=j*SP+rnd()*SP;
-    }
     draw();
   }
   function draw(){
@@ -281,8 +318,9 @@ nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
           }
         }
       }
+      if(vx===0 && vy===0) continue;
       vx*=0.8; vy*=0.8;
-      if(vx>-0.01 && vx<0.01) vx=0; if(vy>-0.01 && vy<0.01) vy=0;
+      if(vx>-0.01 && vx<0.01 && vy>-0.01 && vy<0.01){ vx=0; vy=0; }
       X[i]+=vx; Y[i]+=vy; VX[i]=vx; VY[i]=vy;
       var v=Math.abs(vx)+Math.abs(vy); if(v>maxv) maxv=v;
     }
@@ -308,11 +346,8 @@ nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
   tbtn.addEventListener('click',recolor);
   try{ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',recolor); }catch(e){}
   try{ new MutationObserver(recolor).observe(root,{attributes:true,attributeFilter:['data-theme']}); }catch(e){}
-  /* Rebuild only for a real size change, so a phone's address bar showing or hiding keeps the trails */
-  var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(function(){
-    if(Math.abs(innerWidth-w)>1 || Math.abs(innerHeight-h)>140) build();
-  },200); });
-  sandColor(); build();
+  var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(fit,150); });
+  sandColor(); seed(); fit();
 })();
 </script>
 </body>
