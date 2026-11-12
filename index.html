@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Javier de Golferichs. Based in Madrid. Complex systems, machine learning, venture capital, European affairs and economic policy.">
+<meta name="description" content="Javier de Golferichs. Based in Madrid. Complex systems and machine learning.">
 <title>Javier de Golferichs</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0}
-/* Layout: one centered column, lots of air. Big name, a split-flap board cycling interests, one experience line. */
+/* Layout: one screen. Name and split-flap board on top, a 2x2 grid of short sections below, all vertically centered. */
 :root{
   --bg:#FFFFFF; --fg:#1D1D1F; --muted:#6E6E73; --line:#E5E5EA; --link:#0066CC;
   --frame:#1C1C1E; --tile:#2C2C2E; --tile-hi:#333336; --glyph:#F5F5F7; --seam:#0B0B0C;
@@ -24,21 +24,22 @@ body{margin:0}
   --bg:#000000; --fg:#F5F5F7; --muted:#86868B; --line:#2C2C2E; --link:#2997FF;
   --frame:#161617; --tile:#262628; --tile-hi:#2E2E30; --glyph:#F5F5F7; --seam:#000000; color-scheme:dark;
 }
+html,body{height:100%}
 body{background:var(--bg);color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;
   padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
-.wrap{max-width:780px;margin:0 auto;padding-block:clamp(56px,12vw,140px) 64px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.wrap{min-height:100%;max-width:720px;margin:0 auto;padding-block:clamp(16px,4vh,48px);
+  display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,5vh,52px)}
 
-.eyebrow{font-size:15px;font-weight:500;color:var(--muted);margin:0 0 14px}
-h1{font-size:clamp(40px,8vw,80px);font-weight:700;letter-spacing:-.035em;line-height:1.02;margin:0;text-wrap:balance}
-.sub{font-size:clamp(19px,2.6vw,24px);font-weight:500;letter-spacing:-.01em;line-height:1.35;color:var(--muted);margin:18px 0 0;max-width:30em;text-wrap:balance}
-.sub b{color:var(--fg);font-weight:600}
+.top{text-align:center}
+.eyebrow{font-size:clamp(13px,1.9vh,15px);font-weight:500;color:var(--muted);margin:0 0 8px}
+h1{font-size:clamp(32px,min(8vw,8.5vh),72px);font-weight:700;letter-spacing:-.035em;line-height:1.02;margin:0;text-wrap:balance}
+.sub{font-size:clamp(16px,min(2.6vw,2.8vh),22px);font-weight:500;letter-spacing:-.01em;color:var(--muted);margin:10px 0 0}
 
 /* Split-flap board */
-.board{width:100%;margin-top:clamp(48px,8vw,80px);background:var(--frame);border-radius:18px;padding:14px;container-type:inline-size;text-align:left}
-.board-head{display:flex;justify-content:space-between;gap:12px;color:#8E8E93;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:2px 4px 12px}
-.row{display:grid;grid-template-columns:repeat(16,1fr);gap:5px}
-.tile{position:relative;aspect-ratio:.68;perspective:400px;font-weight:600;color:var(--glyph);
-  font-size:calc((100cqi - 28px - 75px) / 16 * .9);font-variant-numeric:tabular-nums}
+.board{width:100%;background:var(--frame);border-radius:14px;padding:10px;container-type:inline-size}
+.row{display:grid;grid-template-columns:repeat(16,1fr);gap:4px}
+.tile{position:relative;aspect-ratio:.7;perspective:400px;font-weight:600;color:var(--glyph);
+  font-size:calc((100cqi - 20px - 60px) / 16 * .9)}
 .half,.flap{position:absolute;left:0;right:0;height:50%;overflow:hidden;background:var(--tile);backface-visibility:hidden}
 .half.t,.flap.t{top:0;border-radius:4px 4px 0 0;transform-origin:50% 100%;background:var(--tile-hi)}
 .half.b,.flap.b{bottom:0;border-radius:0 0 4px 4px;transform-origin:50% 0}
@@ -49,68 +50,67 @@ h1{font-size:clamp(40px,8vw,80px);font-weight:700;letter-spacing:-.035em;line-he
 .b span{top:-100%}
 .tile::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.5px;margin-top:-.75px;background:var(--seam);z-index:4}
 
-/* Experience */
-.exp{width:100%;margin-top:clamp(64px,10vw,104px);border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;align-items:center;gap:6px}
-.label{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
-.role{font-size:clamp(22px,3vw,28px);font-weight:600;letter-spacing:-.02em;margin:0}
-.where{font-size:17px;color:var(--muted);margin:0}
-.desc{font-size:17px;line-height:1.5;margin:10px auto 0;max-width:32em;text-wrap:pretty}
-.exp + .exp{margin-top:56px}
-.jobs{display:flex;flex-direction:column;gap:36px;width:100%}
-.job{display:flex;flex-direction:column;gap:6px}
-.skills{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
-.skills li{font-size:17px;font-weight:500;padding:9px 18px;border-radius:999px;border:1px solid var(--line)}
-
-footer{margin-top:64px;font-size:17px}
-footer a{color:var(--link);text-decoration:none}
-footer a:hover{text-decoration:underline}
+/* Sections grid */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3.5vh,32px) 48px;border-top:1px solid var(--line);padding-top:clamp(18px,3.5vh,32px)}
+.grid section{min-width:0;display:flex;flex-direction:column;gap:3px}
+.label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+.strong{font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.3;margin:0;text-wrap:balance}
+.small{font-size:15px;line-height:1.4;color:var(--muted);margin:0;text-wrap:pretty}
+.item + .item{margin-top:6px}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
 a:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:4px}
 
 @media (max-width:560px){
-  .board{padding:8px;border-radius:12px}
+  .board{padding:7px;border-radius:10px}
   .row{gap:2px}
-  .tile{font-size:calc((100cqi - 16px - 30px) / 16 * .9)}
+  .tile{font-size:calc((100cqi - 14px - 30px) / 16 * .9)}
   .half.t,.flap.t{border-radius:2px 2px 0 0}
   .half.b,.flap.b{border-radius:0 0 2px 2px}
+  .grid{column-gap:20px}
+  .grid .wide{grid-column:1 / -1}
+  .strong{font-size:15px}
+  .small{font-size:14px}
 }
 </style>
 </head>
 <body>
 <main class="wrap">
-  <p class="eyebrow">Based in Madrid</p>
-  <h1>Javier de Golferichs.</h1>
-  <p class="sub">Experience in <b>complex systems</b> and <b>machine learning</b>. Interested in venture capital, European affairs and economic policy.</p>
+  <div class="top">
+    <p class="eyebrow">Based in Madrid</p>
+    <h1>Javier de Golferichs.</h1>
+    <p class="sub">Complex systems and machine learning.</p>
+  </div>
 
   <div class="board" role="img" aria-label="Interests: venture capital, European affairs, economic policy, complex systems, machine learning">
-    <div class="board-head"><span>Interests</span><span>MAD 40.42° N</span></div>
     <div class="row" id="row"></div>
   </div>
 
-  <section class="exp">
-    <p class="label">Expertise</p>
-    <ul class="skills">
-      <li>Computer vision</li>
-      <li>AI systems engineering</li>
-      <li>Graph neural networks</li>
-    </ul>
-  </section>
+  <div class="grid">
+    <section class="wide">
+      <p class="label">Research</p>
+      <p class="strong">European Critical Raw Materials Dependencies and Graph Learning</p>
+      <p class="small">Working paper, 2026. With <a href="https://www.uam.es/economicas/facultad/departamentos/analisis-economico-economia-cuantitativa/bas-vicente-javier" target="_blank" rel="noopener">Javier Bas</a> and <a href="https://www.uam.es/economicas/facultad/departamentos/economia-aplicada-estadistica/perez-balsalobre-santiago-jose" target="_blank" rel="noopener">Santiago Pérez-Balsalobre</a>.</p>
+    </section>
 
-  <section class="exp">
-    <p class="label">Experience</p>
-    <div class="jobs">
-      <div class="job">
-        <p class="role">Cofounder</p>
-        <p class="where">Healthen Group</p>
-      </div>
-      <div class="job">
-        <p class="role">Research Assistant</p>
-        <p class="where">Complex Networks Lab, Vienna · Summer 2026</p>
-        <p class="desc">Studied where independent edge models fall short when sampling observed edges and edges assumed to be impossible.</p>
-      </div>
-    </div>
-  </section>
+    <section>
+      <p class="label">Experience</p>
+      <div class="item"><p class="strong">Cofounder</p><p class="small">Healthen Group</p></div>
+      <div class="item"><p class="strong">Research Assistant</p><p class="small">Complex Networks Lab, Vienna</p></div>
+    </section>
 
-  <footer><a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank" rel="noopener">Connect on LinkedIn ›</a></footer>
+    <section>
+      <p class="label">Expertise</p>
+      <p class="small">Computer vision</p>
+      <p class="small">AI systems engineering</p>
+      <p class="small">Graph neural networks</p>
+    </section>
+
+    <section class="wide">
+      <p class="label">Contact</p>
+      <p class="small">Send me a <a href="https://www.linkedin.com/in/javier-de-golferichs/" target="_blank" rel="noopener">LinkedIn connection request</a>. I check regularly.</p>
+    </section>
+  </div>
 </main>
 
 <script>
