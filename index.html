@@ -13,15 +13,15 @@ body{margin:0}
 /* Layout: two views on one page. Home = split-flap board, name and place centred, About + Contact at the bottom.
    About = Research and Experience in a narrow reading column (Garamond headings, Inter text). Pure black and white. */
 :root{
-  --bg:#FFFFFF; --fg:#000000; --body:#1F1F1F;
+  --bg:#FFFFFF; --fg:#000000; --body:#1F1F1F; --warm:#E8781E;
   --serif:"EB Garamond", Garamond, "Times New Roman", Times, serif;
   --sans:"Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#000000; --fg:#FFFFFF; --body:#E6E6E6; color-scheme:dark;
+  --bg:#000000; --fg:#FFFFFF; --body:#E6E6E6; --warm:#F5A23A; color-scheme:dark;
 }}
 :root[data-theme="dark"]{
-  --bg:#000000; --fg:#FFFFFF; --body:#E6E6E6; color-scheme:dark;
+  --bg:#000000; --fg:#FFFFFF; --body:#E6E6E6; --warm:#F5A23A; color-scheme:dark;
 }
 html,body{height:100%}
 body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;-webkit-font-smoothing:antialiased;overflow-x:hidden;
@@ -34,19 +34,17 @@ body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px
 
 /* Home */
 .home{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:clamp(22px,4vh,36px)}
-.board{width:min(100%,620px,calc((100vh - 300px) * 2.2));container-type:inline-size;display:flex;flex-direction:column;gap:6px}
+.board{position:relative;width:min(100%,620px,calc((100vh - 300px) * 2.2));container-type:inline-size;display:flex;flex-direction:column;gap:6px}
 .row{display:grid;grid-template-columns:repeat(14,1fr);gap:4px}
-.tile{position:relative;aspect-ratio:.7;perspective:400px;font-weight:500;color:var(--fg);font-size:calc((100cqi - 52px) / 14 * .74)}
-.half,.flap{position:absolute;left:0;right:0;height:50%;overflow:hidden;background:var(--bg);backface-visibility:hidden}
-.half.t,.flap.t{top:0;border-radius:3px 3px 0 0;transform-origin:50% 100%}
-.half.b,.flap.b{bottom:0;border-radius:0 0 3px 3px;transform-origin:50% 0}
-.flap.t,.flap.b{z-index:3}
-.flap.b{transform:rotateX(90deg)}
-.half span,.flap span{position:absolute;left:0;right:0;height:200%;display:flex;align-items:center;justify-content:center;line-height:1}
-.t span{top:0}
-.b span{top:-100%}
+.tile{position:relative;aspect-ratio:.7;font-weight:500;color:var(--fg);font-size:calc((100cqi - 52px) / 14 * .74)}
+.g{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;line-height:1;
+  transition:opacity 1.2s ease-in-out var(--d,0ms), filter 1.2s ease-in-out var(--d,0ms), color 1.6s ease-in-out}
+.g.w{color:var(--warm)}
+.g.off{opacity:0;filter:blur(4px)}
 .tile::before{content:"";position:absolute;inset:0;border:1px solid var(--fg);border-radius:3px;z-index:5;pointer-events:none}
-.tile::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;margin-top:-.5px;background:var(--fg);z-index:4}
+/* Whole-pixel sizing set by script so every outline and seam lands on the pixel grid */
+.board.snap .row{grid-template-columns:repeat(14,var(--tw));justify-content:start}
+.board.snap .tile{aspect-ratio:auto;height:var(--th);font-size:calc(var(--tw) * .74)}
 .who p{margin:0}
 .name{font-family:var(--serif);font-size:clamp(28px,4.4vh,40px);letter-spacing:-.01em;line-height:1.1}
 .place{font-size:15px;margin-top:8px!important}
@@ -61,7 +59,8 @@ body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px
 .about a{color:var(--fg);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
 .jobs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
 .jobs li{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px;padding-bottom:14px;border-bottom:1px solid var(--fg)}
-.jobs .r{font-family:var(--serif);font-size:24px;color:var(--fg)}
+.jobs .r{font-family:var(--serif);font-size:24px;color:var(--warm)}
+.about .hl{color:var(--warm)}
 .jobs .w{color:var(--body)}
 
 /* Bottom nav */
@@ -90,7 +89,7 @@ nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
   .board{gap:3px}
   .row{gap:2px}
   .tile{font-size:calc((100cqi - 26px) / 14 * .74)}
-  .tile::before,.half.t,.flap.t,.half.b,.flap.b{border-radius:2px}
+  .tile::before{border-radius:2px}
 }
 @media (prefers-reduced-motion: reduce){
   .view,.note{transition:none}
@@ -115,9 +114,9 @@ nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
   <main class="view about" id="about" hidden>
     <section>
       <h2>Research</h2>
-      <p class="ptitle">European Critical Raw Materials Dependencies and Graph Learning</p>
+      <p class="ptitle">European Critical Raw Materials Dependencies and <span class="hl">Graph Learning</span></p>
       <p>Working paper, 2026, with <a href="https://www.uam.es/economicas/facultad/departamentos/analisis-economico-economia-cuantitativa/bas-vicente-javier" target="_blank" rel="noopener">Javier Bas</a> and <a href="https://www.uam.es/economicas/facultad/departamentos/economia-aplicada-estadistica/perez-balsalobre-santiago-jose" target="_blank" rel="noopener">Santiago Pérez-Balsalobre</a>.</p>
-      <p>A framework that processes input-output trade data with graph neural networks to assess the risk in the EU's dependencies on critical raw materials.</p>
+      <p>A framework that processes input-output trade data with graph neural networks to assess the risk in the EU's dependencies on critical raw materials, with a view to European <span class="hl">trade policy</span>.</p>
     </section>
     <section>
       <h2>Experience</h2>
@@ -139,47 +138,58 @@ nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
 <script>
 (function(){
   /* Split-flap board */
-  var LINES=[["COMPUTER","VISION"],["AI SYSTEMS","ENGINEERING"],["GRAPH NEURAL","NETWORKS"],["EUROPEAN TRADE","POLICY"],["FINANCIAL","ANALYSIS"]];
-  var W=14, CH=" ABCDEFGHIJKLMNOPQRSTUVWXYZ", STEP=70;
+  /* Ordered so every change keeps at least one letter in the same box */
+  var LINES=[["COMPUTER","VISION"],["AI SYSTEMS","ENGINEERING"],["GRAPH NEURAL","NETWORKS"],["FINANCIAL","ANALYSIS"],["EUROPEAN TRADE","POLICY"]];
+  var W=14;
   var reduce=false; try{reduce=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
   function pad(w){ var l=Math.floor((W-w.length)/2); return (" ".repeat(l)+w+" ".repeat(W)).slice(0,W); }
   function text(k){ return pad(LINES[k][0])+pad(LINES[k][1]); }
-  function el(c){ var d=document.createElement('div'); d.className=c; d.appendChild(document.createElement('span')); return d; }
   var board=document.getElementById('board'), tiles=[], first=text(0);
   for(var r=0;r<2;r++){
     var row=document.createElement('div'); row.className='row'; board.appendChild(row);
     for(var c=0;c<W;c++){
       var t=document.createElement('div'); t.className='tile';
-      var o={ht:el('half t'),hb:el('half b'),ft:el('flap t'),fb:el('flap b'),c:first[r*W+c]};
-      [o.ht,o.hb,o.ft,o.fb].forEach(function(p){ t.appendChild(p); p.firstChild.textContent=o.c; });
-      row.appendChild(t); tiles.push(o);
+      var g=document.createElement('span'); g.className='g';
+      g.style.setProperty('--d',(c*45+r*120)+'ms');
+      t.appendChild(g); row.appendChild(t); tiles.push(g);
     }
   }
-  function set(p,ch){ p.firstChild.textContent=ch; }
-  function flip(o,next){
-    return new Promise(function(res){
-      if(reduce || !o.ft.animate){ [o.ht,o.hb,o.ft,o.fb].forEach(function(p){set(p,next)}); o.c=next; return res(); }
-      set(o.ht,next); set(o.hb,o.c); set(o.ft,o.c); set(o.fb,next);
-      o.ft.animate([{transform:'rotateX(0deg)'},{transform:'rotateX(-90deg)'}],{duration:STEP/2,fill:'forwards',easing:'ease-in'});
-      var a=o.fb.animate([{transform:'rotateX(90deg)'},{transform:'rotateX(0deg)'}],{duration:STEP/2,delay:STEP/2,fill:'forwards',easing:'ease-out'});
-      a.onfinish=function(){ set(o.hb,next); set(o.ft,next); o.ft.getAnimations().forEach(function(x){x.cancel()}); o.fb.getAnimations().forEach(function(x){x.cancel()}); o.c=next; res(); };
-    });
+  /* The warm accent marks the letters that stay in place through the next change */
+  function paint(str){ tiles.forEach(function(g,i){ g.textContent=str[i]; }); }
+  function warm(k){
+    var a=text(k), b=text((k+1)%LINES.length);
+    tiles.forEach(function(g,i){ g.classList.toggle('w', a[i]!==' ' && a[i]===b[i]); });
   }
-  function run(o,target,delay){
-    return new Promise(function(res){
-      setTimeout(function step(){
-        if(o.c===target) return res();
-        if(reduce){ flip(o,target).then(res); return; }
-        flip(o,CH[(CH.indexOf(o.c)+1)%CH.length]).then(step);
-      },delay);
-    });
+  paint(first); warm(0);
+  function snap(){
+    board.style.left='0px'; board.style.top='0px';
+    if(board.offsetParent===null) return;
+    var gap=parseInt(getComputedStyle(board.firstChild).columnGap,10)||4;
+    var bw=board.getBoundingClientRect().width;
+    var tw=Math.max(8,Math.floor((bw-13*gap)/14)), th=Math.round(tw/0.7); if(th%2) th--;
+    board.style.setProperty('--tw',tw+'px'); board.style.setProperty('--th',th+'px'); board.style.setProperty('--mid',(th/2)+'px');
+    board.classList.add('snap');
+    var r=board.getBoundingClientRect();
+    board.style.left=(Math.round(r.left)-r.left)+'px'; board.style.top=(Math.round(r.top)-r.top)+'px';
   }
-  var k=0;
+  snap(); window.addEventListener('resize',snap);
+  try{ document.fonts.ready.then(snap); }catch(e){}
+  window.__snapBoard=snap;
+  /* Letters fade out in their boxes, then the next phrase fades in */
+  var FADE=reduce?400:1200, SPREAD=reduce?0:(13*45+120), HOLD=3600, k=0;
+  if(reduce) tiles.forEach(function(g){ g.style.setProperty('--d','0ms'); });
   function cycle(){
     k=(k+1)%LINES.length; var target=text(k);
-    Promise.all(tiles.map(function(o,i){ return run(o,target[i],(i%W)*30); })).then(function(){ setTimeout(cycle,3200); });
+    var changing=tiles.filter(function(g,i){ return g.textContent!==target[i]; });
+    changing.forEach(function(g){ g.classList.add('off'); });
+    setTimeout(function(){
+      paint(target);
+      requestAnimationFrame(function(){ changing.forEach(function(g){ g.classList.remove('off'); }); });
+      setTimeout(function(){ warm(k); }, FADE+SPREAD);
+      setTimeout(cycle,FADE+SPREAD+1600+HOLD);
+    },FADE+SPREAD+150);
   }
-  setTimeout(cycle,2600);
+  setTimeout(cycle,HOLD);
 
   /* Views: home and #about */
   var home=document.getElementById('home'), about=document.getElementById('about'), nav=document.getElementById('nav-about');
@@ -191,6 +201,7 @@ nav a:hover,nav a[aria-current="page"]{border-bottom-color:var(--fg)}
     outEl.hidden=true; inEl.hidden=false; inEl.classList.add('fading');
     requestAnimationFrame(function(){ requestAnimationFrame(function(){ inEl.classList.remove('fading'); }); });
     window.scrollTo(0,0);
+    if(!onAbout && window.__snapBoard) window.__snapBoard();
   }
   nav.addEventListener('click',function(e){
     e.preventDefault();
